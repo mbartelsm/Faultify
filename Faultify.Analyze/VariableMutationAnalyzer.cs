@@ -50,23 +50,30 @@ namespace Faultify.Analyze
 
                 if (variableDefinition == null) continue;
 
-                // Get variable type.
-                var variableType = Type.GetType(variableDefinition.VariableType.ToString());
+                try
+                {
+                    // Get variable type.
+                    var variableType = Type.GetType(variableDefinition.VariableType.ToString());
 
-                // Get previous instruction.
-                var variableInstruction = instruction.Previous;
+                    // Get previous instruction.
+                    var variableInstruction = instruction.Previous;
 
-                // If the previous instruction is 'ldc' its loading a boolean or integer on the stack. 
-                if (!variableInstruction.IsLdc()) continue;
+                    // If the previous instruction is 'ldc' its loading a boolean or integer on the stack. 
+                    if (!variableInstruction.IsLdc()) continue;
 
-                // If the value is mapped then mutate it.
-                if (Mapped.Types.TryGetValue(variableType, out var type))
-                    mutations.Add(new VariableMutation
-                    {
-                        Original = variableInstruction.Operand,
-                        Replacement = _valueGenerator.GenerateValueForField(type, instruction.Previous.Operand),
-                        Variable = variableInstruction
-                    });
+                    // If the value is mapped then mutate it.
+                    if (Mapped.Types.TryGetValue(variableType, out var type))
+                        mutations.Add(new VariableMutation
+                        {
+                            Original = variableInstruction.Operand,
+                            Replacement = _valueGenerator.GenerateValueForField(type, instruction.Previous.Operand),
+                            Variable = variableInstruction
+                        });
+                }
+                catch
+                {
+                    // ignore (sometimes `Type.GetType` fails)
+                }
             }
 
             return mutations;

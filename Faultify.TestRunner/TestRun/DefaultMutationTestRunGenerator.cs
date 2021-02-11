@@ -75,7 +75,8 @@ namespace Faultify.TestRunner.TestRun
             {
                 var methodMutationId = 0;
                 var registeredMutation = coverage.FirstOrDefault(x =>
-                    x.Key.AssemblyName == assembly.Module.Assembly.Name.Name && x.Key.EntityHandle == method.IntHandle);
+                    x.Key.AssemblyName == assembly.Module.Assembly.Name.Name &&
+                    x.Key.EntityHandle == method.IntHandle);
                 var mutationGroupId = 0;
 
                 if (registeredMutation.Key != null)
