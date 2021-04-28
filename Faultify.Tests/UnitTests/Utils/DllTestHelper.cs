@@ -107,7 +107,7 @@ namespace Faultify.Tests.UnitTests.Utils
                 {
                     mutation.Mutate();
 
-                    if (mutation.Replacement == expected)
+                    if (mutation.HasOpcode(expected))
                     {
                         MemoryStream mutatedBinaryStream = new MemoryStream();
                         module.Write(mutatedBinaryStream);
@@ -177,7 +177,7 @@ namespace Faultify.Tests.UnitTests.Utils
             {
                 mutation.Mutate();
 
-                if (mutation.Replacement.Equals(expected))
+                if (mutation.HasConstant(expected))
                 {
                     MemoryStream mutatedBinaryStream = new MemoryStream();
                     module.Write(mutatedBinaryStream);

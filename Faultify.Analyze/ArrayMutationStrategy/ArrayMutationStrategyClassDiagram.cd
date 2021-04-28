@@ -1,30 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Faultify.Analyze.ArrayMutationStrategy.ArrayBuilder" Collapsed="true">
-    <Position X="6" Y="2.75" Width="1.5" />
+  <Class Name="Faultify.Analyze.ArrayMutationStrategy.ArrayBuilder">
+    <Position X="7" Y="5.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
       <FileName>ArrayMutationStrategy\ArrayBuilder.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Faultify.Analyze.ArrayMutationStrategy.ArrayMutationStrategy" Collapsed="true">
-    <Position X="3.5" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
-      <FileName>ArrayMutationStrategy\ArrayMutationStrategy.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Faultify.Analyze.ArrayMutationStrategy.DynamicArrayRandomizerStrategy" Collapsed="true">
-    <Position X="3.5" Y="4" Width="1.5" />
+  <Class Name="Faultify.Analyze.ArrayMutationStrategy.DynamicArrayRandomizerStrategy">
+    <Position X="4.25" Y="5.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAABAQAAAAAAAAAAAAAAAAACAEAAAAAAAA=</HashCode>
       <FileName>ArrayMutationStrategy\DynamicArrayRandomizerStrategy.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="Faultify.Analyze.ArrayMutationStrategy.IArrayMutationStrategy" Collapsed="true">
-    <Position X="6" Y="4" Width="1.5" />
+  <Interface Name="Faultify.Analyze.ArrayMutationStrategy.IArrayMutationStrategy">
+    <Position X="4.25" Y="3.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
       <FileName>ArrayMutationStrategy\IArrayMutationStrategy.cs</FileName>

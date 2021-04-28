@@ -13,7 +13,6 @@ namespace Faultify.Analyze.Analyzers
     /// </summary>
     public class ConstantAnalyzer : IAnalyzer<ConstantMutation, FieldDefinition>
     {
-        private readonly RandomValueGenerator _rng = new RandomValueGenerator();
 
         public string Description =>
             "Analyzer that searches for possible literaal constant mutations such as 'true' to 'false', or '7' to '42'.";
@@ -34,14 +33,7 @@ namespace Faultify.Analyze.Analyzers
 
             if (TypeChecker.IsConstantType(type))
             {
-                ConstantMutation constantMutation = new ConstantMutation
-                {
-                    Original = field.Constant,
-                    ConstantName = field.Name,
-                    Replacement = _rng.GenerateValueForField(type, field.Constant),
-                    ConstantField = field,
-                };
-                mutations.Add(constantMutation);
+                mutations.Add(new ConstantMutation(field, type));
             }
 
             // Build mutation group
