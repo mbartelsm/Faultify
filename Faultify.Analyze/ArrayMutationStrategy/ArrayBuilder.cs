@@ -11,7 +11,6 @@ namespace Faultify.Analyze.ArrayMutationStrategy
     /// </summary>
     public class ArrayBuilder
     {
-        private RandomValueGenerator _randomValueGenerator;
 
         /// <summary>
         ///     Creates array with the given length and array type.
@@ -22,7 +21,6 @@ namespace Faultify.Analyze.ArrayMutationStrategy
         /// <returns></returns>
         public List<Instruction> CreateArray(ILProcessor processor, int length, TypeReference arrayType)
         {
-            _randomValueGenerator = new RandomValueGenerator();
             OpCode opcodeTypeValueAssignment = arrayType.GetLdcOpCodeByTypeReference();
             OpCode stelem = arrayType.GetStelemByTypeReference();
             if (arrayType.ToSystemType() == typeof(long) || arrayType.ToSystemType() == typeof(ulong))
@@ -37,7 +35,7 @@ namespace Faultify.Analyze.ArrayMutationStrategy
             };
             for (var i = 0; i < length; i++)
             {
-                object random = _randomValueGenerator.GenerateValueForField(arrayType.ToSystemType(), 0);
+                object random = RandomValueGenerator.GenerateValueForField(arrayType.ToSystemType(), 0);
 
                 list.Add(processor.Create(OpCodes.Dup));
 

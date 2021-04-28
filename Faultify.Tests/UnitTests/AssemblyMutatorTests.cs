@@ -99,8 +99,14 @@ namespace Faultify.Tests.UnitTests
             TypeScope target1 = mutator.Types.First(x =>
                 x.AssemblyQualifiedName == _nameSpaceTestAssemblyTarget1);
             MethodScope method1 = target1.Methods.FirstOrDefault(x => x.Name == "TestMethod1");
-            List<IMutationGroup<OpCodeMutation>> mutations =
-                method1.OpCodeMutations(MutationLevel.Detailed).Select(x => x).ToList();
+            
+            // Workaround to private member
+            var list = (IEnumerable<IMutationGroup<OpCodeMutation>>) method1
+                    .GetType()
+                    .GetMethod("OpCodeMutations")
+                    .Invoke(method1, new object[] { MutationLevel.Detailed });
+            
+            List<IMutationGroup<OpCodeMutation>> mutations = list.Select(x => x).ToList();
 
             IMutationGroup<OpCodeMutation> arithmeticMutations =
                 mutations.FirstOrDefault(x => x.Name == new ArithmeticAnalyzer().Name);
@@ -119,8 +125,12 @@ namespace Faultify.Tests.UnitTests
             TypeScope target1 = mutator.Types.First(x =>
                 x.AssemblyQualifiedName == _nameSpaceTestAssemblyTarget1);
             FieldScope field = target1.Fields.FirstOrDefault(x => x.Name == "Constant");
-            IEnumerable<IMutationGroup<ConstantMutation>> mutations =
-                field.ConstantFieldMutations(MutationLevel.Detailed);
+
+            // Workaround to private member
+            var mutations = (IEnumerable<IMutationGroup<ConstantMutation>>) field
+                .GetType()
+                .GetMethod("ConstantFieldMutations")
+                .Invoke(field, new object[] { MutationLevel.Detailed });
 
             IMutationGroup<ConstantMutation> arithmeticMutations =
                 mutations.FirstOrDefault(x => x.Name == new ConstantAnalyzer().Name);
