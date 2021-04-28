@@ -60,13 +60,11 @@ namespace Faultify.Analyze.Analyzers
                     from target
                         in targets
                     where mutationLevel.HasFlag(target.Item1)
-                    select new OpCodeMutation
-                    {
-                        Original = original,
-                        Replacement = target.Item2,
-                        Instruction = scope,
-                        LineNumber = lineNumber,
-                    };
+                    select new OpCodeMutation(
+                        scope.OpCode,
+                        target.Item2,
+                        scope,
+                        lineNumber);
             }
             catch (Exception e)
             {

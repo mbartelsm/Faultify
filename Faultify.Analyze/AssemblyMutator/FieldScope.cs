@@ -43,7 +43,7 @@ namespace Faultify.Analyze.AssemblyMutator
         ///     Returns possible constant field mutations.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<IMutationGroup<ConstantMutation>> ConstantFieldMutations(MutationLevel mutationLevel)
+        private IEnumerable<IMutationGroup<ConstantMutation>> ConstantFieldMutations(MutationLevel mutationLevel)
         {
             foreach (IAnalyzer<ConstantMutation, FieldDefinition> analyzer in _fieldAnalyzers)
             {

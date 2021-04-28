@@ -1,4 +1,5 @@
-﻿using Mono.Cecil;
+﻿using System;
+using Mono.Cecil;
 
 namespace Faultify.Analyze.Mutation
 {
@@ -7,25 +8,33 @@ namespace Faultify.Analyze.Mutation
     /// </summary>
     public class ConstantMutation : IMutation
     {
+        public ConstantMutation(FieldDefinition field, Type type)
+        {
+            Name = field.Name;
+            Original = field.Constant;
+            Replacement = RandomValueGenerator.GenerateValueForField(type, Original);
+            ConstantField = field;
+        }
+
         /// <summary>
         ///     The name of the constant.
         /// </summary>
-        public string ConstantName { get; set; }
+        private string Name { get; set; }
 
         /// <summary>
         ///     The original constant value.
         /// </summary>
-        public object Original { get; set; }
+        private object Original { get; set; }
 
         /// <summary>
         ///     The replacement for the ConstantMutation value.
         /// </summary>
-        public object Replacement { get; set; }
+        private object Replacement { get; set; }
 
         /// <summary>
         ///     Reference to the constant field that can be mutated.
         /// </summary>
-        public FieldDefinition ConstantField { get; set; }
+        private FieldDefinition ConstantField { get; set; }
 
         public void Mutate()
         {
@@ -37,6 +46,11 @@ namespace Faultify.Analyze.Mutation
             ConstantField.Constant = Original;
         }
 
-        public string Report => $"Change constant '{ConstantName}' from: '{Original}' to: '{Replacement}'.";
+        public bool HasConstant(object constant)
+        {
+            return ConstantField.Constant == constant;
+        }
+
+        public string Report => $"Change constant '{Name}' from: '{Original}' to: '{Replacement}'.";
     }
 }

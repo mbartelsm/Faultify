@@ -8,7 +8,7 @@ namespace Faultify.Analyze
     /// </summary>
     public class TypeChecker
     {
-        public static readonly ICollection<Type> NumericTypes = new HashSet<Type>
+        private static readonly ICollection<Type> NumericTypes = new HashSet<Type>
         {
             typeof(float), typeof(double),
             typeof(sbyte), typeof(byte),
@@ -18,7 +18,7 @@ namespace Faultify.Analyze
         };
 
         // TODO: Why is this never used?
-        public static readonly ICollection<Type> stringTypes = new HashSet<Type>
+        private static readonly ICollection<Type> stringTypes = new HashSet<Type>
         {
             typeof(string), typeof(char),
         };
@@ -35,6 +35,16 @@ namespace Faultify.Analyze
             arrayTypes.Add(typeof(bool));
 
             return arrayTypes.Contains(t);
+        }
+
+        /// <summary>
+        ///     Specifies whether or not the given type is of a numeric type
+        /// </summary>
+        /// <param name="t">Type to be checked</param>
+        /// <returns>True if a valid array type, false otherwise</returns>
+        public static bool IsNumericType(Type t)
+        {
+            return NumericTypes.Contains(t);
         }
 
 

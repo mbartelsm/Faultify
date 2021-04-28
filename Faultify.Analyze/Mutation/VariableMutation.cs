@@ -1,28 +1,36 @@
-﻿using Mono.Cecil.Cil;
+﻿using System;
+using Mono.Cecil.Cil;
 
 namespace Faultify.Analyze.Mutation
 {
     public class VariableMutation : IMutation
     {
+        public VariableMutation(Instruction instruction, Type type, int lineNumber = -1)
+        {
+            Original = instruction.Operand;
+            Replacement = RandomValueGenerator.GenerateValueForField(type, Original);
+            Variable = instruction;
+            LineNumber = lineNumber;
+        }
         /// <summary>
         ///     The original variable value.
         /// </summary>
-        public object Original { get; set; }
+        private object Original { get; set; }
 
         /// <summary>
         ///     The replacement for the variable value.
         /// </summary>
-        public object Replacement { get; set; }
+        private object Replacement { get; set; }
 
         /// <summary>
         ///     The replacement for the variable value.
         /// </summary>
-        public int LineNumber { get; set; }
+        private int LineNumber { get; set; }
 
         /// <summary>
         ///     Reference to the variable instruction that can be mutated.
         /// </summary>
-        public Instruction Variable { get; set; }
+        private Instruction Variable { get; set; }
 
         public void Mutate()
         {

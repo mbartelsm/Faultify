@@ -7,31 +7,39 @@ namespace Faultify.Analyze.Mutation
     /// </summary>
     public class OpCodeMutation : IMutation
     {
+        public OpCodeMutation(OpCode original, OpCode replacement, Instruction scope, int lineNumber = -1)
+        {
+            Original = original;
+            Replacement = replacement;
+            Scope = scope;
+            LineNumber = lineNumber;
+        }
+
         /// <summary>
         ///     The original opcode.
         /// </summary>
-        public OpCode Original;
+        private OpCode Original { get; set; }
 
         /// <summary>
         ///     The replacement for the original opcode.
         /// </summary>
-        public OpCode Replacement;
+        private OpCode Replacement { get; set; }
 
-        public int LineNumber { get; set; }
+        private int LineNumber { get; set; }
 
         /// <summary>
         ///     Reference to the instruction line in witch the opcode can be mutated.
         /// </summary>
-        public Instruction Instruction { get; set; }
+        private Instruction Scope { get; set; }
 
         public void Mutate()
         {
-            Instruction.OpCode = Replacement;
+            Scope.OpCode = Replacement;
         }
 
         public void Reset()
         {
-            Instruction.OpCode = Original;
+            Scope.OpCode = Original;
         }
 
         public string Report
@@ -45,6 +53,11 @@ namespace Faultify.Analyze.Mutation
 
                 return $"Change operator from: '{Original}' to: '{Replacement}'. In line {LineNumber}";
             }
+        }
+
+        public bool HasOpcode(OpCode opCode)
+        {
+            return Scope.OpCode == opCode;
         }
     }
 }

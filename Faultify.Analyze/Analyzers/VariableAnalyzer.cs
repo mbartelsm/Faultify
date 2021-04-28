@@ -16,12 +16,6 @@ namespace Faultify.Analyze.Analyzers
     public class VariableAnalyzer : IAnalyzer<VariableMutation, MethodDefinition>
     {
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
-        private readonly RandomValueGenerator _valueGenerator;
-
-        public VariableAnalyzer()
-        {
-            _valueGenerator = new RandomValueGenerator();
-        }
 
         public string Description =>
             "Analyzer that searches for possible variable mutations such as 'true' to 'false'.";
@@ -74,14 +68,7 @@ namespace Faultify.Analyze.Analyzers
                     // If the value is mapped then mutate it.
                     if (TypeChecker.IsVariableType(type))
                     {
-                        mutations.Add(
-                            new VariableMutation
-                            {
-                                Original = variableInstruction.Operand,
-                                Replacement = _valueGenerator.GenerateValueForField(type, instruction.Previous.Operand),
-                                Variable = variableInstruction,
-                                LineNumber = lineNumber,
-                            });
+                        mutations.Add(new VariableMutation(variableInstruction, type, lineNumber));
                     }
                 }
                 catch (InvalidCastException e)

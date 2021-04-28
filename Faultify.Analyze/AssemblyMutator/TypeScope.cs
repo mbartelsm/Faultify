@@ -63,7 +63,7 @@ namespace Faultify.Analyze.AssemblyMutator
             {
                 foreach (FieldDefinition field in TypeDefinition.Fields)
                 {
-                    ConstGroup mutations = (ConstGroup) analyzer.GenerateMutations(field, mutationLevel);
+                    IMutationGroup<IMutation> mutations = analyzer.GenerateMutations(field, mutationLevel);
 
                     if (mutations.Any())
                     {

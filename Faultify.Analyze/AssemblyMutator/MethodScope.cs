@@ -92,7 +92,7 @@ namespace Faultify.Analyze.AssemblyMutator
         /// <summary>
         ///     Returns all operator mutations within the scope of this method.
         /// </summary>
-        public IEnumerable<IMutationGroup<OpCodeMutation>> OpCodeMutations(MutationLevel mutationLevel)
+        private IEnumerable<IMutationGroup<OpCodeMutation>> OpCodeMutations(MutationLevel mutationLevel)
         {
             foreach (IAnalyzer<OpCodeMutation, Instruction> analyzer in _opCodeMethodAnalyzers)
             {
@@ -115,7 +115,7 @@ namespace Faultify.Analyze.AssemblyMutator
         /// <summary>
         ///     Returns all literal value mutations within the scope of this method.
         /// </summary>
-        public IEnumerable<IMutationGroup<ConstantMutation>> ConstantReferenceMutations(MutationLevel mutationLevel)
+        private IEnumerable<IMutationGroup<ConstantMutation>> ConstantReferenceMutations(MutationLevel mutationLevel)
         {
             IEnumerable<FieldReference> fieldReferences = MethodDefinition.Body.Instructions
                 .OfType<FieldReference>();
@@ -135,7 +135,7 @@ namespace Faultify.Analyze.AssemblyMutator
         /// <summary>
         ///     Returns all variable mutations within the scope of this method.
         /// </summary>
-        public IEnumerable<IMutationGroup<VariableMutation>> VariableMutations(MutationLevel mutationLevel)
+        private IEnumerable<IMutationGroup<VariableMutation>> VariableMutations(MutationLevel mutationLevel)
         {
             return
                 from analyzer
@@ -146,7 +146,7 @@ namespace Faultify.Analyze.AssemblyMutator
         /// <summary>
         ///     Returns all array mutations within the scope of this method.
         /// </summary>
-        public IEnumerable<IMutationGroup<ArrayMutation>> ArrayMutations(MutationLevel mutationLevel)
+        private IEnumerable<IMutationGroup<ArrayMutation>> ArrayMutations(MutationLevel mutationLevel)
         {
             return
                 from analyzer

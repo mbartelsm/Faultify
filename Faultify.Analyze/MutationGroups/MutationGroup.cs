@@ -30,32 +30,4 @@ namespace Faultify.Analyze.MutationGroups
             return $"Analyzed by {Name} ({Description})";
         }
     }
-
-    /// <summary>
-    ///     Shorthand for MutationGroup
-    ///     <VariableMutation>
-    ///         <seealso cref="MutationGroup" />
-    /// </summary>
-    public class VarMutationGroup : MutationGroup<VariableMutation> { }
-
-    /// <summary>
-    ///     Shorthand for MutationGroup
-    ///     <ArrayMutation>
-    ///         <seealso cref="MutationGroup" />
-    /// </summary>
-    public class ArrayMutationGroup : MutationGroup<ArrayMutation> { }
-
-    /// <summary>
-    ///     Shorthand for MutationGroup
-    ///     <OpCodeMutation>
-    ///         <seealso cref="MutationGroup" />
-    /// </summary>
-    public class OpCodeGroup : MutationGroup<OpCodeMutation> { }
-
-    /// <summary>
-    ///     Shorthand for MutationGroup
-    ///     <ConstantMutation>
-    ///         <seealso cref="MutationGroup" />
-    /// </summary>
-    public class ConstGroup : MutationGroup<ConstantMutation> { }
 }
