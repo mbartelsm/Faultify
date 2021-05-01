@@ -20,7 +20,7 @@ namespace Faultify.Analyze.AssemblyMutator
 
         public TypeScope(
             TypeDefinition typeDefinition,
-            HashSet<IAnalyzer<OpCodeMutation, Instruction>> opcodeAnalyzers,
+            HashSet<IAnalyzer<OpCodeMutation, MethodDefinition>> opcodeAnalyzers,
             HashSet<IAnalyzer<ConstantMutation, FieldDefinition>> fieldAnalyzers,
             HashSet<IAnalyzer<VariableMutation, MethodDefinition>> variableMutationAnalyzers,
             HashSet<IAnalyzer<ArrayMutation, MethodDefinition>> arrayMutationAnalyzers

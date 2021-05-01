@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Faultify.Analyze.Mutation;
 using Faultify.Analyze.MutationGroups;
+using Mono.Cecil;
 using Mono.Cecil.Cil;
 using NLog;
 
@@ -12,7 +13,7 @@ namespace Faultify.Analyze.Analyzers
     ///     Analyzer that searches for possible opcode mutations inside a method definition.
     ///     A list with opcodes definitions can be found here: https://en.wikipedia.org/wiki/List_of_CIL_instructions
     /// </summary>
-    public abstract class OpCodeAnalyzer : IAnalyzer<OpCodeMutation, Instruction>
+    public abstract class OpCodeAnalyzer : IAnalyzer<OpCodeMutation, MethodDefinition>
     {
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
         private readonly Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode, string)>> _mappedOpCodes;
@@ -27,58 +28,45 @@ namespace Faultify.Analyze.Analyzers
         public abstract string Id { get; }
 
         public IMutationGroup<OpCodeMutation> GenerateMutations(
-            Instruction scope,
+            MethodDefinition scope,
             MutationLevel mutationLevel,
             HashSet<string> exclusions,
             IDictionary<Instruction, SequencePoint> debug = null
         )
         {
-            OpCode original = scope.OpCode;
-            IEnumerable<OpCodeMutation> mutations;
+            var mutGroup = new List<IEnumerable<OpCodeMutation>>();
 
-            int lineNumber = -1;
-            if (debug != null)
+            foreach (Instruction instruction in scope.Body?.Instructions)
             {
-                Instruction prev = scope;
-                SequencePoint seqPoint = null;
-                // If prev is not null
-                // and line number is not found
-                // Try previous instruction.
-                while (prev != null && !debug.TryGetValue(prev, out seqPoint))
+                OpCode original = instruction.OpCode;
+                IEnumerable<OpCodeMutation> mutations;
+
+                try
                 {
-                    prev = prev.Previous;
+                    IEnumerable<(MutationLevel, OpCode, string)> targets = _mappedOpCodes[original];
+                    mutations =
+                        from target
+                            in targets
+                        where mutationLevel.HasFlag(target.Item1) && !(exclusions.Contains(target.Item3))
+                        select new OpCodeMutation(
+                            instruction.OpCode,
+                            target.Item2,
+                            instruction,
+                            scope);
                 }
-
-                if (seqPoint != null)
+                catch (Exception e)
                 {
-                    lineNumber = seqPoint.StartLine;
+                    _logger.Debug(e, $"Could not find key \"{original}\" in Dictionary.");
+                    mutations = Enumerable.Empty<OpCodeMutation>();
                 }
-            }
-
-            try
-            {
-                IEnumerable<(MutationLevel, OpCode, string)> targets = _mappedOpCodes[original];
-                mutations =
-                    from target
-                        in targets
-                    where mutationLevel.HasFlag(target.Item1) && !(exclusions.Contains(target.Item3))
-                    select new OpCodeMutation(
-                        scope.OpCode,
-                        target.Item2,
-                        scope,
-                        lineNumber);
-            }
-            catch (Exception e)
-            {
-                _logger.Debug(e, $"Could not find key \"{original}\" in Dictionary.");
-                mutations = Enumerable.Empty<OpCodeMutation>();
+                mutGroup.Add(mutations);
             }
 
             return new MutationGroup<OpCodeMutation>
             {
                 Name = Name,
                 Description = Description,
-                Mutations = mutations,
+                Mutations = mutGroup.SelectMany(x => x),
             };
         }
     }

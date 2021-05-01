@@ -30,8 +30,8 @@ namespace Faultify.Analyze.AssemblyMutator
                 new ConstantAnalyzer(),
             };
 
-        private readonly HashSet<IAnalyzer<OpCodeMutation, Instruction>> _opCodeMethodAnalyzers =
-            new HashSet<IAnalyzer<OpCodeMutation, Instruction>>
+        private readonly HashSet<IAnalyzer<OpCodeMutation, MethodDefinition>> _opCodeMethodAnalyzers =
+            new HashSet<IAnalyzer<OpCodeMutation, MethodDefinition>>
             {
                 new ArithmeticAnalyzer(),
                 new ComparisonAnalyzer(),
@@ -92,8 +92,25 @@ namespace Faultify.Analyze.AssemblyMutator
         /// <summary>
         ///     Returns all operator mutations within the scope of this method.
         /// </summary>
-        private IEnumerable<IMutationGroup<OpCodeMutation>> OpCodeMutations(MutationLevel mutationLevel, HashSet<string> excludeGroup, HashSet<string> excludeSingular)
+        private IEnumerable<IMutationGroup<OpCodeMutation>> OpCodeMutations(
+            MutationLevel mutationLevel,
+            HashSet<string> excludeGroup,
+            HashSet<string> excludeSingular)
         {
+            // Mine
+            foreach (IAnalyzer<OpCodeMutation, MethodDefinition> analyzer in _opCodeMethodAnalyzers)
+            {
+                if (MethodDefinition.Body?.Instructions != null)
+                {
+                    IMutationGroup<OpCodeMutation> mutations = analyzer.GenerateMutations(
+                        MethodDefinition,
+                        mutationLevel,
+                        MethodDefinition.DebugInformation.GetSequencePointMapping());
+
+                    yield return mutations;
+                }
+            }
+            // Hessel's
             foreach (IAnalyzer<OpCodeMutation, Instruction> analyzer in _opCodeMethodAnalyzers)
             {
                 if (!excludeGroup.Contains(analyzer.Id))
@@ -102,8 +119,12 @@ namespace Faultify.Analyze.AssemblyMutator
                     {
                         foreach (Instruction instruction in MethodDefinition.Body?.Instructions)
                         {
-                            IMutationGroup<OpCodeMutation> mutations = analyzer.GenerateMutations(instruction,
-                                mutationLevel, excludeSingular, MethodDefinition.DebugInformation.GetSequencePointMapping());
+                            IMutationGroup<OpCodeMutation> mutations = analyzer
+                                .GenerateMutations(
+                                    instruction, 
+                                    mutationLevel,
+                                    excludeSingular,
+                                    MethodDefinition.DebugInformation.GetSequencePointMapping());
 
                             if (mutations.Any())
                             {
