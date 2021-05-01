@@ -51,6 +51,6 @@ namespace Faultify.Analyze.Mutation
             return ConstantField.Constant == constant;
         }
 
-        public string Report => $"Change constant '{Name}' from: '{Original}' to: '{Replacement}'.";
+        public string Report => $"<code>{ConstantField.DeclaringType.Name}::{ConstantName}</code> was changed from <code>{Original}</code> to <code>{Replacement}</code>.";
     }
 }

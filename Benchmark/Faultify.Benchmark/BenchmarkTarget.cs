@@ -4,9 +4,14 @@ namespace Faultify.Benchmark
 {
     public class BenchmarkTarget
     {
-        // private const bool Constant = 1 < 2;
+        private const int Constant = 77;
         // public static bool TestStaticField = 1 < 2;
         // public bool TestLocalField = 1 < 2;
+
+        public int ConstantTest()
+        {
+            return Constant;
+        }
 
         public int[] ConstructArray()
         {
