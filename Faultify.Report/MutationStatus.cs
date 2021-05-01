@@ -3,8 +3,8 @@
     public enum MutationStatus
     {
         Survived,
-        Killed,
         Timeout,
         NoCoverage,
+        Killed,
     }
 }

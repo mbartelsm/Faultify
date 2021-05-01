@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Faultify.Report
@@ -18,5 +19,13 @@ namespace Faultify.Report
         public int TotalMutations => TestProjects.Sum(x => x.TotalMutations);
 
         public float ScorePercentage => TestProjects.Average(x => x.ScorePercentage);
+
+        public class CompareByStatus : IComparer<MutationVariantReportModel>
+        {
+            public int Compare(MutationVariantReportModel x, MutationVariantReportModel y)
+            {
+                return -(x.TestStatus - y.TestStatus);
+            }
+        }
     }
 }

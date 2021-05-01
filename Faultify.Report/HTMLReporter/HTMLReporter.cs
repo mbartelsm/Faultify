@@ -13,10 +13,10 @@ namespace Faultify.Report.HTMLReporter
 
         public async Task<byte[]> CreateReportAsync(MutationProjectReportModel mutationRun)
         {
-            return Encoding.UTF8.GetBytes(await Template(mutationRun));
+            return Encoding.UTF8.GetBytes(await PopulateTemplate(mutationRun));
         }
 
-        private async Task<string> Template(MutationProjectReportModel model)
+        private async Task<string> PopulateTemplate(MutationProjectReportModel model)
         {
             Assembly currentAssembly = Assembly.GetExecutingAssembly();
             string resourceName = currentAssembly
