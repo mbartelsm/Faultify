@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Faultify.Report
 {
@@ -27,7 +28,15 @@ namespace Faultify.Report
             MemberName = memberName;
         }
 
-        public string Name { get; set; }
+        private string _name;
+        public string Name {
+            get {
+                return Regex.Replace(_name, @"\S+ (\S+)\(\S*\) (.+)", "$1 $2");
+            }
+            set {
+                _name = value;
+            }
+        }
         public string Description { get; set; }
         public MutationAnalyzerReportModel MutationAnalyzer { get; set; }
         public MutationStatus TestStatus { get; set; }

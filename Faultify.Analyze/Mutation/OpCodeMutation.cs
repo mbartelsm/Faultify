@@ -1,4 +1,5 @@
-﻿using Mono.Cecil.Cil;
+﻿using Mono.Cecil;
+using Mono.Cecil.Cil;
 
 namespace Faultify.Analyze.Mutation
 {
@@ -7,12 +8,13 @@ namespace Faultify.Analyze.Mutation
     /// </summary>
     public class OpCodeMutation : IMutation
     {
-        public OpCodeMutation(OpCode original, OpCode replacement, Instruction scope, int lineNumber = -1)
+        public OpCodeMutation(OpCode original, OpCode replacement, Instruction scope, MethodDefinition method)
         {
             Original = original;
             Replacement = replacement;
             Scope = scope;
-            LineNumber = lineNumber;
+            MethodScope = method;
+            LineNumber = FindLineNumber();
         }
 
         /// <summary>
@@ -24,6 +26,7 @@ namespace Faultify.Analyze.Mutation
         ///     The replacement for the original opcode.
         /// </summary>
         private OpCode Replacement { get; set; }
+        private MethodDefinition MethodScope { get; set; }
 
         private int LineNumber { get; set; }
 
@@ -42,16 +45,42 @@ namespace Faultify.Analyze.Mutation
             Scope.OpCode = Original;
         }
 
+        private int FindLineNumber()
+        {
+            var debug = MethodScope.DebugInformation.GetSequencePointMapping();
+            int lineNumber = -1;
+
+            if (debug != null)
+            {
+                Instruction prev = Scope;
+                SequencePoint seqPoint = null;
+                // If prev is not null
+                // and line number is not found
+                // Try previous instruction.
+                while (prev != null && !debug.TryGetValue(prev, out seqPoint))
+                {
+                    prev = prev.Previous;
+                }
+
+                if (seqPoint != null)
+                {
+                    lineNumber = seqPoint.StartLine;
+                }
+            }
+            return lineNumber;
+        }
+
         public string Report
         {
             get
             {
                 if (LineNumber == -1)
                 {
-                    return $"Change operator from: '{Original}' to: '{Replacement}'.";
+                    return $"{MethodScope}: Operator was changed from {Original} to {Replacement}.";
                 }
 
-                return $"Change operator from: '{Original}' to: '{Replacement}'. In line {LineNumber}";
+                return $"{MethodScope} at {LineNumber}: Operator was changed from {Original} to {Replacement}.";
+
             }
         }
 

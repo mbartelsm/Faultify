@@ -30,8 +30,8 @@ namespace Faultify.Analyze.AssemblyMutator
                 new ConstantAnalyzer(),
             };
 
-        private readonly HashSet<IAnalyzer<OpCodeMutation, Instruction>> _opCodeMethodAnalyzers =
-            new HashSet<IAnalyzer<OpCodeMutation, Instruction>>
+        private readonly HashSet<IAnalyzer<OpCodeMutation, MethodDefinition>> _opCodeMethodAnalyzers =
+            new HashSet<IAnalyzer<OpCodeMutation, MethodDefinition>>
             {
                 new ArithmeticAnalyzer(),
                 new ComparisonAnalyzer(),
@@ -94,20 +94,16 @@ namespace Faultify.Analyze.AssemblyMutator
         /// </summary>
         private IEnumerable<IMutationGroup<OpCodeMutation>> OpCodeMutations(MutationLevel mutationLevel)
         {
-            foreach (IAnalyzer<OpCodeMutation, Instruction> analyzer in _opCodeMethodAnalyzers)
+            foreach (IAnalyzer<OpCodeMutation, MethodDefinition> analyzer in _opCodeMethodAnalyzers)
             {
                 if (MethodDefinition.Body?.Instructions != null)
                 {
-                    foreach (Instruction instruction in MethodDefinition.Body?.Instructions)
-                    {
-                        IMutationGroup<OpCodeMutation> mutations = analyzer.GenerateMutations(instruction,
-                            mutationLevel, MethodDefinition.DebugInformation.GetSequencePointMapping());
+                    IMutationGroup<OpCodeMutation> mutations = analyzer.GenerateMutations(
+                        MethodDefinition,
+                        mutationLevel,
+                        MethodDefinition.DebugInformation.GetSequencePointMapping());
 
-                        if (mutations.Any())
-                        {
-                            yield return mutations;
-                        }
-                    }
+                    yield return mutations;
                 }
             }
         }

@@ -45,8 +45,8 @@ namespace Faultify.Analyze.AssemblyMutator
         /// <summary>
         ///     Analyzers that search for possible opcode mutations.
         /// </summary>
-        public HashSet<IAnalyzer<OpCodeMutation, Instruction>> OpCodeMethodAnalyzers =
-            new HashSet<IAnalyzer<OpCodeMutation, Instruction>>
+        public HashSet<IAnalyzer<OpCodeMutation, MethodDefinition>> OpCodeMethodAnalyzers =
+            new HashSet<IAnalyzer<OpCodeMutation, MethodDefinition>>
             {
                 new ArithmeticAnalyzer(),
                 new ComparisonAnalyzer(),

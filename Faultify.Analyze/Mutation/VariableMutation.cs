@@ -1,16 +1,18 @@
 ﻿using System;
+using Mono.Cecil;
 using Mono.Cecil.Cil;
 
 namespace Faultify.Analyze.Mutation
 {
     public class VariableMutation : IMutation
     {
-        public VariableMutation(Instruction instruction, Type type, int lineNumber = -1)
+        public VariableMutation(Instruction instruction, Type type, MethodDefinition method)
         {
             Original = instruction.Operand;
             Replacement = RandomValueGenerator.GenerateValueForField(type, Original);
             Variable = instruction;
-            LineNumber = lineNumber;
+            MethodScope = method;
+            LineNumber = FindLineNumber();
         }
         /// <summary>
         ///     The original variable value.
@@ -22,9 +24,7 @@ namespace Faultify.Analyze.Mutation
         /// </summary>
         private object Replacement { get; set; }
 
-        /// <summary>
-        ///     The replacement for the variable value.
-        /// </summary>
+        private MethodDefinition MethodScope { get; set; }
         private int LineNumber { get; set; }
 
         /// <summary>
@@ -42,6 +42,31 @@ namespace Faultify.Analyze.Mutation
             Variable.Operand = Original;
         }
 
+        private int FindLineNumber()
+        {
+            var debug = MethodScope.DebugInformation.GetSequencePointMapping();
+            int lineNumber = -1;
+
+            if (debug != null)
+            {
+                Instruction prev = Variable;
+                SequencePoint seqPoint = null;
+                // If prev is not null
+                // and line number is not found
+                // Try previous instruction.
+                while (prev != null && !debug.TryGetValue(prev, out seqPoint))
+                {
+                    prev = prev.Previous;
+                }
+
+                if (seqPoint != null)
+                {
+                    lineNumber = seqPoint.StartLine;
+                }
+            }
+            return lineNumber;
+        }
+
 
         public string Report
         {
@@ -49,10 +74,11 @@ namespace Faultify.Analyze.Mutation
             {
                 if (LineNumber == -1)
                 {
-                    return $"Change variable from: '{Original}' to: '{Replacement}'.";
+                    return $"{MethodScope}: Variable was changed from {Original} to {Replacement}.";
                 }
 
-                return $"Change variable from: '{Original}' to: '{Replacement}'. In line {LineNumber}";
+                return $"{MethodScope} at {LineNumber}: Variable was changed from {Original} to {Replacement}.";
+                
             }
         }
     }
