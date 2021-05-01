@@ -6,7 +6,7 @@
     },
     "Benchmark": {
       "commandName": "Project",
-      "commandLineArgs": "-i  \"D:\\Projects\\rug\\softwareEngineering\\Faultify\\Benchmark\\Faultify.Benchmark.NUnit\\Faultify.Benchmark.NUnit.csproj\" -f html -t dotnettest"
+      "commandLineArgs": "-i  \"D:\\Projects\\rug\\softwareEngineering\\Faultify\\Benchmark\\Faultify.Benchmark.NUnit\\Faultify.Benchmark.NUnit.csproj\" -f html -t nunit"
     },
     "ILSpy test": {
       "commandName": "Project",
