@@ -8,7 +8,7 @@ namespace Faultify.TestRunner.TestRun
 {
     public class DefaultMutationTestRunGenerator : IMutationTestRunGenerator
     {
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public IEnumerable<IMutationTestRun> GenerateMutationTestRuns(
             Dictionary<RegisteredCoverage, HashSet<string>> testsPerMethod,
@@ -16,7 +16,7 @@ namespace Faultify.TestRunner.TestRun
             MutationLevel mutationLevel
         )
         {
-            _logger.Info("Generating mutation test runs");
+            Logger.Info("Generating mutation test runs");
 
             IList<MutationVariantIdentifier>? allMutations =
                 GetMutationsForCoverage(testsPerMethod, testProjectInfo, mutationLevel);
@@ -123,7 +123,7 @@ namespace Faultify.TestRunner.TestRun
             IList<MutationVariantIdentifier> mutationVariants
         )
         {
-            _logger.Info("Building mutation groups for test groups");
+            Logger.Info("Building mutation groups for test groups");
 
             if (mutationVariants.Count > 500) // Magic number, optimal run size not yet clear
             {
@@ -141,7 +141,7 @@ namespace Faultify.TestRunner.TestRun
             MutationLevel mutationLevel
         )
         {
-            _logger.Info("Generating dummy mutations for test coverage");
+            Logger.Info("Generating dummy mutations for test coverage");
             List<MutationVariantIdentifier>? allMutations = new List<MutationVariantIdentifier>();
 
             foreach (var assembly in testProjectInfo.DependencyAssemblies)

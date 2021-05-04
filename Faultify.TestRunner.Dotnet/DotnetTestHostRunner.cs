@@ -19,7 +19,7 @@ namespace Faultify.TestRunner.Dotnet
     public class DotnetTestHostRunner : ITestHostRunner
     {
         private static readonly bool DisableOutput = true;
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly string _testAdapterPath;
         private readonly DirectoryInfo _testDirectoryInfo;
 
@@ -76,7 +76,7 @@ namespace Faultify.TestRunner.Dotnet
                 }
                 catch (FileNotFoundException)
                 {
-                    _logger.Error(
+                    Logger.Error(
                         "The file 'test_results.bin' was not generated."
                         + "This implies that the test run can not be completed. "
                     );
@@ -115,7 +115,7 @@ namespace Faultify.TestRunner.Dotnet
             }
             catch (FileNotFoundException)
             {
-                _logger.Error(
+                Logger.Error(
                     "The file 'coverage.bin' was not generated."
                     + "This implies that the test run can not be completed. "
                 );
@@ -149,7 +149,7 @@ namespace Faultify.TestRunner.Dotnet
                 RedirectStandardError = DisableOutput,
             };
 
-            _logger.Debug($"Test process process arguments: {testArguments}");
+            Logger.Debug($"Test process process arguments: {testArguments}");
 
             return new ProcessRunner(testProcessStartInfo);
         }
@@ -178,7 +178,7 @@ namespace Faultify.TestRunner.Dotnet
                 WorkingDirectory = _testDirectoryInfo.FullName,
             };
 
-            _logger.Debug($"Coverage test process arguments: {coverageArguments}");
+            Logger.Debug($"Coverage test process arguments: {coverageArguments}");
 
             return new ProcessRunner(coverageProcessStartInfo);
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Extensions.Logging;
+using NLog;
 
 namespace Faultify.TestRunner.Logging
 {
@@ -8,15 +9,14 @@ namespace Faultify.TestRunner.Logging
     /// </summary>
     public class MutationSessionProgressTracker : IProgress<string>
     {
-        private readonly ILogger _logger;
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly IProgress<MutationRunProgress> _progress;
 
         private int _currentPercentage;
 
-        public MutationSessionProgressTracker(IProgress<MutationRunProgress> progress, ILoggerFactory logger)
+        public MutationSessionProgressTracker(IProgress<MutationRunProgress> progress)
         {
             _progress = progress;
-            _logger = logger.CreateLogger("Faultify.TestRunner");
         }
 
         public void Report(string value)
@@ -115,12 +115,12 @@ namespace Faultify.TestRunner.Logging
 
         public void LogDebug(string message)
         {
-            _logger.LogDebug(message);
+            Logger.Debug(message);
         }
 
         public void Log(string message, LogMessageType logMessageType = LogMessageType.Other)
         {
-            _logger.LogInformation($"> [{_currentPercentage}] {message}");
+            Logger.Info($"> [{_currentPercentage}] {message}");
             _progress.Report(new MutationRunProgress(message, _currentPercentage, logMessageType));
         }
 

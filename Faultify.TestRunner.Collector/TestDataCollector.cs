@@ -14,6 +14,7 @@ namespace Faultify.TestRunner.Collector
     /// </summary>
     [DataCollectorFriendlyName("TestDataCollector")]
     [DataCollectorTypeUri("my://test/datacollector")]
+    [Obsolete("This class sees no use", true)]
     public class TestDataCollector : DataCollector
     {
         private readonly TestResults _testResults = new TestResults();
