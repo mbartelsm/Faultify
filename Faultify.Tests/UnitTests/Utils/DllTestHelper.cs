@@ -1,6 +1,7 @@
 ﻿#nullable enable
 extern alias MC;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -101,7 +102,7 @@ namespace Faultify.Tests.UnitTests.Utils
             foreach (Instruction instruction in mutateMethod.Body.Instructions)
             {
                 IMutationGroup<OpCodeMutation> possibleOperatorMutations =
-                    mutator.GenerateMutations(instruction, MutationLevel.Detailed);
+                    mutator.GenerateMutations(instruction, MutationLevel.Detailed, new List<string>());
 
                 foreach (OpCodeMutation mutation in possibleOperatorMutations)
                 {
@@ -143,7 +144,7 @@ namespace Faultify.Tests.UnitTests.Utils
             }
 
             IMutationGroup<VariableMutation> possibleOperatorMutations =
-                mutator.GenerateMutations(mutateMethod, MutationLevel.Detailed);
+                mutator.GenerateMutations(mutateMethod, MutationLevel.Detailed, new List<string>());
 
             foreach (VariableMutation mutation in possibleOperatorMutations)
             {
@@ -171,7 +172,7 @@ namespace Faultify.Tests.UnitTests.Utils
             TMutator mutator = Activator.CreateInstance<TMutator>();
 
             IMutationGroup<ConstantMutation> possibleOperatorMutations =
-                mutator.GenerateMutations(field, MutationLevel.Detailed);
+                mutator.GenerateMutations(field, MutationLevel.Detailed, new List<string>());
 
             foreach (ConstantMutation mutation in possibleOperatorMutations)
             {
@@ -199,7 +200,7 @@ namespace Faultify.Tests.UnitTests.Utils
                 .FirstOrDefault(x => x.Name == fieldName);
 
             TMutator mutator = Activator.CreateInstance<TMutator>();
-            ConstantMutation mutation = mutator.GenerateMutations(field, MutationLevel.Detailed).First();
+            ConstantMutation mutation = mutator.GenerateMutations(field, MutationLevel.Detailed, new List<string>()).First();
             mutation.Mutate();
             MemoryStream mutatedBinaryStream = new MemoryStream();
             module.Write(mutatedBinaryStream);
@@ -216,7 +217,7 @@ namespace Faultify.Tests.UnitTests.Utils
                 .FirstOrDefault(x => x.Name == methodName);
 
             TMutator mutator = Activator.CreateInstance<TMutator>();
-            ArrayMutation mutation = mutator.GenerateMutations(method, MutationLevel.Detailed).First();
+            ArrayMutation mutation = mutator.GenerateMutations(method, MutationLevel.Detailed, new List<string>()).First();
 
             mutation.Mutate();
             MemoryStream mutatedBinaryStream = new MemoryStream();

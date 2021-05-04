@@ -19,9 +19,12 @@ namespace Faultify.Analyze.Analyzers
 
         public string Name => "Boolean ConstantMutation Analyzer";
 
+        public string Id => "Constant";
+
         public IMutationGroup<ConstantMutation> GenerateMutations(
             FieldDefinition field,
             MutationLevel mutationLevel,
+            List<string> exclusions,
             IDictionary<Instruction, SequencePoint> debug = null
         )
         {

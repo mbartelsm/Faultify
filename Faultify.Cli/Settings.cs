@@ -3,6 +3,7 @@ using System.IO;
 using CommandLine;
 using Faultify.Analyze;
 using Faultify.TestRunner;
+using System.Text.Json;
 
 // Disable Non-nullable is uninitialized, this is handled by the CommandLine package
 #pragma warning disable 8618
@@ -36,6 +37,40 @@ namespace Faultify.Cli
 
         [Option('d', "timeOut", Required = false, Default = 0, HelpText = "Time out in seconds for the mutations")]
         public double Seconds { get; set; }
+
+        [Option('g', "excludeMutationGroups", Required = false, Default = new string[] { }, HelpText = "Exclude mutations based on groupings")]
+        public string[] ExcludeMutationGroups { get; set;}
+
+        [Option('s', "excludeMutationSingles", Required = false, Default = new string[] { }, HelpText = "Exclude mutations based on their individual id")]
+        public string[] ExcludeMutationSingles { get; set; }
+
+        [Option('e', "excludeMutationSinglesFile", Required = false, Default = "NoFile", HelpText = "Exclude mutations based on individual id in a JSON file")]
+        public string ExcludeMutationSinglesFile { get; set; }
+
+        public string[] ExcludeSingleMutations 
+        { 
+            get
+            {
+                if (ExcludeMutationSinglesFile.Equals("NoFile"))
+                {
+                    return ExcludeMutationSingles;
+                }
+                else
+                {
+                    string jsonString = File.ReadAllText(ExcludeMutationSinglesFile);
+                    string[]? excludeMutations = JsonSerializer.Deserialize<string[]>(jsonString);
+                    if (excludeMutations == null)
+                    {
+                        return ExcludeMutationSingles;
+                    }
+                    else
+                    {
+                        return excludeMutations;
+                    }
+                    
+                }
+            }
+        }
 
         public TimeSpan TimeOut => TimeSpan.FromSeconds(Seconds);
 

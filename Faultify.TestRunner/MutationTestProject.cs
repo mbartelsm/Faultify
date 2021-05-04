@@ -32,6 +32,8 @@ namespace Faultify.TestRunner
         private readonly TestHost _testHost;
         private readonly string _testProjectPath;
         private readonly TimeSpan _timeOut;
+        private readonly List<string> _excludeGroup;
+        private readonly List<string> _excludeSingular;
 
         public MutationTestProject(
             string testProjectPath,
@@ -39,7 +41,9 @@ namespace Faultify.TestRunner
             int parallel,
             ILoggerFactory loggerFactoryFactory,
             TestHost testHost,
-            TimeSpan timeOut
+            TimeSpan timeOut,
+            List<string> excludeGroup,
+            List<string> excludeSingular
         )
         {
             _testProjectPath = testProjectPath;
@@ -47,6 +51,8 @@ namespace Faultify.TestRunner
             _parallel = parallel;
             _testHost = testHost;
             _timeOut = timeOut;
+            _excludeGroup = excludeGroup;
+            _excludeSingular = excludeSingular;
         }
 
         //Sets the time out for the mutations to be either the specified number of seconds or the time it takes to run the test project.
@@ -315,7 +321,7 @@ namespace Faultify.TestRunner
             DefaultMutationTestRunGenerator? defaultMutationTestRunGenerator = new DefaultMutationTestRunGenerator();
             IEnumerable<IMutationTestRun>? runs = defaultMutationTestRunGenerator.GenerateMutationTestRuns(
                 testsPerMutation, testProjectInfo,
-                _mutationLevel);
+                _mutationLevel, _excludeGroup, _excludeSingular);
             // Double the time the code coverage took such that test runs have some time run their tests (needs to be in seconds).
             TimeSpan maxTestDuration = TimeSpan.FromSeconds((coverageTestRunTime * 2).Seconds);
 
@@ -344,7 +350,7 @@ namespace Faultify.TestRunner
 
                 try
                 {
-                    testRun.InitializeMutations(testProject, timedOutMutations);
+                    testRun.InitializeMutations(testProject, timedOutMutations, _excludeGroup, _excludeSingular);
 
                     Stopwatch? singRunsStopwatch = new Stopwatch();
                     singRunsStopwatch.Start();

@@ -22,9 +22,12 @@ namespace Faultify.Analyze.Analyzers
 
         public string Name => "Variable Mutation Analyzer";
 
+        public string Id => "Variable";
+
         public IMutationGroup<VariableMutation> GenerateMutations(
             MethodDefinition method,
             MutationLevel mutationLevel,
+            List<string> exclusions,
             IDictionary<Instruction, SequencePoint> debug = null
         )
         {

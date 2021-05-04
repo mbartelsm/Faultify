@@ -36,9 +36,13 @@ namespace Faultify.TestRunner.TestRun
         /// </summary>
         /// <param name="testProject"></param>
         /// <param name="timedOutMutationVariants"></param>
+        /// <param name="excludeGroup"></param>
+        /// <param name="excludeSingular"></param>
         void InitializeMutations(
             TestProjectDuplication testProject,
-            IEnumerable<MutationVariantIdentifier> timedOutMutationVariants
+            IEnumerable<MutationVariantIdentifier> timedOutMutationVariants,
+            List<string> excludeGroup,
+            List<string> excludeSingular
         );
     }
 }

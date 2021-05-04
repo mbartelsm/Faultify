@@ -57,13 +57,17 @@ namespace Faultify.Analyze.AssemblyMutator
         public EntityHandle Handle => MetadataTokens.EntityHandle(TypeDefinition.MetadataToken.ToInt32());
         public string AssemblyQualifiedName => TypeDefinition.FullName;
 
-        public IEnumerable<IMutationGroup<IMutation>> AllMutations(MutationLevel mutationLevel)
+        public IEnumerable<IMutationGroup<IMutation>> AllMutations(MutationLevel mutationLevel, List<string> excludeGroup, List<string> excludeSingular)
         {
             foreach (IAnalyzer<ConstantMutation, FieldDefinition> analyzer in _constantAnalyzers)
             {
+                if (excludeGroup.Contains(analyzer.Id))
+                {
+                    yield break;
+                }
                 foreach (FieldDefinition field in TypeDefinition.Fields)
                 {
-                    IMutationGroup<IMutation> mutations = analyzer.GenerateMutations(field, mutationLevel);
+                    IMutationGroup<IMutation> mutations = analyzer.GenerateMutations(field, mutationLevel, excludeSingular);
 
                     if (mutations.Any())
                     {

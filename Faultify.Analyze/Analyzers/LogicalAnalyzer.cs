@@ -15,5 +15,7 @@ namespace Faultify.Analyze.Analyzers
             "Analyzer that searches for possible logical mutations such as '&&' to '||'.";
 
         public override string Name => "Logical Analyzer";
+
+        public override string Id => "Logical";
     }
 }

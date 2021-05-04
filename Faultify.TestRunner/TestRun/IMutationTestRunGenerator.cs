@@ -19,7 +19,9 @@ namespace Faultify.TestRunner.TestRun
         public IEnumerable<IMutationTestRun> GenerateMutationTestRuns(
             Dictionary<RegisteredCoverage, HashSet<string>> testsPerMethod,
             TestProjectInfo testProjectInfo,
-            MutationLevel mutationLevel
+            MutationLevel mutationLevel,
+            List<string> excludeGroup,
+            List<string> excludeSingular
         );
     }
 }

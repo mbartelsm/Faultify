@@ -207,7 +207,9 @@ namespace Faultify.Cli
                 settings.Parallel,
                 _loggerFactory,
                 settings.TestHost,
-                settings.TimeOut
+                settings.TimeOut,
+                new List<string> (settings.ExcludeMutationGroups),
+                 new List<string> (settings.ExcludeSingleMutations)
             );
 
             return await mutationTestProject.Test(progressTracker, CancellationToken.None);
