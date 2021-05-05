@@ -126,17 +126,16 @@ namespace Faultify.Analyze.AssemblyMutator
             foreach (FieldReference field in fieldReferences)
             foreach (IAnalyzer<ConstantMutation, FieldDefinition> analyzer in _constantReferenceMutationAnalyers)
             {
-                if (excludeGroup.Contains(analyzer.Id))
+                if (!excludeGroup.Contains(analyzer.Id))
                 {
-                    yield break;
-                }
-                IMutationGroup<ConstantMutation> mutations = analyzer.GenerateMutations(field.Resolve(), mutationLevel, new List<string>());
+                    IMutationGroup<ConstantMutation> mutations = analyzer.GenerateMutations(field.Resolve(), mutationLevel, new List<string>());
 
-                if (mutations.Any())
-                {
-                    yield return mutations;
+                    if (mutations.Any())
+                    {
+                        yield return mutations;
+                    }
                 }
-            }
+            }        
         }
 
         /// <summary>

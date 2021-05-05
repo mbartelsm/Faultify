@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using CommandLine;
@@ -208,8 +209,8 @@ namespace Faultify.Cli
                 _loggerFactory,
                 settings.TestHost,
                 settings.TimeOut,
-                new List<string> (settings.ExcludeMutationGroups),
-                 new List<string> (settings.ExcludeSingleMutations)
+                settings.ExcludeMutationGroups.ToList<string>(),
+                settings.ExcludeSingleMutations
             );
 
             return await mutationTestProject.Test(progressTracker, CancellationToken.None);

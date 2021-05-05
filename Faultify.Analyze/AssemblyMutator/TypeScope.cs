@@ -61,17 +61,16 @@ namespace Faultify.Analyze.AssemblyMutator
         {
             foreach (IAnalyzer<ConstantMutation, FieldDefinition> analyzer in _constantAnalyzers)
             {
-                if (excludeGroup.Contains(analyzer.Id))
+                if (!excludeGroup.Contains(analyzer.Id))
                 {
-                    yield break;
-                }
-                foreach (FieldDefinition field in TypeDefinition.Fields)
-                {
-                    IMutationGroup<IMutation> mutations = analyzer.GenerateMutations(field, mutationLevel, excludeSingular);
-
-                    if (mutations.Any())
+                    foreach (FieldDefinition field in TypeDefinition.Fields)
                     {
-                        yield return mutations;
+                        IMutationGroup<IMutation> mutations = analyzer.GenerateMutations(field, mutationLevel, excludeSingular);
+
+                        if (mutations.Any())
+                        {
+                            yield return mutations;
+                        }
                     }
                 }
             }
