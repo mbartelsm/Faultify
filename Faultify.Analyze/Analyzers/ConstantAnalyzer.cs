@@ -24,7 +24,7 @@ namespace Faultify.Analyze.Analyzers
         public IMutationGroup<ConstantMutation> GenerateMutations(
             FieldDefinition field,
             MutationLevel mutationLevel,
-            List<string> exclusions,
+            HashSet<string> exclusions,
             IDictionary<Instruction, SequencePoint> debug = null
         )
         {

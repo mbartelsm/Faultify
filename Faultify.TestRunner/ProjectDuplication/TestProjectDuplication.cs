@@ -88,8 +88,8 @@ namespace Faultify.TestRunner.ProjectDuplication
         public IList<MutationVariant> GetMutationVariants(
             IList<MutationVariantIdentifier>? mutationIdentifiers,
             MutationLevel mutationLevel,
-            List<string> excludeGroup,
-            List<string> excludeSingular
+            HashSet<string> excludeGroup,
+            HashSet<string> excludeSingular
         )
         {
             List<MutationVariant> foundMutations = new List<MutationVariant>();

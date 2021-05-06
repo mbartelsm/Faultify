@@ -38,7 +38,7 @@ namespace Faultify.Analyze
         IMutationGroup<TMutation> GenerateMutations(
             TScope scope,
             MutationLevel mutationLevel,
-            List<string> exclusions,
+            HashSet<string> exclusions,
             IDictionary<Instruction, SequencePoint> debug = null
         );
     }

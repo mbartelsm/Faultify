@@ -63,8 +63,8 @@ namespace Faultify.TestRunner.TestRun
         public void InitializeMutations(
             TestProjectDuplication testProject,
             IEnumerable<MutationVariantIdentifier> timedOutMutationVariants,
-            List<string> excludeGroup,
-            List<string> excludeSingular
+            HashSet<string> excludeGroup,
+            HashSet<string> excludeSingular
         )
         {
             _mutationVariants = testProject.GetMutationVariants(MutationIdentifiers, MutationLevel, excludeGroup, excludeSingular);

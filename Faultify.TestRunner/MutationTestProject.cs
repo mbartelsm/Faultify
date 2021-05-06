@@ -32,8 +32,8 @@ namespace Faultify.TestRunner
         private readonly TestHost _testHost;
         private readonly string _testProjectPath;
         private readonly TimeSpan _timeOut;
-        private readonly List<string> _excludeGroup;
-        private readonly List<string> _excludeSingular;
+        private readonly HashSet<string> _excludeGroup;
+        private readonly HashSet<string> _excludeSingular;
 
         public MutationTestProject(
             string testProjectPath,
@@ -42,8 +42,8 @@ namespace Faultify.TestRunner
             ILoggerFactory loggerFactoryFactory,
             TestHost testHost,
             TimeSpan timeOut,
-            List<string> excludeGroup,
-            List<string> excludeSingular
+            HashSet<string> excludeGroup,
+            HashSet<string> excludeSingular
         )
         {
             _testProjectPath = testProjectPath;

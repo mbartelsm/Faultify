@@ -29,7 +29,7 @@ namespace Faultify.Analyze.Analyzers
         public IMutationGroup<OpCodeMutation> GenerateMutations(
             Instruction scope,
             MutationLevel mutationLevel,
-            List<string> exclusions,
+            HashSet<string> exclusions,
             IDictionary<Instruction, SequencePoint> debug = null
         )
         {

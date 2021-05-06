@@ -69,7 +69,7 @@ namespace Faultify.Analyze.AssemblyMutator
         /// <summary>
         ///     Returns all available mutations within the scope of this method.
         /// </summary>
-        public IEnumerable<IMutationGroup<IMutation>> AllMutations(MutationLevel mutationLevel, List<string> excludeGroup, List<string> excludeSingular)
+        public IEnumerable<IMutationGroup<IMutation>> AllMutations(MutationLevel mutationLevel, HashSet<string> excludeGroup, HashSet<string> excludeSingular)
         {
             if (MethodDefinition.Body == null)
             {
@@ -92,7 +92,7 @@ namespace Faultify.Analyze.AssemblyMutator
         /// <summary>
         ///     Returns all operator mutations within the scope of this method.
         /// </summary>
-        private IEnumerable<IMutationGroup<OpCodeMutation>> OpCodeMutations(MutationLevel mutationLevel, List<string> excludeGroup, List<string> excludeSingular)
+        private IEnumerable<IMutationGroup<OpCodeMutation>> OpCodeMutations(MutationLevel mutationLevel, HashSet<string> excludeGroup, HashSet<string> excludeSingular)
         {
             foreach (IAnalyzer<OpCodeMutation, Instruction> analyzer in _opCodeMethodAnalyzers)
             {
@@ -118,7 +118,7 @@ namespace Faultify.Analyze.AssemblyMutator
         /// <summary>
         ///     Returns all literal value mutations within the scope of this method.
         /// </summary>
-        private IEnumerable<IMutationGroup<ConstantMutation>> ConstantReferenceMutations(MutationLevel mutationLevel, List<string> excludeGroup)
+        private IEnumerable<IMutationGroup<ConstantMutation>> ConstantReferenceMutations(MutationLevel mutationLevel, HashSet<string> excludeGroup)
         {
             IEnumerable<FieldReference> fieldReferences = MethodDefinition.Body.Instructions
                 .OfType<FieldReference>();
@@ -128,7 +128,7 @@ namespace Faultify.Analyze.AssemblyMutator
             {
                 if (!excludeGroup.Contains(analyzer.Id))
                 {
-                    IMutationGroup<ConstantMutation> mutations = analyzer.GenerateMutations(field.Resolve(), mutationLevel, new List<string>());
+                    IMutationGroup<ConstantMutation> mutations = analyzer.GenerateMutations(field.Resolve(), mutationLevel, new HashSet<string>());
 
                     if (mutations.Any())
                     {
@@ -141,25 +141,25 @@ namespace Faultify.Analyze.AssemblyMutator
         /// <summary>
         ///     Returns all variable mutations within the scope of this method.
         /// </summary>
-        private IEnumerable<IMutationGroup<VariableMutation>> VariableMutations(MutationLevel mutationLevel, List<string> excludeGroup)
+        private IEnumerable<IMutationGroup<VariableMutation>> VariableMutations(MutationLevel mutationLevel, HashSet<string> excludeGroup)
         {
             return
                 from analyzer
                     in _variableMutationAnalyzers 
                     where!(excludeGroup.Contains(analyzer.Id))
-                select  analyzer.GenerateMutations(MethodDefinition, mutationLevel, new List<string>());
+                select  analyzer.GenerateMutations(MethodDefinition, mutationLevel, new HashSet<string>());
         }
 
         /// <summary>
         ///     Returns all array mutations within the scope of this method.
         /// </summary>
-        private IEnumerable<IMutationGroup<ArrayMutation>> ArrayMutations(MutationLevel mutationLevel, List<string> excludeGroup)
+        private IEnumerable<IMutationGroup<ArrayMutation>> ArrayMutations(MutationLevel mutationLevel, HashSet<string> excludeGroup)
         {
             return
                 from analyzer
                     in _arrayMutationAnalyzers
                 where !(excludeGroup.Contains(analyzer.Id))
-                select analyzer.GenerateMutations(MethodDefinition, mutationLevel, new List<string>());
+                select analyzer.GenerateMutations(MethodDefinition, mutationLevel, new HashSet<string>());
         }
     }
 }

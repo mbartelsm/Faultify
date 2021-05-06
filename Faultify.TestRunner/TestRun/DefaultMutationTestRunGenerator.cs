@@ -14,8 +14,8 @@ namespace Faultify.TestRunner.TestRun
             Dictionary<RegisteredCoverage, HashSet<string>> testsPerMethod,
             TestProjectInfo testProjectInfo,
             MutationLevel mutationLevel,
-            List<string> excludeGroup,
-            List<string> excludeSingular
+            HashSet<string> excludeGroup,
+            HashSet<string> excludeSingular
         )
         {
             _logger.Info("Generating mutation test runs");
@@ -140,8 +140,8 @@ namespace Faultify.TestRunner.TestRun
         private IList<MutationVariantIdentifier> GetMutationsForCoverage(
             Dictionary<RegisteredCoverage, HashSet<string>> coverage,
             TestProjectInfo testProjectInfo,
-            List<string> excludeGroup,
-            List<string> excludeSingular,
+            HashSet<string> excludeGroup,
+            HashSet<string> excludeSingular,
             MutationLevel mutationLevel
         )
         {

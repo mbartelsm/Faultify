@@ -49,13 +49,13 @@ namespace Faultify.Cli
         [Option('e', "excludeMutationSinglesFile", Required = false, Default = "NoFile", HelpText = "Exclude mutations based on individual id in a JSON file")]
         public string ExcludeMutationSinglesFile { get; set; }
 
-        public List<string> ExcludeSingleMutations 
+        public HashSet<string> ExcludeSingleMutations 
         { 
             get
             {
                 if (ExcludeMutationSinglesFile.Equals("NoFile"))
                 {
-                    return ExcludeMutationSingles.ToList<string>();
+                    return ExcludeMutationSingles.ToHashSet<string>();
                 }
                 else
                 {
@@ -63,11 +63,11 @@ namespace Faultify.Cli
                     string[]? excludeMutations = JsonSerializer.Deserialize<string[]>(jsonString);
                     if (excludeMutations == null)
                     {
-                        return ExcludeMutationSingles.ToList<string>();
+                        return ExcludeMutationSingles.ToHashSet<string>();
                     }
                     else
                     {
-                        return new List<string>(excludeMutations);
+                        return new HashSet<string>(excludeMutations);
                     }
                     
                 }

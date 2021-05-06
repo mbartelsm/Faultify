@@ -209,7 +209,7 @@ namespace Faultify.Cli
                 _loggerFactory,
                 settings.TestHost,
                 settings.TimeOut,
-                settings.ExcludeMutationGroups.ToList<string>(),
+                settings.ExcludeMutationGroups.ToHashSet<string>(),
                 settings.ExcludeSingleMutations
             );
 

@@ -41,8 +41,8 @@ namespace Faultify.TestRunner.TestRun
         void InitializeMutations(
             TestProjectDuplication testProject,
             IEnumerable<MutationVariantIdentifier> timedOutMutationVariants,
-            List<string> excludeGroup,
-            List<string> excludeSingular
+            HashSet<string> excludeGroup,
+            HashSet<string> excludeSingular
         );
     }
 }
