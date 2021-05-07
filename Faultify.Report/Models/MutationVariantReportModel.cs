@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Faultify.Report
+namespace Faultify.Report.Models
 {
     public class MutationVariantReportModel
     {

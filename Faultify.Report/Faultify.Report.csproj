@@ -20,12 +20,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="HTMLReporter\HTML.cshtml" />
-    <EmbeddedResource Include="PDFReporter\PDF.cshtml" />
+    <EmbeddedResource Include="Reporters\Html.cshtml" />
+    <EmbeddedResource Include="Reporters\Pdf.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Haukcode.WkHtmlToPdfDotNet" Version="1.3.0" />
+    <PackageReference Include="NLog" Version="4.7.9" />
     <PackageReference Include="RazorLight" Version="2.0.0-rc.2" />
   </ItemGroup>
 
