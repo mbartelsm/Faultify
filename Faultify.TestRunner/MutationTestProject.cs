@@ -13,6 +13,7 @@ using Faultify.Analyze.AssemblyMutator;
 using Faultify.Core.ProjectAnalyzing;
 using Faultify.Injection;
 using Faultify.Report;
+using Faultify.Report.Models;
 using Faultify.TestRunner.Logging;
 using Faultify.TestRunner.ProjectDuplication;
 using Faultify.TestRunner.Shared;
