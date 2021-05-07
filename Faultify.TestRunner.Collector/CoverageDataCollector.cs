@@ -14,7 +14,6 @@ namespace Faultify.TestRunner.Collector
     /// </summary>
     [DataCollectorFriendlyName("CoverageDataCollector")]
     [DataCollectorTypeUri("my://coverage/datacollector")]
-    [Obsolete("This class sees no use", true)]
     public class CoverageDataCollector : DataCollector
     {
         /// <summary>
