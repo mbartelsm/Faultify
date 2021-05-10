@@ -10,7 +10,7 @@ namespace Faultify.Analyze
     /// </summary>
     public static class RandomValueGenerator
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
         private static Random Rand { get; } = new Random();
 
         /// <summary>
@@ -28,31 +28,31 @@ namespace Faultify.Analyze
                 if (type == typeof(bool))
                 {
                     newRef = ChangeBoolean(reference);
-                    Logger.Trace($"Changing boolean value from {reference} to {newRef}");
+                    _logger.Trace($"Changing boolean value from {reference} to {newRef}");
                 }
                 else if (type == typeof(string))
                 {
                     newRef = ChangeString();
-                    Logger.Trace($"Changing string value from {reference} to {newRef}");
+                    _logger.Trace($"Changing string value from {reference} to {newRef}");
                 }
                 else if (type == typeof(char))
                 {
                     newRef = ChangeChar(reference);
-                    Logger.Trace($"Changing char value from {reference} to {newRef}");
+                    _logger.Trace($"Changing char value from {reference} to {newRef}");
                 }
                 else if (type.IsNumericType())
                 {
                     newRef = ChangeNumber(type, reference);
-                    Logger.Trace($"Changing numeric value from {reference} to {newRef}");
+                    _logger.Trace($"Changing numeric value from {reference} to {newRef}");
                 }
                 else
                 {
-                    Logger.Warn($"Type {type} is not supported");
+                    _logger.Warn($"Type {type} is not supported");
                 }
             }
             catch (Exception e)
             {
-                Logger.Warn(e, "There was probably an error casting a value, defaulting to null");
+                _logger.Warn(e, "There was probably an error casting a value, defaulting to null");
             }
 
             return newRef;

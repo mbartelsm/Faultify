@@ -7,7 +7,7 @@ namespace Faultify.TestRunner.Shared
 {
     public static class Utils
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         ///     Reads the mutation coverage from the <see cref="TestRunnerConstants.CoverageFileName" /> file.
@@ -15,7 +15,7 @@ namespace Faultify.TestRunner.Shared
         /// <returns></returns>
         public static MutationCoverage ReadMutationCoverageFile()
         {
-            Logger.Info("Reading mutation coverage file");
+            _logger.Info("Reading mutation coverage file");
             try
             {
                 using MemoryMappedFile mmf = MemoryMappedFile.OpenExisting("CoverageFile");
@@ -28,7 +28,7 @@ namespace Faultify.TestRunner.Shared
             }
             catch (Exception e)
             {
-                Logger.Fatal(e, "Fatal exception reading file");
+                _logger.Fatal(e, "Fatal exception reading file");
             }
 
             return null;

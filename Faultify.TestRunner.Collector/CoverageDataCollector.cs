@@ -23,7 +23,7 @@ namespace Faultify.TestRunner.Collector
 
         private bool _coverageFlushed;
         private DataCollectionLogger _logger;
-        private DataCollectionEnvironmentContext _context;
+        private DataCollectionEnvironmentContext context;
 
         public override void Initialize(
             XmlElement configurationElement,
@@ -34,7 +34,7 @@ namespace Faultify.TestRunner.Collector
         )
         {
             _logger = logger;
-            _context = environmentContext;
+            context = environmentContext;
 
             events.TestCaseEnd += EventsOnTestCaseEnd;
             events.TestCaseStart += EventsOnTestCaseStart;
@@ -48,12 +48,12 @@ namespace Faultify.TestRunner.Collector
 
         private void EventsOnSessionStart(object sender, SessionStartEventArgs e)
         {
-            _logger.LogWarning(_context.SessionDataCollectionContext, "Coverage Test Session Started");
+            _logger.LogWarning(context.SessionDataCollectionContext, "Coverage Test Session Started");
         }
 
         private void OnCurrentDomain_ProcessExit(object sender, EventArgs e)
         {
-            _logger.LogWarning(_context.SessionDataCollectionContext, "Coverage Test Session Exit");
+            _logger.LogWarning(context.SessionDataCollectionContext, "Coverage Test Session Exit");
 
             EventsOnSessionEnd(sender, new SessionEndEventArgs());
         }
@@ -77,20 +77,20 @@ namespace Faultify.TestRunner.Collector
             }
             catch (Exception ex)
             {
-                _logger.LogError(_context.SessionDataCollectionContext, $"Test Session Exception: {ex}");
+                _logger.LogError(context.SessionDataCollectionContext, $"Test Session Exception: {ex}");
             }
 
-            _logger.LogWarning(_context.SessionDataCollectionContext, "Coverage Test Session Finished");
+            _logger.LogWarning(context.SessionDataCollectionContext, "Coverage Test Session Finished");
         }
 
         private void EventsOnTestCaseStart(object sender, TestCaseStartEventArgs e)
         {
-            _logger.LogWarning(_context.SessionDataCollectionContext, $"Test Case Start: {e.TestCaseName}");
+            _logger.LogWarning(context.SessionDataCollectionContext, $"Test Case Start: {e.TestCaseName}");
         }
 
         private void EventsOnTestCaseEnd(object sender, TestCaseEndEventArgs e)
         {
-            _logger.LogWarning(_context.SessionDataCollectionContext, $"Test Case End: {e.TestCaseName}");
+            _logger.LogWarning(context.SessionDataCollectionContext, $"Test Case End: {e.TestCaseName}");
             _testNames.Add(e.TestElement.FullyQualifiedName);
         }
     }

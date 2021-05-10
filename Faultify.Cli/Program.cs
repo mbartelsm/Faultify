@@ -17,7 +17,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NLog;
 using NLog.Config;
-using NLog.Extensions.Logging;
 using NLog.Targets;
 using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
@@ -26,8 +25,16 @@ namespace Faultify.Cli
     internal class Program
     {
         private static string? _outputDirectory;
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private readonly ILoggerFactory _loggerFactory;
 
+        public Program(
+            IOptions<Settings> _,
+            ILoggerFactory loggerFactory
+        )
+        {
+            _loggerFactory = loggerFactory;
+        }
 
         private static async Task Main(string[] args)
         {
@@ -42,20 +49,50 @@ namespace Faultify.Cli
 
             ServiceCollection services = new ServiceCollection();
             services.Configure<Settings>(options => configurationRoot.GetSection("settings").Bind(options));
-            
-            LogManager.Configuration = new XmlLoggingConfiguration("NLog.config");
-            services.AddLogging(builder => builder.AddNLog());
-            
+            services.AddLogging(builder => BuildLogging(builder));
             services.AddSingleton<Program>();
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
             Program program = serviceProvider.GetService<Program>()
                 ?? throw new Exception("Couldn't get the Faultify service from the system");
 
+            ConfigureNLog();
 
             await program.Run(settings);
         }
-        
+
+        /// <summary>
+        ///     Builds a custom logging implementation to be attached to the running program
+        /// </summary>
+        /// <param name="builder">ILoggingBuilder that will handle the creation of the logger.</param>
+        private static void BuildLogging(ILoggingBuilder builder)
+        {
+            builder.SetMinimumLevel(LogLevel.Trace);
+
+            builder.AddFilter(LogConfiguration.TestHost, LogLevel.Trace);
+            builder.AddFilter(LogConfiguration.TestRunner, LogLevel.Trace);
+
+            builder.AddFile(o =>
+            {
+                o.RootPath = _outputDirectory;
+                o.FileAccessMode = LogFileAccessMode.KeepOpenAndAutoFlush;
+
+                o.Files = new[]
+                {
+                    new LogFileOptions
+                    {
+                        Path = "testhost-" + DateTime.Now.ToString("yy-MM-dd-H-mm") + ".log",
+                        MinLevel = new Dictionary<string, LogLevel> { { LogConfiguration.TestHost, LogLevel.Trace } },
+                    },
+                    new LogFileOptions
+                    {
+                        Path = "testprocess-" + DateTime.Now.ToString("yy-MM-dd-H-mm") + ".log",
+                        MinLevel = new Dictionary<string, LogLevel> { { LogConfiguration.TestRunner, LogLevel.Trace } },
+                    },
+                };
+            });
+        }
+
         /// <summary>
         ///     Sets up NLog configuration programmatically
         /// </summary>
@@ -138,7 +175,7 @@ namespace Faultify.Cli
 
             if (!File.Exists(settings.TestProjectPath))
             {
-                Logger.Fatal($"The file {settings.TestProjectPath} could not be found. Terminating Faultify.");
+                _logger.Fatal($"The file {settings.TestProjectPath} could not be found. Terminating Faultify.");
                 Environment.Exit(2); // 0x2 ERROR_FILE_NOT_FOUND
             }
 
@@ -146,7 +183,7 @@ namespace Faultify.Cli
             progress.ProgressChanged += (sender, progress) => PrintProgress(progress);
 
             MutationSessionProgressTracker progressTracker =
-                new MutationSessionProgressTracker(progress);
+                new MutationSessionProgressTracker(progress, _loggerFactory);
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
             TestProjectReportModel testResult = await RunMutationTest(settings, progressTracker);
@@ -168,6 +205,7 @@ namespace Faultify.Cli
                 settings.TestProjectPath,
                 settings.MutationLevel,
                 settings.Parallel,
+                _loggerFactory,
                 settings.TestHost,
                 settings.TimeOut
             );
