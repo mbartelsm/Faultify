@@ -18,7 +18,7 @@ namespace Faultify.TestRunner.TestRun.TestHostRunners
     public class DotnetTestHostRunner : ITestHostRunner
     {
         private const bool DisableOutput = true;
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
         private readonly string _testAdapterPath;
         private readonly DirectoryInfo _testDirectoryInfo;
 
@@ -47,7 +47,7 @@ namespace Faultify.TestRunner.TestRun.TestHostRunners
             IEnumerable<string> tests
         )
         {
-            Logger.Info("Running tests");
+            _logger.Info("Running tests");
             string testResultOutputPath = Path.Combine(_testDirectoryInfo.FullName, TestRunnerConstants.TestsFileName);
 
             List<TestResult>? testResults = new List<TestResult>();
@@ -78,14 +78,14 @@ namespace Faultify.TestRunner.TestRun.TestHostRunners
                 }
                 catch (FileNotFoundException e)
                 {
-                    Logger.Fatal(e,
+                    _logger.Fatal(e,
                         "The file 'test_results.bin' was not generated."
                         + "This implies that the test run can not be completed. "
                     );
                 }
                 catch (Exception e)
                 {
-                    Logger.Error(e);
+                    _logger.Error(e);
                 }
                 finally
                 {
@@ -107,7 +107,7 @@ namespace Faultify.TestRunner.TestRun.TestHostRunners
         /// <returns></returns>
         public async Task<MutationCoverage> RunCodeCoverage(CancellationToken cancellationToken)
         {
-            Logger.Info("Running code coverage");
+            _logger.Info("Running code coverage");
             try
             {
                 ProcessRunner coverageProcessRunner = BuildCodeCoverageTestProcessRunner();
@@ -122,17 +122,17 @@ namespace Faultify.TestRunner.TestRun.TestHostRunners
             }
             catch (FileNotFoundException e)
             {
-                Logger.Fatal(e,
+                _logger.Fatal(e,
                     "The file 'coverage.bin' was not generated."
                     + "This implies that the test run can not be completed. ");
             }
             catch (ExitCodeException e)
             {
-                Logger.Fatal(e, $"Subprocess terminated with error code {e.ExitCode}");
+                _logger.Fatal(e, $"Subprocess terminated with error code {e.ExitCode}");
             }
             catch (Exception e)
             {
-                Logger.Error(e, "Error running code coverage.");
+                _logger.Error(e, "Error running code coverage.");
             }
 
             return new MutationCoverage();
@@ -145,7 +145,7 @@ namespace Faultify.TestRunner.TestRun.TestHostRunners
         /// <returns></returns>
         private ProcessRunner BuildTestProcessRunner(IEnumerable<string> tests)
         {
-            Logger.Info("Building test runner");
+            _logger.Info("Building test runner");
             string testArguments = new DotnetTestArgumentBuilder(_testFileInfo.Name)
                 .Silent()
                 .WithoutLogo()
@@ -165,7 +165,7 @@ namespace Faultify.TestRunner.TestRun.TestHostRunners
                 RedirectStandardError = DisableOutput,
             };
 
-            Logger.Debug($"Test process process arguments: {testArguments}");
+            _logger.Debug($"Test process process arguments: {testArguments}");
 
             return new ProcessRunner(testProcessStartInfo);
         }
@@ -176,7 +176,7 @@ namespace Faultify.TestRunner.TestRun.TestHostRunners
         /// <returns></returns>
         private ProcessRunner BuildCodeCoverageTestProcessRunner()
         {
-            Logger.Info("Building coverage test runner");
+            _logger.Info("Building coverage test runner");
             string? coverageArguments = new DotnetTestArgumentBuilder(_testFileInfo.Name)
                 .Silent()
                 .WithoutLogo()
@@ -195,7 +195,7 @@ namespace Faultify.TestRunner.TestRun.TestHostRunners
                 WorkingDirectory = _testDirectoryInfo.FullName,
             };
 
-            Logger.Debug($"Coverage test process arguments: {coverageArguments}");
+            _logger.Debug($"Coverage test process arguments: {coverageArguments}");
 
             return new ProcessRunner(coverageProcessStartInfo);
         }

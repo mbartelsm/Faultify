@@ -15,7 +15,7 @@ namespace Faultify.TestRunner.ProjectDuplication
     /// </summary>
     public class TestProjectDuplication : IDisposable
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         public TestProjectDuplication(
             FileDuplication testProjectFile,
@@ -181,7 +181,7 @@ namespace Faultify.TestRunner.ProjectDuplication
                 }
                 catch (Exception e)
                 {
-                    Logger.Error(e, e.Message);
+                    _logger.Error(e, e.Message);
                 }
                 finally
                 {

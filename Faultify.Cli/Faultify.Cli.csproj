@@ -29,16 +29,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Include="NLog.config">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
-
-	<ItemGroup>
 		<None Include="..\.editorconfig" Link=".editorconfig" />
 		<None Include="..\docs\small-logo.png">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
+		  <Pack>True</Pack>
+		  <PackagePath></PackagePath>
 		</None>
 		<None Include="LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
 	</ItemGroup>
@@ -52,7 +46,6 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
 		<PackageReference Include="NLog" Version="4.7.9" />
-		<PackageReference Include="NLog.Extensions.Logging" Version="1.7.2" />
 	</ItemGroup>
 
 	<ItemGroup>

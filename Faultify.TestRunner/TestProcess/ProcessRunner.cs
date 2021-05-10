@@ -9,7 +9,7 @@ namespace Faultify.TestRunner.TestProcess
     /// </summary>
     public class ProcessRunner
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
         private readonly ProcessStartInfo _processStartInfo;
 
         public ProcessRunner(ProcessStartInfo processStartInfo)
@@ -23,7 +23,7 @@ namespace Faultify.TestRunner.TestProcess
         /// <returns></returns>
         public async Task<Process> RunAsync()
         {
-            Logger.Info("Starting new process");
+            _logger.Info("Starting new process");
             Process? process = new Process();
 
             TaskCompletionSource<object> taskCompletionSource = new TaskCompletionSource<object>();
@@ -32,8 +32,8 @@ namespace Faultify.TestRunner.TestProcess
 
             process.StartInfo = _processStartInfo;
 
-            process.OutputDataReceived += (sender, e) => { Logger.Debug(e.Data); };
-            process.ErrorDataReceived += (sender, e) => { Logger.Error(e.Data); };
+            process.OutputDataReceived += (sender, e) => { _logger.Debug(e.Data); };
+            process.ErrorDataReceived += (sender, e) => { _logger.Error(e.Data); };
 
             process.Start();
 
