@@ -9,16 +9,16 @@ namespace Faultify.Analyze.Analyzers
     /// </summary>
     public class BranchingAnalyzer : OpCodeAnalyzer
     {
-        private static readonly Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode)>> Bitwise =
-            new Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode)>>
+        private static readonly Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode, string)>> Bitwise =
+            new Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode, string)>>
             {
                 // Opcodes for mutating 'if(condition)' to 'if(!condition)' or unconditional conditions.
-                { OpCodes.Brtrue, new[] { (MutationLevel.Simple, OpCodes.Brfalse) } },
-                { OpCodes.Brtrue_S, new[] { (MutationLevel.Simple, OpCodes.Brfalse_S) } },
+                { OpCodes.Brtrue, new[] { (MutationLevel.Simple, OpCodes.Brfalse, "trueToFalse") } },
+                { OpCodes.Brtrue_S, new[] { (MutationLevel.Simple, OpCodes.Brfalse_S, "trueToFalseS") } },
 
                 // Opcodes for mutating 'if(!condition)' to 'if(condition)' or unconditional conditions.
-                { OpCodes.Brfalse, new[] { (MutationLevel.Simple, OpCodes.Brtrue) } },
-                { OpCodes.Brfalse_S, new[] { (MutationLevel.Simple, OpCodes.Brtrue_S) } },
+                { OpCodes.Brfalse, new[] { (MutationLevel.Simple, OpCodes.Brtrue, "falseToTrue") } },
+                { OpCodes.Brfalse_S, new[] { (MutationLevel.Simple, OpCodes.Brtrue_S, "falseToTrueS") } },
             };
 
         public BranchingAnalyzer() : base(Bitwise) { }
@@ -27,5 +27,7 @@ namespace Faultify.Analyze.Analyzers
             "Analyzer that searches for possible boolean branch mutations such as such as 'if(condition)' to 'if(!condition).";
 
         public override string Name => "Boolean Branch Analyzer";
+
+        public override string Id => "Branching";
     }
 }

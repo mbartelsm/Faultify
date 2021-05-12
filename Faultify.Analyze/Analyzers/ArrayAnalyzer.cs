@@ -24,9 +24,12 @@ namespace Faultify.Analyze.Analyzers
 
         public string Name => "Array Analyzer";
 
+        public string Id => "Array";
+
         public IMutationGroup<ArrayMutation> GenerateMutations(
             MethodDefinition method,
             MutationLevel mutationLevel,
+            HashSet<string> exclusions,
             IDictionary<Instruction, SequencePoint> debug = null
         )
         {

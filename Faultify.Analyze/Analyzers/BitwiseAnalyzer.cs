@@ -9,15 +9,15 @@ namespace Faultify.Analyze.Analyzers
     /// </summary>
     public class BitwiseAnalyzer : OpCodeAnalyzer
     {
-        private static readonly Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode)>> Bitwise =
-            new Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode)>>
+        private static readonly Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode, string)>> Bitwise =
+            new Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode, string)>>
             {
                 // Opcodes for mutation bitwise operator: '|' to '&' , and '^'. 
                 {
                     OpCodes.Or, new[]
                     {
-                        (MutationLevel.Simple, OpCodes.And),
-                        (MutationLevel.Medium, OpCodes.Xor),
+                        (MutationLevel.Simple, OpCodes.And, "orToAnd"),
+                        (MutationLevel.Medium, OpCodes.Xor, "orToXor"),
                     }
                 },
 
@@ -25,8 +25,8 @@ namespace Faultify.Analyze.Analyzers
                 {
                     OpCodes.And, new[]
                     {
-                        (MutationLevel.Simple, OpCodes.Or),
-                        (MutationLevel.Medium, OpCodes.Xor),
+                        (MutationLevel.Simple, OpCodes.Or, "andToOr"),
+                        (MutationLevel.Medium, OpCodes.Xor, "andToXor"),
                     }
                 },
 
@@ -34,8 +34,8 @@ namespace Faultify.Analyze.Analyzers
                 {
                     OpCodes.Xor, new[]
                     {
-                        (MutationLevel.Simple, OpCodes.Or),
-                        (MutationLevel.Medium, OpCodes.And),
+                        (MutationLevel.Simple, OpCodes.Or, "xorToOr"),
+                        (MutationLevel.Medium, OpCodes.And, "xorToAnd"),
                     }
                 },
             };
@@ -46,5 +46,7 @@ namespace Faultify.Analyze.Analyzers
             "Analyzer that searches for possible bitwise mutations such as 'or' to 'and' and 'xor'.";
 
         public override string Name => "Bitwise Analyzer";
+
+        public override string Id => "Bitwise";
     }
 }

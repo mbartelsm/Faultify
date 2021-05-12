@@ -9,17 +9,17 @@ namespace Faultify.Analyze.Analyzers
     /// </summary>
     public class ArithmeticAnalyzer : OpCodeAnalyzer
     {
-        private static readonly Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode)>> Arithmetic =
-            new Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode)>>
+        private static readonly Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode, string)>> Arithmetic =
+            new Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode, string)>>
             {
                 // Opcodes for mutating arithmetic operation: '+' to '-' ,  '*',  '/' , and '%'.
                 {
                     OpCodes.Add, new[]
                     {
-                        (MutationLevel.Simple, OpCodes.Sub),
-                        (MutationLevel.Medium, OpCodes.Mul),
-                        (MutationLevel.Detailed, OpCodes.Div),
-                        (MutationLevel.Detailed, OpCodes.Rem),
+                        (MutationLevel.Simple, OpCodes.Sub, "addToSub"),
+                        (MutationLevel.Medium, OpCodes.Mul, "addToMul"),
+                        (MutationLevel.Detailed, OpCodes.Div, "addToDiv"),
+                        (MutationLevel.Detailed, OpCodes.Rem, "addToRem"),
                     }
                 },
 
@@ -27,10 +27,10 @@ namespace Faultify.Analyze.Analyzers
                 {
                     OpCodes.Sub, new[]
                     {
-                        (MutationLevel.Simple, OpCodes.Add),
-                        (MutationLevel.Medium, OpCodes.Mul),
-                        (MutationLevel.Detailed, OpCodes.Div),
-                        (MutationLevel.Detailed, OpCodes.Rem),
+                        (MutationLevel.Simple, OpCodes.Add, "subToAdd"),
+                        (MutationLevel.Medium, OpCodes.Mul, "subToMul"),
+                        (MutationLevel.Detailed, OpCodes.Div, "subToDiv"),
+                        (MutationLevel.Detailed, OpCodes.Rem, "subToRem"),
                     }
                 },
 
@@ -38,10 +38,10 @@ namespace Faultify.Analyze.Analyzers
                 {
                     OpCodes.Mul, new[]
                     {
-                        (MutationLevel.Simple, OpCodes.Add),
-                        (MutationLevel.Medium, OpCodes.Sub),
-                        (MutationLevel.Detailed, OpCodes.Div),
-                        (MutationLevel.Detailed, OpCodes.Rem),
+                        (MutationLevel.Simple, OpCodes.Add, "mulToAdd"),
+                        (MutationLevel.Medium, OpCodes.Sub, "mulToSub"),
+                        (MutationLevel.Detailed, OpCodes.Div, "mulToDiv"),
+                        (MutationLevel.Detailed, OpCodes.Rem, "mulToRem"),
                     }
                 },
 
@@ -49,10 +49,10 @@ namespace Faultify.Analyze.Analyzers
                 {
                     OpCodes.Div, new[]
                     {
-                        (MutationLevel.Simple, OpCodes.Add),
-                        (MutationLevel.Medium, OpCodes.Mul),
-                        (MutationLevel.Detailed, OpCodes.Sub),
-                        (MutationLevel.Detailed, OpCodes.Rem),
+                        (MutationLevel.Simple, OpCodes.Add, "divToAdd"),
+                        (MutationLevel.Medium, OpCodes.Mul, "divToMul"),
+                        (MutationLevel.Detailed, OpCodes.Sub, "divToSub"),
+                        (MutationLevel.Detailed, OpCodes.Rem, "divToRem"),
                     }
                 },
 
@@ -60,10 +60,10 @@ namespace Faultify.Analyze.Analyzers
                 {
                     OpCodes.Rem, new[]
                     {
-                        (MutationLevel.Simple, OpCodes.Add),
-                        (MutationLevel.Medium, OpCodes.Mul),
-                        (MutationLevel.Detailed, OpCodes.Div),
-                        (MutationLevel.Detailed, OpCodes.Sub),
+                        (MutationLevel.Simple, OpCodes.Add, "remToAdd"),
+                        (MutationLevel.Medium, OpCodes.Mul, "remToMul"),
+                        (MutationLevel.Detailed, OpCodes.Div, "remToDiv"),
+                        (MutationLevel.Detailed, OpCodes.Sub, "remToSub"),
                     }
                 },
             };
@@ -74,5 +74,7 @@ namespace Faultify.Analyze.Analyzers
             "Analyzer that searches for possible arithmetic mutations such as '+' to '-', '*', '/', and '%'.";
 
         public override string Name => "Arithmetic Analyzer";
+
+        public override string Id => "Arithmetic";
     }
 }

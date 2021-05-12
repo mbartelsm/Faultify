@@ -15,19 +15,21 @@ namespace Faultify.Analyze.Analyzers
     public abstract class OpCodeAnalyzer : IAnalyzer<OpCodeMutation, Instruction>
     {
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
-        private readonly Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode)>> _mappedOpCodes;
+        private readonly Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode, string)>> _mappedOpCodes;
 
-        protected OpCodeAnalyzer(Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode)>> mappedOpCodes)
+        protected OpCodeAnalyzer(Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode, string)>> mappedOpCodes)
         {
             _mappedOpCodes = mappedOpCodes;
         }
 
         public abstract string Description { get; }
         public abstract string Name { get; }
+        public abstract string Id { get; }
 
         public IMutationGroup<OpCodeMutation> GenerateMutations(
             Instruction scope,
             MutationLevel mutationLevel,
+            HashSet<string> exclusions,
             IDictionary<Instruction, SequencePoint> debug = null
         )
         {
@@ -55,11 +57,11 @@ namespace Faultify.Analyze.Analyzers
 
             try
             {
-                IEnumerable<(MutationLevel, OpCode)> targets = _mappedOpCodes[original];
+                IEnumerable<(MutationLevel, OpCode, string)> targets = _mappedOpCodes[original];
                 mutations =
                     from target
                         in targets
-                    where mutationLevel.HasFlag(target.Item1)
+                    where mutationLevel.HasFlag(target.Item1) && !(exclusions.Contains(target.Item3))
                     select new OpCodeMutation(
                         scope.OpCode,
                         target.Item2,

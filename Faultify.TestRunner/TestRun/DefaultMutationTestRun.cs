@@ -62,10 +62,12 @@ namespace Faultify.TestRunner.TestRun
 
         public void InitializeMutations(
             TestProjectDuplication testProject,
-            IEnumerable<MutationVariantIdentifier> timedOutMutationVariants
+            IEnumerable<MutationVariantIdentifier> timedOutMutationVariants,
+            HashSet<string> excludeGroup,
+            HashSet<string> excludeSingular
         )
         {
-            _mutationVariants = testProject.GetMutationVariants(MutationIdentifiers, MutationLevel);
+            _mutationVariants = testProject.GetMutationVariants(MutationIdentifiers, MutationLevel, excludeGroup, excludeSingular);
             FlagTimedOutMutations(timedOutMutationVariants);
         }
 

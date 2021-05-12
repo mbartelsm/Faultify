@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using CommandLine;
@@ -207,7 +208,9 @@ namespace Faultify.Cli
                 settings.Parallel,
                 _loggerFactory,
                 settings.TestHost,
-                settings.TimeOut
+                settings.TimeOut,
+                settings.ExcludeMutationGroups.ToHashSet<string>(),
+                settings.ExcludeSingleMutations
             );
 
             return await mutationTestProject.Test(progressTracker, CancellationToken.None);

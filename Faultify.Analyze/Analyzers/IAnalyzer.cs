@@ -23,15 +23,22 @@ namespace Faultify.Analyze
         string Name { get; }
 
         /// <summary>
+        ///     Id of the Analyzer.
+        /// </summary>
+        string Id { get; }
+
+        /// <summary>
         ///     Analyzes possible mutations in the given scope.
         ///     Returns the mutation that can be either executed or reverted.
         /// </summary>
         /// <param name="scope">Scope in which to evaluate mutations</param>
         /// <param name="mutationLevel">Optimization and coverage level</param>
+        /// <param name="exclusions"> List of excluded mutations</param>
         /// <returns>A <see cref="IMutationGroup{TMutation}" /> containing the mutations</returns>
         IMutationGroup<TMutation> GenerateMutations(
             TScope scope,
             MutationLevel mutationLevel,
+            HashSet<string> exclusions,
             IDictionary<Instruction, SequencePoint> debug = null
         );
     }

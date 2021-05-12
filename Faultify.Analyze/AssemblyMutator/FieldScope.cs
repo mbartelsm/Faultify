@@ -34,21 +34,25 @@ namespace Faultify.Analyze.AssemblyMutator
         public string Name => _fieldDefinition.Name;
         public EntityHandle Handle => MetadataTokens.EntityHandle(_fieldDefinition.MetadataToken.ToInt32());
 
-        public IEnumerable<IMutationGroup<IMutation>> AllMutations(MutationLevel mutationLevel)
+        public IEnumerable<IMutationGroup<IMutation>> AllMutations(MutationLevel mutationLevel, HashSet<string> excludeGroup, HashSet<string> excludeSingular)
         {
-            return ConstantFieldMutations(mutationLevel);
+            return ConstantFieldMutations(mutationLevel, excludeGroup);
         }
 
         /// <summary>
         ///     Returns possible constant field mutations.
         /// </summary>
         /// <returns></returns>
-        private IEnumerable<IMutationGroup<ConstantMutation>> ConstantFieldMutations(MutationLevel mutationLevel)
+        private IEnumerable<IMutationGroup<ConstantMutation>> ConstantFieldMutations(MutationLevel mutationLevel, HashSet<string> excludeGroup)
         {
             foreach (IAnalyzer<ConstantMutation, FieldDefinition> analyzer in _fieldAnalyzers)
             {
+                if (excludeGroup.Contains(analyzer.Id))
+                {
+                    yield break;
+                }
                 IMutationGroup<ConstantMutation>
-                    mutations = analyzer.GenerateMutations(_fieldDefinition, mutationLevel);
+                    mutations = analyzer.GenerateMutations(_fieldDefinition, mutationLevel, new HashSet<string>());
 
                 if (mutations.Any())
                 {

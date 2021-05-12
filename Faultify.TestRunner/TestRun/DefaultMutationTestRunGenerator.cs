@@ -13,13 +13,15 @@ namespace Faultify.TestRunner.TestRun
         public IEnumerable<IMutationTestRun> GenerateMutationTestRuns(
             Dictionary<RegisteredCoverage, HashSet<string>> testsPerMethod,
             TestProjectInfo testProjectInfo,
-            MutationLevel mutationLevel
+            MutationLevel mutationLevel,
+            HashSet<string> excludeGroup,
+            HashSet<string> excludeSingular
         )
         {
             _logger.Info("Generating mutation test runs");
 
             IList<MutationVariantIdentifier>? allMutations =
-                GetMutationsForCoverage(testsPerMethod, testProjectInfo, mutationLevel);
+                GetMutationsForCoverage(testsPerMethod, testProjectInfo, excludeGroup, excludeSingular, mutationLevel);
             IEnumerable<IList<MutationVariantIdentifier>>? mutationGroups = GetTestGroups(allMutations);
 
             var i = 0;
@@ -138,6 +140,8 @@ namespace Faultify.TestRunner.TestRun
         private IList<MutationVariantIdentifier> GetMutationsForCoverage(
             Dictionary<RegisteredCoverage, HashSet<string>> coverage,
             TestProjectInfo testProjectInfo,
+            HashSet<string> excludeGroup,
+            HashSet<string> excludeSingular,
             MutationLevel mutationLevel
         )
         {
@@ -155,7 +159,7 @@ namespace Faultify.TestRunner.TestRun
 
                 if (registeredMutation.Key != null)
                 {
-                    foreach (var group in method.AllMutations(mutationLevel))
+                    foreach (var group in method.AllMutations(mutationLevel, excludeGroup, excludeSingular))
                     {
                         foreach (var mutation in group)
                         {

@@ -87,7 +87,9 @@ namespace Faultify.TestRunner.ProjectDuplication
         /// <returns></returns>
         public IList<MutationVariant> GetMutationVariants(
             IList<MutationVariantIdentifier>? mutationIdentifiers,
-            MutationLevel mutationLevel
+            MutationLevel mutationLevel,
+            HashSet<string> excludeGroup,
+            HashSet<string> excludeSingular
         )
         {
             List<MutationVariant> foundMutations = new List<MutationVariant>();
@@ -114,7 +116,7 @@ namespace Faultify.TestRunner.ProjectDuplication
                     {
                         var methodMutationId = 0;
 
-                        foreach (var mutationGroup in method.AllMutations(mutationLevel))
+                        foreach (var mutationGroup in method.AllMutations(mutationLevel, excludeGroup, excludeSingular))
                         {
                             foreach (var mutation in mutationGroup)
                             {

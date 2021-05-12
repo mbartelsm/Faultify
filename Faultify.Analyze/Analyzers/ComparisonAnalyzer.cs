@@ -28,53 +28,53 @@ namespace Faultify.Analyze.Analyzers
     /// </summary>
     public class ComparisonAnalyzer : OpCodeAnalyzer
     {
-        private static readonly Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode)>> Branch =
-            new Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode)>>
+        private static readonly Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode, string)>> Branch =
+            new Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode, string)>>
             {
                 // OpCodes for mutating Comparison operator: '==' to '!='(or unordered).
-                { OpCodes.Beq, new[] { (MutationLevel.Simple, OpCodes.Bne_Un) } },
+                { OpCodes.Beq, new[] { (MutationLevel.Simple, OpCodes.Bne_Un, "eqToNeq") } },
 
                 // OpCodes for mutating Comparison operator: '>=' to '<'.
-                { OpCodes.Bge, new[] { (MutationLevel.Simple, OpCodes.Blt) } },
+                { OpCodes.Bge, new[] { (MutationLevel.Simple, OpCodes.Blt, "greToLt") } },
 
                 // OpCodes for mutating Comparison operator: '>=' (unsigned or unordered) to '<' (unsigned or unordered).
-                { OpCodes.Bge_Un, new[] { (MutationLevel.Simple, OpCodes.Blt_Un) } },
+                { OpCodes.Bge_Un, new[] { (MutationLevel.Simple, OpCodes.Blt_Un, "greToLtUn") } },
 
                 // OpCodes for mutating Comparison operator: '>' to '<='.
-                { OpCodes.Bgt, new[] { (MutationLevel.Simple, OpCodes.Ble) } },
+                { OpCodes.Bgt, new[] { (MutationLevel.Simple, OpCodes.Ble, "grToLte") } },
 
                 // OpCodes for mutating Comparison operator: '>' (unsigned or unordered) to '<=' (unsigned or unordered).
-                { OpCodes.Bgt_Un, new[] { (MutationLevel.Simple, OpCodes.Ble_Un) } },
+                { OpCodes.Bgt_Un, new[] { (MutationLevel.Simple, OpCodes.Ble_Un, "grToLteUn") } },
 
                 // OpCodes for mutating Comparison operator: '<=' to '>'.
-                { OpCodes.Ble, new[] { (MutationLevel.Simple, OpCodes.Bgt) } },
+                { OpCodes.Ble, new[] { (MutationLevel.Simple, OpCodes.Bgt, "LteToGr") } },
 
                 // OpCodes for mutating Comparison operator: '<=' (unsigned or unordered) to '>' (unsigned or unordered).
-                { OpCodes.Ble_Un, new[] { (MutationLevel.Simple, OpCodes.Bgt_Un) } },
+                { OpCodes.Ble_Un, new[] { (MutationLevel.Simple, OpCodes.Bgt_Un, "LteToGrUn") } },
 
                 // OpCodes for mutating Comparison operator: '<' to '>='.
-                { OpCodes.Blt, new[] { (MutationLevel.Simple, OpCodes.Bge) } },
+                { OpCodes.Blt, new[] { (MutationLevel.Simple, OpCodes.Bge, "LtToGre") } },
 
                 // OpCodes for mutating Comparison operator: '<' (unsigned or unordered) to '>=' (unsigned or unordered).
-                { OpCodes.Blt_Un, new[] { (MutationLevel.Simple, OpCodes.Bge_Un) } },
+                { OpCodes.Blt_Un, new[] { (MutationLevel.Simple, OpCodes.Bge_Un, "LtToGreUn") } },
 
                 // OpCodes for mutating Comparison operator: '!='(or unordered) to '=='. 
-                { OpCodes.Bne_Un, new[] { (MutationLevel.Simple, OpCodes.Beq) } },
+                { OpCodes.Bne_Un, new[] { (MutationLevel.Simple, OpCodes.Beq, "neqToEq") } },
 
                 // OpCodes for mutating Comparison operator: '==' to '<' without branch redirection.
-                { OpCodes.Ceq, new[] { (MutationLevel.Simple, OpCodes.Clt) } },
+                { OpCodes.Ceq, new[] { (MutationLevel.Simple, OpCodes.Clt, "eqToLtNB") } },
 
                 // OpCodes for mutating Comparison operator: '<' to '>'  without branch redirection.
-                { OpCodes.Clt, new[] { (MutationLevel.Simple, OpCodes.Cgt) } },
+                { OpCodes.Clt, new[] { (MutationLevel.Simple, OpCodes.Cgt, "ltToGrNB") } },
 
                 // OpCodes for mutating Comparison operator: '<' (unsigned or unordered) to '>' (unsigned or unordered)  without branch redirection.
-                { OpCodes.Clt_Un, new[] { (MutationLevel.Simple, OpCodes.Cgt_Un) } },
+                { OpCodes.Clt_Un, new[] { (MutationLevel.Simple, OpCodes.Cgt_Un, "ltToGrUnNB") } },
 
                 // OpCodes for mutating Comparison operator: '>' to '<'  without branch redirection.
-                { OpCodes.Cgt, new[] { (MutationLevel.Simple, OpCodes.Clt) } },
+                { OpCodes.Cgt, new[] { (MutationLevel.Simple, OpCodes.Clt, "grToLtNB	") } },
 
                 // OpCodes for mutating Comparison operator: '>' (unsigned or unordered) to '<' (unsigned or unordered)  without branch redirection.
-                { OpCodes.Cgt_Un, new[] { (MutationLevel.Simple, OpCodes.Clt_Un) } },
+                { OpCodes.Cgt_Un, new[] { (MutationLevel.Simple, OpCodes.Clt_Un, "grToLtUnNB") } },
             };
 
         public ComparisonAnalyzer() : base(Branch) { }
@@ -83,5 +83,7 @@ namespace Faultify.Analyze.Analyzers
             "Analyzer that searches for possible comparison mutations to invalidate a condition such as '<' to '>'.";
 
         public override string Name => "Comparison Analyzer";
+
+        public override string Id => "Comparison";
     }
 }
