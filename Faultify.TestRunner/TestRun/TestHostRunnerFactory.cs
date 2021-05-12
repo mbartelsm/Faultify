@@ -9,7 +9,7 @@ namespace Faultify.TestRunner.TestRun
     /// </summary>
     internal static class TestHostRunnerFactory
     {
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         ///     Create and return an ITestHostRunner
@@ -21,7 +21,7 @@ namespace Faultify.TestRunner.TestRun
         /// <returns></returns>
         public static ITestHostRunner CreateTestRunner(string testAssemblyPath, TimeSpan timeOut, TestHost testHost)
         {
-            _logger.Info("Creating test runner");
+            Logger.Info("Creating test runner");
             ITestHostRunner testRunner = testHost switch
             {
                 TestHost.NUnit => new NUnitTestHostRunner(testAssemblyPath, timeOut),

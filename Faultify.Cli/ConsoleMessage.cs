@@ -24,11 +24,11 @@ namespace Faultify.Cli
         {
             string settingsString =
                 "\n"
-                + $"| Mutation Level: {settings.MutationLevel} \t\t \n"
-                + $"| Test Runners: {settings.Parallel} \t\t \n"
-                + $"| Report Path: {settings.ReportPath} \t\t \n"
-                + $"| Report Type: {settings.ReportType} \t\t \n"
-                + $"| Test Project Path: {settings.TestProjectPath} \t\t \n"
+                + $"| Mutation Level: {settings.MutationLevel}\n"
+                + $"| Test Runners: {settings.Parallel}\n"
+                + $"| Report Path: {settings.ReportPath}\n"
+                + $"| Report Type: {settings.ReportType}\n"
+                + $"| Test Project Path: {settings.TestProjectPath}\n"
                 + "\n";
 
             Console.ForegroundColor = ConsoleColor.Green;

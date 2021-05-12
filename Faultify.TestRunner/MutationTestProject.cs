@@ -27,7 +27,7 @@ namespace Faultify.TestRunner
 {
     public class MutationTestProject
     {
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly MutationLevel _mutationLevel;
         private readonly int _parallel;
         private readonly TestHost _testHost;
@@ -40,7 +40,6 @@ namespace Faultify.TestRunner
             string testProjectPath,
             MutationLevel mutationLevel,
             int parallel,
-            ILoggerFactory loggerFactoryFactory,
             TestHost testHost,
             TimeSpan timeOut,
             HashSet<string> excludeGroup,
@@ -120,11 +119,11 @@ namespace Faultify.TestRunner
 
             TimeSpan timeout = CreateTimeOut(coverageTimer);
 
-            _logger.Info("Collecting garbage");
+            Logger.Info("Collecting garbage");
             GC.Collect();
             GC.WaitForPendingFinalizers();
 
-            _logger.Info("Freeing test project");
+            Logger.Info("Freeing test project");
             coverageProject.MarkAsFree();
 
             // Start test session.
@@ -207,7 +206,7 @@ namespace Faultify.TestRunner
         /// <param name="projectInfo"></param>
         private void PrepareAssembliesForCodeCoverage(TestProjectInfo projectInfo)
         {
-            _logger.Info("Preparing assemblies for code coverage");
+            Logger.Info("Preparing assemblies for code coverage");
             TestCoverageInjector.Instance.InjectTestCoverage(projectInfo.TestModule);
             TestCoverageInjector.Instance.InjectModuleInit(projectInfo.TestModule);
             TestCoverageInjector.Instance.InjectAssemblyReferences(projectInfo.TestModule);
@@ -220,7 +219,7 @@ namespace Faultify.TestRunner
 
             foreach (var assembly in projectInfo.DependencyAssemblies)
             {
-                _logger.Trace($"Writing assembly {assembly.Module.FileName}");
+                Logger.Trace($"Writing assembly {assembly.Module.FileName}");
                 TestCoverageInjector.Instance.InjectAssemblyReferences(assembly.Module);
                 TestCoverageInjector.Instance.InjectTargetCoverage(assembly.Module);
                 assembly.Flush(); // SHAME ON YOU, SHAME
@@ -254,7 +253,7 @@ namespace Faultify.TestRunner
         /// <returns></returns>
         private async Task<MutationCoverage> RunCoverage(string testAssemblyPath, CancellationToken cancellationToken)
         {
-            _logger.Info("Running coverage analysis");
+            Logger.Info("Running coverage analysis");
             using MemoryMappedFile? file = Utils.CreateCoverageMemoryMappedFile();
             ITestHostRunner testRunner;
             try
@@ -264,7 +263,7 @@ namespace Faultify.TestRunner
             }
             catch (Exception e)
             {
-                _logger.Error(e, "Unable to create Test Runner");
+                Logger.Error(e, "Unable to create Test Runner");
                 throw; // TODO: Maybe return null
             }
 
@@ -278,7 +277,7 @@ namespace Faultify.TestRunner
         /// <returns></returns>
         private Dictionary<RegisteredCoverage, HashSet<string>> GroupMutationsWithTests(MutationCoverage coverage)
         {
-            _logger.Info("Grouping mutations with registered tests");
+            Logger.Info("Grouping mutations with registered tests");
             // Group mutations with tests.
             Dictionary<RegisteredCoverage, HashSet<string>>? testsPerMutation =
                 new Dictionary<RegisteredCoverage, HashSet<string>>();
@@ -317,7 +316,7 @@ namespace Faultify.TestRunner
             TestHost testHost
         )
         {
-            _logger.Info("Starting mutation session");
+            Logger.Info("Starting mutation session");
             // Generate the mutation test runs for the mutation session.
             DefaultMutationTestRunGenerator? defaultMutationTestRunGenerator = new DefaultMutationTestRunGenerator();
             IEnumerable<IMutationTestRun>? runs = defaultMutationTestRunGenerator.GenerateMutationTestRuns(
@@ -383,7 +382,7 @@ namespace Faultify.TestRunner
                         $"The test process encountered an unexpected error. Continuing without this test run. Please consider to submit an github issue. {e}",
                         LogMessageType.Error);
                     failedRuns += 1;
-                    _logger.Error(e, "The test process encountered an unexpected error.");
+                    Logger.Error(e, "The test process encountered an unexpected error.");
                 }
                 finally
                 {

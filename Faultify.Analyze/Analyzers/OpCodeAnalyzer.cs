@@ -15,8 +15,13 @@ namespace Faultify.Analyze.Analyzers
     /// </summary>
     public abstract class OpCodeAnalyzer : IAnalyzer<OpCodeMutation, MethodDefinition>
     {
+<<<<<<< HEAD
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
         private readonly Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode, string)>> _mappedOpCodes;
+=======
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private readonly Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode)>> _mappedOpCodes;
+>>>>>>> parent of 2f950df... Revert "Removed DI Logging in favour of static logging as sole solution"
 
         protected OpCodeAnalyzer(Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode, string)>> mappedOpCodes)
         {
@@ -59,7 +64,29 @@ namespace Faultify.Analyze.Analyzers
                     _logger.Debug(e, $"Could not find key \"{original}\" in Dictionary.");
                     mutations = Enumerable.Empty<OpCodeMutation>();
                 }
+<<<<<<< HEAD
                 mutationGroup.Add(mutations);
+=======
+            }
+
+            try
+            {
+                IEnumerable<(MutationLevel, OpCode)> targets = _mappedOpCodes[original];
+                mutations =
+                    from target
+                        in targets
+                    where mutationLevel.HasFlag(target.Item1)
+                    select new OpCodeMutation(
+                        scope.OpCode,
+                        target.Item2,
+                        scope,
+                        lineNumber);
+            }
+            catch (Exception e)
+            {
+                Logger.Debug(e, $"Could not find key \"{original}\" in Dictionary.");
+                mutations = Enumerable.Empty<OpCodeMutation>();
+>>>>>>> parent of 2f950df... Revert "Removed DI Logging in favour of static logging as sole solution"
             }
 
             return new MutationGroup<OpCodeMutation>
