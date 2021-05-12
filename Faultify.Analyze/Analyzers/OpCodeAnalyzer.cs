@@ -34,7 +34,7 @@ namespace Faultify.Analyze.Analyzers
             IDictionary<Instruction, SequencePoint> debug = null
         )
         {
-            var mutGroup = new List<IEnumerable<OpCodeMutation>>();
+            var mutationGroup = new List<IEnumerable<OpCodeMutation>>();
 
             foreach (Instruction instruction in scope.Body?.Instructions)
             {
@@ -59,14 +59,14 @@ namespace Faultify.Analyze.Analyzers
                     _logger.Debug(e, $"Could not find key \"{original}\" in Dictionary.");
                     mutations = Enumerable.Empty<OpCodeMutation>();
                 }
-                mutGroup.Add(mutations);
+                mutationGroup.Add(mutations);
             }
 
             return new MutationGroup<OpCodeMutation>
             {
                 Name = Name,
                 Description = Description,
-                Mutations = mutGroup.SelectMany(x => x),
+                Mutations = mutationGroup.SelectMany(x => x),
             };
         }
     }
