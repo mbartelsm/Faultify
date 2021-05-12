@@ -97,42 +97,19 @@ namespace Faultify.Analyze.AssemblyMutator
             HashSet<string> excludeGroup,
             HashSet<string> excludeSingular)
         {
-            // Mine
             foreach (IAnalyzer<OpCodeMutation, MethodDefinition> analyzer in _opCodeMethodAnalyzers)
             {
-                if (MethodDefinition.Body?.Instructions != null)
+                if (MethodDefinition.Body?.Instructions != null
+                && !excludeGroup.Contains(analyzer.Id))
                 {
                     IMutationGroup<OpCodeMutation> mutations = analyzer.GenerateMutations(
                         MethodDefinition,
                         mutationLevel,
+                        excludeSingular,
                         MethodDefinition.DebugInformation.GetSequencePointMapping());
 
                     yield return mutations;
                 }
-            }
-            // Hessel's
-            foreach (IAnalyzer<OpCodeMutation, Instruction> analyzer in _opCodeMethodAnalyzers)
-            {
-                if (!excludeGroup.Contains(analyzer.Id))
-                {
-                    if (MethodDefinition.Body?.Instructions != null)
-                    {
-                        foreach (Instruction instruction in MethodDefinition.Body?.Instructions)
-                        {
-                            IMutationGroup<OpCodeMutation> mutations = analyzer
-                                .GenerateMutations(
-                                    instruction, 
-                                    mutationLevel,
-                                    excludeSingular,
-                                    MethodDefinition.DebugInformation.GetSequencePointMapping());
-
-                            if (mutations.Any())
-                            {
-                                yield return mutations;
-                            }
-                        }
-                    }
-                } 
             }
         }
 
