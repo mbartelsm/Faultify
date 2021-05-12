@@ -1,5 +1,7 @@
-﻿@using Faultify.Report
-@model Faultify.Report.MutationProjectReportModel
+﻿@using Faultify.Report;
+@using System.Linq;
+@using Faultify.Report.Models
+@model Faultify.Report.Models.MutationProjectReportModel
 
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -61,6 +63,7 @@
         @for (var i = 0; i < Model.TestProjects.Count; i++)
         {
             TestProjectReportModel testProject = Model.TestProjects[i];
+            var mutations = testProject.Mutations.GroupBy(x => x.TestStatus).SelectMany(group => group).Reverse().ToList();
             <div class="card">
                 <div class="card-header" id="headingproj@(i)" style="padding: 0%;">
                     <h5 class="mb-0">
@@ -87,45 +90,56 @@
                 <div id="collapseproj@(i)" class="collapse" aria-labelledby="headingproj@(i)" data-parent="#accordionExample">
                     <div class="card-body">
                         <div class="accordion" id="AccordionTestProject@(i)">
-                            @for (var y = 0; y < testProject.Mutations.Count; y++)
+                            @foreach (var (mutation, y) in mutations.Select((x, i) => (x, i)))
                             {
-                                MutationVariantReportModel mutation = testProject.Mutations[y];
-
                                 <div class="card">
                                     <div class="card-header" id="headingmutatie@(i)@(y)" style="padding: 0%;">
                                         <h5 class="mb-0">
-                                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapsemutatie@(i)@(y)" aria-expanded="true" aria-controls="collapsemutatie@(i)@(y)" style="color: #6e798a; height: 100%; text-align: left; width: 100%;">
-                                                @mutation.Name -
-                                                @if (mutation.TestStatus == MutationStatus.Killed)
-                                                {
+                                            @if (mutation.TestStatus == MutationStatus.Killed)
+                                            {
+                                                <button class="btn btn-link" type="button" style="color: #6e798a; height: 100%; text-align: left; width: 100%;">
+                                                    @mutation.Name
                                                     <label class="text-success" style="float: right;">Killed</label>
-                                                }
-                                                else if (mutation.TestStatus == MutationStatus.Timeout)
-                                                {
+                                                </button>
+                                            }
+                                            else if (mutation.TestStatus == MutationStatus.Timeout)
+                                            {
+                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapsemutatie@(i)@(y)" aria-expanded="true" aria-controls="collapsemutatie@(i)@(y)" style="color: #6e798a; height: 100%; text-align: left; width: 100%;">
+                                                    @mutation.Name
                                                     <label class="text-success" style="float: right;">Timeout</label>
-                                                }
-                                                else if (mutation.TestStatus == MutationStatus.NoCoverage)
-                                                {
+                                                </button>
+                                            }
+                                            else if (mutation.TestStatus == MutationStatus.NoCoverage)
+                                            {
+                                                <button class="btn btn-link" type="button" style="color: #6e798a; height: 100%; text-align: left; width: 100%;">
+                                                    @mutation.Name
                                                     <label class="text-danger" style="float: right;">NoCoverage</label>
-                                                }
-                                                else
-                                                {
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapsemutatie@(i)@(y)" aria-expanded="true" aria-controls="collapsemutatie@(i)@(y)" style="color: #6e798a; height: 100%; text-align: left; width: 100%;">
+                                                    @mutation.Name
                                                     <label class="text-danger" style="float: right;">Survived</label>
-                                                }
-                                            </button>
+                                                </button>
+                                            }
                                         </h5>
                                     </div>
 
                                     <div id="collapsemutatie@(i)@(y)" class="collapse" aria-labelledby="headingmutatie@(i)@(y)" data-parent="#collapsemutatie@(i)@(y)">
-                                        <div class="card-body">
-                                            @mutation.Description
+                                        @if (mutation.TestStatus == MutationStatus.Survived
+                                       || mutation.TestStatus == MutationStatus.Timeout)
+                                        {
+                                            <div class="card-body">
+                                                @mutation.Description
 
-                                            <h6>Original Source</h6>
-                                            <pre><code class="language-csharp">@mutation.OriginalSource</code></pre>
+                                                <h6>Original Source</h6>
+                                                <pre><code class="language-csharp">@mutation.OriginalSource</code></pre>
 
-                                            <h6>Mutated Source</h6>
-                                            <pre><code class="language-csharp">@mutation.MutatedSource</code></pre>
-                                        </div>
+                                                <h6>Mutated Source</h6>
+                                                <pre><code class="language-csharp">@mutation.MutatedSource</code></pre>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             }

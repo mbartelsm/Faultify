@@ -36,7 +36,6 @@ namespace Faultify.Analyze.Analyzers
             // NOTE: Commenting this out, may cause errors
             // if (method?.Body == null)
             //     mutations = Enumerable.Empty<VariableMutation>();
-            int lineNumber = -1;
 
             foreach (Instruction instruction in method.Body.Instructions)
             {
@@ -49,15 +48,6 @@ namespace Faultify.Analyze.Analyzers
 
                 try
                 {
-                    if (debug != null)
-                    {
-                        debug.TryGetValue(instruction, out SequencePoint tempSeqPoint);
-
-                        if (tempSeqPoint != null)
-                        {
-                            lineNumber = tempSeqPoint.StartLine;
-                        }
-                    }
 
                     // Get variable type. Might throw InvalidCastException
                     Type type = ((TypeReference) instruction.Operand).ToSystemType();
@@ -71,7 +61,7 @@ namespace Faultify.Analyze.Analyzers
                     // If the value is mapped then mutate it.
                     if (TypeChecker.IsVariableType(type))
                     {
-                        mutations.Add(new VariableMutation(variableInstruction, type, lineNumber));
+                        mutations.Add(new VariableMutation(variableInstruction, type, method));
                     }
                 }
                 catch (InvalidCastException e)

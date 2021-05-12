@@ -11,14 +11,14 @@ namespace Faultify.Analyze.Mutation
     public class ArrayMutation : IMutation
     {
         private readonly IArrayMutationStrategy _arrayMutationStrategy;
-        private readonly MethodDefinition _methodDefClone;
-        private readonly MethodDefinition _methodDefinitionToMutate;
+        private MethodDefinition Replacement { get; }
+        private MethodDefinition Original { get; }
 
         public ArrayMutation(IArrayMutationStrategy mutationStrategy, MethodDefinition methodDef)
         {
             _arrayMutationStrategy = mutationStrategy;
-            _methodDefinitionToMutate = methodDef;
-            _methodDefClone = _methodDefinitionToMutate.Clone();
+            Original = methodDef;
+            Replacement = Original.Clone();
         }
 
         /// <summary>
@@ -34,9 +34,9 @@ namespace Faultify.Analyze.Mutation
         /// </summary>
         public void Reset()
         {
-            _arrayMutationStrategy.Reset(_methodDefinitionToMutate, _methodDefClone);
+            _arrayMutationStrategy.Reset(Original, Replacement);
         }
 
-        public string Report => "Change array contents.";
+        public string Report => $"{Original} Change array contents.";
     }
 }

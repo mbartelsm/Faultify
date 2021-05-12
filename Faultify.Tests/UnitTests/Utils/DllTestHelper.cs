@@ -87,7 +87,7 @@ namespace Faultify.Tests.UnitTests.Utils
             string method,
             OpCode expected,
             bool simplefy = false
-        ) where TMutator : IAnalyzer<OpCodeMutation, Instruction>
+        ) where TMutator : IAnalyzer<OpCodeMutation, MethodDefinition>
         {
             ModuleDefinition module = ModuleDefinition.ReadModule(new MemoryStream(binary, false));
             MethodDefinition mutateMethod =
@@ -99,22 +99,19 @@ namespace Faultify.Tests.UnitTests.Utils
                 mutateMethod.Body.SimplifyMacros();
             }
 
-            foreach (Instruction instruction in mutateMethod.Body.Instructions)
+            IMutationGroup<OpCodeMutation> possibleOperatorMutations =
+                mutator.GenerateMutations(mutateMethod, MutationLevel.Detailed, new HashSet<string>());
+
+            foreach (OpCodeMutation mutation in possibleOperatorMutations)
             {
-                IMutationGroup<OpCodeMutation> possibleOperatorMutations =
-                    mutator.GenerateMutations(instruction, MutationLevel.Detailed, new HashSet<string>());
+                mutation.Mutate();
 
-                foreach (OpCodeMutation mutation in possibleOperatorMutations)
+                if (mutation.HasOpcode(expected))
                 {
-                    mutation.Mutate();
-
-                    if (mutation.HasOpcode(expected))
-                    {
-                        MemoryStream mutatedBinaryStream = new MemoryStream();
-                        module.Write(mutatedBinaryStream);
-                        File.WriteAllBytes("debug.dll", mutatedBinaryStream.ToArray());
-                        return mutatedBinaryStream.ToArray();
-                    }
+                    MemoryStream mutatedBinaryStream = new MemoryStream();
+                    module.Write(mutatedBinaryStream);
+                    File.WriteAllBytes("debug.dll", mutatedBinaryStream.ToArray());
+                    return mutatedBinaryStream.ToArray();
                 }
             }
 

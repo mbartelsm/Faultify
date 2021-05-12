@@ -1,4 +1,4 @@
-﻿namespace Faultify.Report
+﻿namespace Faultify.Report.Models
 {
     public class MutationAnalyzerReportModel
     {

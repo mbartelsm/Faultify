@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Faultify.Report;
+using Faultify.Report.Models;
 using Faultify.TestRunner.Shared;
 using Faultify.TestRunner.TestRun;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel;

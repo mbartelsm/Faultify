@@ -2,10 +2,11 @@
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Faultify.Report.Models;
 using RazorLight;
 using WkHtmlToPdfDotNet;
 
-namespace Faultify.Report.PDFReporter
+namespace Faultify.Report.Reporters
 {
     public class PdfReporter : IReporter
     {
@@ -27,7 +28,7 @@ namespace Faultify.Report.PDFReporter
                     new ObjectSettings
                     {
                         PagesCount = true,
-                        HtmlContent = await Template(mutationRun),
+                        HtmlContent = await PopulateTemplate(mutationRun),
                         WebSettings = { DefaultEncoding = "utf-8" },
                         HeaderSettings =
                             { FontSize = 9, Right = "Page [page] of [toPage]", Line = true, Spacing = 2.812 },
@@ -38,12 +39,12 @@ namespace Faultify.Report.PDFReporter
             return Converter.Convert(doc);
         }
 
-        private async Task<string> Template(MutationProjectReportModel model)
+        private async Task<string> PopulateTemplate(MutationProjectReportModel model)
         {
             Assembly currentAssembly = Assembly.GetExecutingAssembly();
             string resourceName = currentAssembly
                 .GetManifestResourceNames()
-                .Single(str => str.EndsWith("PDF.cshtml"));
+                .Single(str => str.EndsWith("Pdf.cshtml"));
 
             using StreamReader streamReader = new StreamReader(currentAssembly.GetManifestResourceStream(resourceName));
             string template = await streamReader.ReadToEndAsync();

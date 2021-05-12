@@ -5,13 +5,22 @@ namespace Faultify.Benchmark.NUnit
     public class BenchmarkNUnit
     {
         [Test]
+        public void TestConstantTest()
+        {
+            BenchmarkTarget targets = new BenchmarkTarget();
+            int actual = targets.ConstantTest();
+            int expected = 77;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void TestArray()
         {
             BenchmarkTarget targets = new BenchmarkTarget();
             int[] actual = targets.ConstructArray();
             int[] expected = { 1, 2, 3, 6, 4, 2, 5, 3, 2, 6, 7 };
 
-            Assert.AreEqual(expected, expected);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -129,13 +138,22 @@ namespace Faultify.Benchmark.NUnit
     public class BenchmarkNUnit1
     {
         [Test]
+        public void TestConstantTest()
+        {
+            BenchmarkTarget targets = new BenchmarkTarget();
+            int actual = targets.ConstantTest();
+            int expected = 77;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void TestArray()
         {
             BenchmarkTarget1 targets = new BenchmarkTarget1();
             int[] actual = targets.ConstructArray();
             int[] expected = { 1, 2, 3, 6, 4, 2, 5, 3, 2, 6, 7 };
 
-            Assert.AreEqual(expected, expected);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -262,6 +280,16 @@ namespace Faultify.Benchmark.NUnit
 
     public class BenchmarkNUnit2
     {
+
+        [Test]
+        public void TestConstantTest()
+        {
+            BenchmarkTarget targets = new BenchmarkTarget();
+            int actual = targets.ConstantTest();
+            int expected = 77;
+            Assert.AreEqual(expected, actual);
+        }
+
         [Test]
         public void TestArray()
         {
@@ -269,7 +297,7 @@ namespace Faultify.Benchmark.NUnit
             int[] actual = targets.ConstructArray();
             int[] expected = { 1, 2, 3, 6, 4, 2, 5, 3, 2, 6, 7 };
 
-            Assert.AreEqual(expected, expected);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -396,6 +424,16 @@ namespace Faultify.Benchmark.NUnit
 
     public class BenchmarkNUnit3
     {
+
+        [Test]
+        public void TestConstantTest()
+        {
+            BenchmarkTarget targets = new BenchmarkTarget();
+            int actual = targets.ConstantTest();
+            int expected = 77;
+            Assert.AreEqual(expected, actual);
+        }
+
         [Test]
         public void TestArray()
         {
@@ -403,7 +441,7 @@ namespace Faultify.Benchmark.NUnit
             int[] actual = targets.ConstructArray();
             int[] expected = { 1, 2, 3, 6, 4, 2, 5, 3, 2, 6, 7 };
 
-            Assert.AreEqual(expected, expected);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]

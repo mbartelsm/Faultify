@@ -3,9 +3,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Faultify.Report.Models;
 using RazorLight;
 
-namespace Faultify.Report.HTMLReporter
+namespace Faultify.Report.Reporters
 {
     public class HtmlReporter : IReporter
     {
@@ -13,15 +14,15 @@ namespace Faultify.Report.HTMLReporter
 
         public async Task<byte[]> CreateReportAsync(MutationProjectReportModel mutationRun)
         {
-            return Encoding.UTF8.GetBytes(await Template(mutationRun));
+            return Encoding.UTF8.GetBytes(await PopulateTemplate(mutationRun));
         }
 
-        private async Task<string> Template(MutationProjectReportModel model)
+        private async Task<string> PopulateTemplate(MutationProjectReportModel model)
         {
             Assembly currentAssembly = Assembly.GetExecutingAssembly();
             string resourceName = currentAssembly
                 .GetManifestResourceNames()
-                .Single(str => str.EndsWith("HTML.cshtml"));
+                .Single(str => str.EndsWith("Html.cshtml"));
 
             using StreamReader streamReader = new StreamReader(currentAssembly.GetManifestResourceStream(resourceName));
             string template = await streamReader.ReadToEndAsync();
