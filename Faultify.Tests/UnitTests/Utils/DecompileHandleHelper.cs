@@ -1,11 +1,12 @@
-﻿using System;
+﻿extern alias MC;
+using System;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
-using FieldDefinition = Mono.Cecil.FieldDefinition;
-using MethodDefinition = Mono.Cecil.MethodDefinition;
-using ModuleDefinition = Mono.Cecil.ModuleDefinition;
-using TypeDefinition = Mono.Cecil.TypeDefinition;
+using FieldDefinition = MC::Mono.Cecil.FieldDefinition;
+using MethodDefinition = MC::Mono.Cecil.MethodDefinition;
+using ModuleDefinition = MC::Mono.Cecil.ModuleDefinition;
+using TypeDefinition = MC::Mono.Cecil.TypeDefinition;
 
 namespace Faultify.Tests.UnitTests.Utils
 {

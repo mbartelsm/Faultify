@@ -1,10 +1,11 @@
-﻿using System;
+﻿extern alias MC;
+using System;
 using System.IO;
 using System.Reflection.Metadata;
 using Faultify.Core.ProjectAnalyzing;
 using Faultify.Tests.UnitTests.Utils;
 using NUnit.Framework;
-using ModuleDefinition = Mono.Cecil.ModuleDefinition;
+using ModuleDefinition = MC::Mono.Cecil.ModuleDefinition;
 
 namespace Faultify.Tests.UnitTests
 {

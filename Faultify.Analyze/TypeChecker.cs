@@ -33,6 +33,7 @@ namespace Faultify.Analyze
             ISet<Type> arrayTypes = new HashSet<Type>();
             arrayTypes.UnionWith(NumericTypes);
             arrayTypes.Add(typeof(bool));
+            arrayTypes.Add(typeof(char));
 
             return arrayTypes.Contains(t);
         }

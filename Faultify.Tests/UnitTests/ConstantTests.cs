@@ -54,11 +54,11 @@ namespace Faultify.Tests.UnitTests
 
             // Act
             byte[] mutatedBinary =
-                DllTestHelper.MutateField<ConstantAnalyzer>(binary, ConstantBoolTrueName, false);
+                DllTestHelper.MutateField<ConstantAnalyzer>(binary, ConstantBoolTrueName, 0);
 
             using (DllTestHelper binaryInteractor = new DllTestHelper(mutatedBinary))
             {
-                object actual = binaryInteractor.GetField(nameSpace, ConstantBoolTrueName);
+                object actual = binaryInteractor.GetField(nameSpace, ConstantBoolFalseName);
 
                 // Assert
                 Assert.AreEqual(expected, actual);
@@ -74,7 +74,7 @@ namespace Faultify.Tests.UnitTests
 
             // Act
             byte[] mutatedBinary =
-                DllTestHelper.MutateField<ConstantAnalyzer>(binary, ConstantBoolFalseName, true);
+                DllTestHelper.MutateField<ConstantAnalyzer>(binary, ConstantBoolFalseName, 1);
 
             using (DllTestHelper binaryInteractor = new DllTestHelper(mutatedBinary))
             {
