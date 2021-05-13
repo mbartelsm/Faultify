@@ -16,7 +16,7 @@ namespace Faultify.Injection
         private static string _currentTestCoverage = "NONE";
         private static readonly object RegisterMutex = new();
         private static MemoryMappedFile _mmf;
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        //private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         ///     Is injected into <Module> by <see cref="TestCoverageInjector" /> and will be called on assembly load.
@@ -36,8 +36,7 @@ namespace Faultify.Injection
             }
             catch (Exception ex)
             {
-                _logger.Debug(ex, "Previously ignored Exception caught in CoverageRegistry: {0}");
-                // ignored
+                // This needs to be fully ignored or the test runner will fail
             }
         }
 
@@ -64,8 +63,7 @@ namespace Faultify.Injection
                 }
                 catch (Exception ex)
                 {
-                    _logger.Debug(ex, "Previously ignored Exception-2 caught in CoverageRegistry: {0}");
-                    // ignored
+                    // This needs to be fully ignored or the test runner will fail
                 }
             }
         }
