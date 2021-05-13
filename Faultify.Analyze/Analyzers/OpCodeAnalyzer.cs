@@ -15,7 +15,7 @@ namespace Faultify.Analyze.Analyzers
     /// </summary>
     public abstract class OpCodeAnalyzer : IAnalyzer<OpCodeMutation, MethodDefinition>
     {
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode, string)>> _mappedOpCodes;
 
         protected OpCodeAnalyzer(Dictionary<OpCode, IEnumerable<(MutationLevel, OpCode, string)>> mappedOpCodes)
@@ -56,7 +56,7 @@ namespace Faultify.Analyze.Analyzers
                 }
                 catch (Exception e)
                 {
-                    _logger.Debug(e, $"Could not find key \"{original}\" in Dictionary.");
+                    Logger.Debug(e, $"Could not find key \"{original}\" in Dictionary.");
                     mutations = Enumerable.Empty<OpCodeMutation>();
                 }
                 mutationGroup.Add(mutations);

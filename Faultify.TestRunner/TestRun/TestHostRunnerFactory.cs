@@ -9,7 +9,7 @@ namespace Faultify.TestRunner.TestRun
     /// </summary>
     internal static class TestHostRunnerFactory
     {
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         ///     Create and return an ITestHostRunner

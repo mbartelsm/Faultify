@@ -15,7 +15,7 @@ namespace Faultify.Analyze.Analyzers
     /// </summary>
     public class VariableAnalyzer : IAnalyzer<VariableMutation, MethodDefinition>
     {
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public string Description =>
             "Analyzer that searches for possible variable mutations such as 'true' to 'false'.";
@@ -66,7 +66,7 @@ namespace Faultify.Analyze.Analyzers
                 }
                 catch (InvalidCastException e)
                 {
-                    _logger.Debug(e, $"Failed to get the type of {instruction.Operand}");
+                    Logger.Debug(e, $"Failed to get the type of {instruction.Operand}");
                 }
             }
 
