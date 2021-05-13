@@ -6,14 +6,18 @@ using Faultify.Analyze;
 using Faultify.TestRunner;
 using System.Text.Json;
 using System.Collections.Generic;
+using NLog;
 
 // Disable Non-nullable is uninitialized, this is handled by the CommandLine package
 #pragma warning disable 8618
 
 namespace Faultify.Cli
 {
+    
     internal class Settings
     {
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
         [Option('i', "inputProject", Required = true,
             HelpText = "The path pointing to the test project project file.")]
         public string TestProjectPath { get; set; }
@@ -59,8 +63,19 @@ namespace Faultify.Cli
                 }
                 else
                 {
-                    string jsonString = File.ReadAllText(ExcludeMutationSinglesFile);
-                    string[]? excludeMutations = JsonSerializer.Deserialize<string[]>(jsonString);
+                    string jsonString;
+                    string[]? excludeMutations;
+                    try
+                    {
+                        jsonString = File.ReadAllText(ExcludeMutationSinglesFile);
+                        excludeMutations = JsonSerializer.Deserialize<string[]>(jsonString);
+                    } catch(Exception ex)
+                    {
+                        _logger.Error(ex, "Defaulting to -s exclusions" + ex.Message);
+                        excludeMutations = null;
+                    }
+                    
+                    
                     if (excludeMutations == null)
                     {
                         return ExcludeMutationSingles.ToHashSet<string>();

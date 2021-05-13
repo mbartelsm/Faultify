@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Faultify.Core.ProjectAnalyzing;
+using NLog;
 
 namespace Faultify.TestRunner.ProjectDuplication
 {
@@ -16,6 +17,8 @@ namespace Faultify.TestRunner.ProjectDuplication
         private List<string>? _allFiles;
 
         private IProjectInfo? _projectInfo;
+
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         public TestProjectDuplicator(string testDirectory)
         {
@@ -71,7 +74,8 @@ namespace Faultify.TestRunner.ProjectDuplication
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    _logger.Fatal(e, $"failed to copy test project {e}");
+                    Environment.Exit(14);
                 }
             }
 
@@ -101,7 +105,11 @@ namespace Faultify.TestRunner.ProjectDuplication
         /// <returns> The newly created duplication </returns>
         public TestProjectDuplication MakeCopy(int i)
         {
-            if (_newDirInfo == null || _projectInfo == null) throw new NullReferenceException();
+            if (_newDirInfo == null || _projectInfo == null)
+            {
+                _logger.Fatal("null reference for new directory or project info");
+                Environment.Exit(15);
+            }
             
             string duplicatedDirectoryPath = Path.Combine(_testDirectory, $"test-duplication-{i + 1}");
             

@@ -112,9 +112,9 @@ namespace Faultify.Analyze
         /// <returns>The random numeric object</returns>
         private static object ChangeNumber(Type type, object original)
         {
-            if (!TypeChecker.IsNumericType(type))
+            if (!TypeChecker.IsNumericType(type)) //Is this really necessary? Since this method is only called when it is a numeric type
             {
-                throw new ArgumentException("The given type is not numeric", nameof(type));
+                throw new ArgumentException("The given type is not numeric", nameof(type)); 
             }
             
             while (true)

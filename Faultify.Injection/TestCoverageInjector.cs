@@ -6,6 +6,7 @@ using Faultify.TestRunner.Shared;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 using MethodAttributes = Mono.Cecil.MethodAttributes;
+using NLog;
 
 namespace Faultify.Injection
 {
@@ -20,6 +21,7 @@ namespace Faultify.Injection
         private readonly MethodDefinition _initializeMethodDefinition;
         private readonly MethodDefinition _registerTargetCoverage;
         private readonly MethodDefinition _registerTestCoverage;
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         private TestCoverageInjector()
         {
@@ -44,7 +46,8 @@ namespace Faultify.Injection
 
             if (_initializeMethodDefinition == null || _registerTargetCoverage == null)
             {
-                throw new Exception("Testcoverage Injector could not initialize injection methods");
+                _logger.Fatal("Testcoverage Injector could not initialize injection methods");
+                Environment.Exit(13);
             }
         }
 

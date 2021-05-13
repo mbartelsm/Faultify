@@ -113,9 +113,14 @@ namespace Faultify.TestRunner
 
             Stopwatch? coverageTimer = new Stopwatch();
             coverageTimer.Start();
-            MutationCoverage coverage =
+            MutationCoverage? coverage =
                 await RunCoverage(coverageProject.TestProjectFile.FullFilePath(), cancellationToken);
             coverageTimer.Stop();
+            if (coverage == null)
+            {
+                _logger.Fatal("Coverage failed exiting with exit code 16");
+                Environment.Exit(16);
+            }
 
             TimeSpan timeout = CreateTimeOut(coverageTimer);
 
@@ -251,7 +256,7 @@ namespace Faultify.TestRunner
         /// <param name="testAssemblyPath"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        private async Task<MutationCoverage> RunCoverage(string testAssemblyPath, CancellationToken cancellationToken)
+        private async Task<MutationCoverage?> RunCoverage(string testAssemblyPath, CancellationToken cancellationToken)
         {
             Logger.Info("Running coverage analysis");
             using MemoryMappedFile? file = Utils.CreateCoverageMemoryMappedFile();
@@ -263,8 +268,8 @@ namespace Faultify.TestRunner
             }
             catch (Exception e)
             {
-                Logger.Error(e, "Unable to create Test Runner");
-                throw; // TODO: Maybe return null
+                _logger.Error(e, "Unable to create Test Runner returning null");
+                return null;
             }
 
             return await testRunner.RunCodeCoverage(cancellationToken);

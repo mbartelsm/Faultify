@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO.MemoryMappedFiles;
 using Faultify.TestRunner.Shared;
-using NLog;
 
 namespace Faultify.Injection
 {
@@ -16,7 +15,6 @@ namespace Faultify.Injection
         private static string _currentTestCoverage = "NONE";
         private static readonly object RegisterMutex = new();
         private static MemoryMappedFile _mmf;
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         ///     Is injected into <Module> by <see cref="TestCoverageInjector" /> and will be called on assembly load.
@@ -36,8 +34,7 @@ namespace Faultify.Injection
             }
             catch (Exception ex)
             {
-                Logger.Debug(ex, "Previously ignored Exception caught in CoverageRegistry: {0}");
-                // ignored
+                // This needs to be fully ignored or the test runner will fail
             }
         }
 
@@ -64,8 +61,7 @@ namespace Faultify.Injection
                 }
                 catch (Exception ex)
                 {
-                    Logger.Debug(ex, "Previously ignored Exception-2 caught in CoverageRegistry: {0}");
-                    // ignored
+                    // This needs to be fully ignored or the test runner will fail
                 }
             }
         }

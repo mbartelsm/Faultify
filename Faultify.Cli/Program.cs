@@ -198,13 +198,23 @@ namespace Faultify.Cli
 
         private IReporter ReportFactory(string type)
         {
-            return type?.ToUpper() switch
+            try
             {
-                "PDF" => new PdfReporter(),
-                "HTML" => new HtmlReporter(),
-                "JSON" => new JsonReporter(),
-                _ => throw new ArgumentException($"The argument \"{type}\" is not a valid file output type"),
-            };
+                return type?.ToUpper() switch
+                {
+                    "PDF" => new PdfReporter(),
+                    "HTML" => new HtmlReporter(),
+                    "JSON" => new JsonReporter(),
+                    _ => throw new ArgumentOutOfRangeException(type, $"The argument \"{type}\" is not a valid file output type." +
+                        "Defaulting to JSON."),
+                };
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                _logger.Error(ex, ex.Message);
+                return new JsonReporter();
+            }
+            
         }
 
         private static IConfigurationRoot BuildConfigurationRoot()

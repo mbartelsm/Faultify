@@ -8,12 +8,14 @@ using Faultify.MemoryTest.TestInformation;
 using Faultify.TestRunner.Shared;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using TestResult = Faultify.TestRunner.Shared.TestResult;
+using NLog;
 
 namespace Faultify.TestRunner.NUnit
 {
     [Obsolete("Moved into TestRunner.TestRun.TestHostRunners")]
     public class NUnitTestHostRunner : ITestHostRunner
     {
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
         private readonly HashSet<string> _coverageTests = new HashSet<string>();
         private readonly string _testProjectAssemblyPath;
         private readonly TestResults _testResults = new TestResults();
@@ -71,13 +73,21 @@ namespace Faultify.TestRunner.NUnit
 
         private TestOutcome ParseTestOutcome(MemoryTest.TestOutcome outcome)
         {
-            return outcome switch
+            try
             {
-                MemoryTest.TestOutcome.Passed => TestOutcome.Passed,
-                MemoryTest.TestOutcome.Failed => TestOutcome.Failed,
-                MemoryTest.TestOutcome.Skipped => TestOutcome.Skipped,
-                _ => throw new ArgumentOutOfRangeException(nameof(outcome), outcome, null),
-            };
+                return outcome switch
+                {
+                    MemoryTest.TestOutcome.Passed => TestOutcome.Passed,
+                    MemoryTest.TestOutcome.Failed => TestOutcome.Failed,
+                    MemoryTest.TestOutcome.Skipped => TestOutcome.Skipped,
+                    _ => throw new ArgumentOutOfRangeException(nameof(outcome), outcome, null),
+                };
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                _logger.Error(ex, ex.Message + "defautling to Skipped");
+                return TestOutcome.Skipped;
+            }
         }
 
         private MutationCoverage ReadCoverageFile()
