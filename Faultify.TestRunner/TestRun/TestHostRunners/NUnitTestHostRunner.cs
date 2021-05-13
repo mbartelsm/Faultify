@@ -75,13 +75,20 @@ namespace Faultify.TestRunner.TestRun.TestHostRunners
 
         private TestOutcome ParseTestOutcome(MemoryTest.TestOutcome outcome)
         {
-            return outcome switch
+            try
             {
-                MemoryTest.TestOutcome.Passed => TestOutcome.Passed,
-                MemoryTest.TestOutcome.Failed => TestOutcome.Failed,
-                MemoryTest.TestOutcome.Skipped => TestOutcome.Skipped,
-                _ => throw new ArgumentOutOfRangeException(nameof(outcome), outcome, null),
-            };
+                return outcome switch
+                {
+                    MemoryTest.TestOutcome.Passed => TestOutcome.Passed,
+                    MemoryTest.TestOutcome.Failed => TestOutcome.Failed,
+                    MemoryTest.TestOutcome.Skipped => TestOutcome.Skipped,
+                    _ => throw new ArgumentOutOfRangeException(nameof(outcome), outcome, null),
+                };
+            } catch(ArgumentOutOfRangeException ex)
+            {
+                _logger.Error(ex, ex.Message + "defautling to Skipped");
+                return TestOutcome.Skipped;
+            }
         }
 
         private MutationCoverage ReadCoverageFile()

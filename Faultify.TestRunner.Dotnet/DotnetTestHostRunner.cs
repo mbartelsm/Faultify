@@ -76,7 +76,7 @@ namespace Faultify.TestRunner.Dotnet
                 }
                 catch (FileNotFoundException)
                 {
-                    _logger.Error(
+                    _logger.Fatal(
                         "The file 'test_results.bin' was not generated."
                         + "This implies that the test run can not be completed. "
                     );
