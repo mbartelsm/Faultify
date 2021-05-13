@@ -211,7 +211,7 @@ namespace Faultify.Cli
             }
             catch (ArgumentOutOfRangeException ex)
             {
-                _logger.Error(ex, ex.Message);
+                Logger.Error(ex, ex.Message);
                 return new JsonReporter();
             }
             
