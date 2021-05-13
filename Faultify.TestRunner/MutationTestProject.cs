@@ -118,7 +118,7 @@ namespace Faultify.TestRunner
             coverageTimer.Stop();
             if (coverage == null)
             {
-                _logger.Fatal("Coverage failed exiting with exit code 16");
+                Logger.Fatal("Coverage failed exiting with exit code 16");
                 Environment.Exit(16);
             }
 
@@ -268,7 +268,7 @@ namespace Faultify.TestRunner
             }
             catch (Exception e)
             {
-                _logger.Error(e, "Unable to create Test Runner returning null");
+                Logger.Error(e, "Unable to create Test Runner returning null");
                 return null;
             }
 

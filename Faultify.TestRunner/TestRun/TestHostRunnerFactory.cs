@@ -22,7 +22,7 @@ namespace Faultify.TestRunner.TestRun
         public static ITestHostRunner CreateTestRunner(string testAssemblyPath, TimeSpan timeOut, TestHost testHost)
         {
             ITestHostRunner testRunner;
-            _logger.Info("Creating test runner");
+            Logger.Info("Creating test runner");
             try
             {
                 testRunner = testHost switch
@@ -36,7 +36,7 @@ namespace Faultify.TestRunner.TestRun
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, ex.Message + "Defaulting to DotNetTest.");
+                Logger.Error(ex, ex.Message + "Defaulting to DotNetTest.");
                 testRunner = new DotnetTestHostRunner(testAssemblyPath, timeOut);
             }
             return testRunner;
