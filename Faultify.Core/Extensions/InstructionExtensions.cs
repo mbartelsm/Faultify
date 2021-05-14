@@ -48,6 +48,11 @@ namespace Faultify.Core.Extensions
             return Type.GetType(typeRef.FullName);
         }
 
+        public static Type ToSystemType(this VariableReference varRef)
+        {
+            return Type.GetType(varRef.VariableType.FullName);
+        }
+
         public static OpCode GetLdcOpCodeByTypeReference(this TypeReference reference)
         {
             switch (Type.GetTypeCode(reference.ToSystemType()))

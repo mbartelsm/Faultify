@@ -10,7 +10,7 @@ namespace Faultify.Analyze
     /// </summary>
     /// <typeparam name="TMutation">The type of the returned metadata.</typeparam>
     /// <typeparam name="TScope"></typeparam>
-    public interface IAnalyzer<TMutation, in TScope> where TMutation : IMutation
+    public interface IAnalyzer<TMutation, in TScope> where TMutation : IMutation 
     {
         /// <summary>
         ///     Name of the mutator.

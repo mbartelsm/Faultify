@@ -48,7 +48,7 @@ namespace Faultify.Analyze.Mutation
 
         public bool HasConstant(object constant)
         {
-            return ConstantField.Constant == constant;
+            return ConstantField.Constant.Equals(constant);
         }
 
         public string Report => $"{ConstantField} was changed from {Original} to {Replacement}.";

@@ -39,7 +39,7 @@ namespace Faultify.Analyze.ArrayMutationStrategy
 
                 list.Add(processor.Create(OpCodes.Dup));
 
-                if (length > 2147483647 && length < -2147483647)
+                if (length > int.MaxValue && length < int.MinValue)
                 {
                     list.Add(processor.Create(OpCodes.Ldc_I8, i));
                 }

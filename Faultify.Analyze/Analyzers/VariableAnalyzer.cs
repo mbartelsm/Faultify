@@ -49,8 +49,8 @@ namespace Faultify.Analyze.Analyzers
                 try
                 {
 
-                    // Get variable type. Might throw InvalidCastException
-                    Type type = ((TypeReference) instruction.Operand).ToSystemType();
+                    // Get variable type
+                    Type type = ((VariableReference) instruction.Operand).Resolve().ToSystemType();
 
                     // Get previous instruction.
                     Instruction variableInstruction = instruction.Previous;
@@ -66,6 +66,7 @@ namespace Faultify.Analyze.Analyzers
                 }
                 catch (InvalidCastException e)
                 {
+                    // Might not be necessary anymore as casting is more robust.
                     Logger.Debug(e, $"Failed to get the type of {instruction.Operand}");
                 }
             }

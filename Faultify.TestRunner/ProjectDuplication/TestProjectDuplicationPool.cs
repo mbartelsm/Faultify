@@ -69,7 +69,7 @@ namespace Faultify.TestRunner.ProjectDuplication
         /// <returns></returns>
         public TestProjectDuplication? GetFreeProject()
         {
-            TestProjectDuplication? project = _testProjectDuplications.First(x => !x.IsInUse);
+            TestProjectDuplication? project = _testProjectDuplications.FirstOrDefault(x => !x.IsInUse);
             if (project != null)
             {
                 project.IsInUse = true;
