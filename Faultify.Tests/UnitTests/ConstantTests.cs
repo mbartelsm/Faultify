@@ -54,7 +54,7 @@ namespace Faultify.Tests.UnitTests
 
             // Act
             byte[] mutatedBinary =
-                DllTestHelper.MutateField<ConstantAnalyzer>(binary, ConstantBoolTrueName, 0);
+                DllTestHelper.MutateField<ConstantAnalyzer>(binary, ConstantBoolTrueName, 0 /* False */);
 
             using (DllTestHelper binaryInteractor = new DllTestHelper(mutatedBinary))
             {
@@ -74,7 +74,7 @@ namespace Faultify.Tests.UnitTests
 
             // Act
             byte[] mutatedBinary =
-                DllTestHelper.MutateField<ConstantAnalyzer>(binary, ConstantBoolFalseName, 1);
+                DllTestHelper.MutateField<ConstantAnalyzer>(binary, ConstantBoolFalseName, 1 /* True */);
 
             using (DllTestHelper binaryInteractor = new DllTestHelper(mutatedBinary))
             {
