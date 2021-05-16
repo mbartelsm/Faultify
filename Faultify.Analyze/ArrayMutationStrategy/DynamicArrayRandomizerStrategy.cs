@@ -22,7 +22,7 @@ namespace Faultify.Analyze.ArrayMutationStrategy
         }
 
         /// <summary>
-        ///     Mutates a dynamic array by creating a new array with random values with the arraybuilder.
+        ///     Mutates a dynamic array by creating a new array with random values using the arraybuilder.
         /// </summary>
         public void Mutate()
         {
@@ -35,22 +35,22 @@ namespace Faultify.Analyze.ArrayMutationStrategy
 
             // Find array to replace
             foreach (Instruction instruction in _methodDefinition.Body.Instructions)
-                // add all instruction before dynamic array to list.
+                // Add all instruction before dynamic array to list.
             {
                 if (!instruction.IsDynamicArray())
                 {
                     beforeArray.Add(instruction);
                 }
-                // if dynamic array add all instructions after the array initialisation.
+                // If it's a dynamic array, add all instructions after the array initialisation.
                 else
                 {
                     beforeArray.Remove(instruction.Previous);
-                    // get type of array
+                    // Get type of array
                     _type = (TypeReference) instruction.Operand;
 
                     Instruction previous = instruction.Previous;
                     Instruction call = instruction.Next.Next.Next;
-                    // get length of array.
+                    // Get length of array.
                     length = (int) previous.Operand;
 
                     // Add all other nodes to the list.
@@ -67,15 +67,15 @@ namespace Faultify.Analyze.ArrayMutationStrategy
 
             processor.Clear();
 
-            // append everything before array.
+            // Append everything before array.
             foreach (Instruction before in beforeArray) processor.Append(before);
 
             List<Instruction> newArray = _arrayBuilder.CreateArray(processor, length, _type);
 
-            // append new array
+            // Append new array
             foreach (Instruction newInstruction in newArray) processor.Append(newInstruction);
 
-            // append after array.
+            // Append after array.
             foreach (Instruction after in afterArray) processor.Append(after);
             _methodDefinition.Body.OptimizeMacros();
         }

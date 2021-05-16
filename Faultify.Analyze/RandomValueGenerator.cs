@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Faultify.Core.Extensions;
 using NLog;
@@ -13,6 +14,21 @@ namespace Faultify.Analyze
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private static Random Rand { get; } = new Random();
 
+        // For making sure that random replacement variables are not out of range.
+        private static readonly Dictionary<Type, double> sizes = new Dictionary<Type, double>()
+        {
+            {typeof(float), float.MaxValue}, 
+            {typeof(sbyte), sbyte.MaxValue}, 
+            {typeof(short), short.MaxValue}, 
+            {typeof(int), int.MaxValue}, 
+            {typeof(long), long.MaxValue},
+            {typeof(double), double.MaxValue},
+            {typeof(byte), byte.MaxValue},
+            {typeof(ushort), ushort.MaxValue},
+            {typeof(uint), int.MaxValue},
+            {typeof(ulong), ulong.MaxValue}
+
+        };
         /// <summary>
         ///     Generates a random value for the given field type.
         /// </summary>
@@ -103,7 +119,6 @@ namespace Faultify.Analyze
             }
         }
 
-
         /// <summary>
         ///     Generates a new value for the given number reference
         /// </summary>
@@ -119,8 +134,24 @@ namespace Faultify.Analyze
             
             while (true)
             {
-                object generated = Convert.ChangeType(Rand.Next(), type);
-                if (original != generated) return generated;
+                // Get a random value of a specified type, within the specified type's size range.
+                // I am sorry for how hideous this is, but there is no elegant way to do this
+                // because C# has no generic type for numerics.
+                object generated;
+                if (type == typeof(float) || type == typeof(double))
+                {
+                    generated = Convert.ChangeType(Rand.NextDouble(), type);
+                } 
+                else
+                {
+                    //TODO: this can theoretically generate an extremely small negative value out of range
+                    //Also, this is a really hacky fix
+                    var maxSize = sizes.GetValueOrDefault(type) / 2;
+                    var bound = maxSize >= int.MaxValue ? int.MaxValue : maxSize; 
+                    generated = Convert.ToInt32(Rand.Next((int) bound));
+
+                }
+                if (!original.Equals(generated)) return generated;
             }
         }
     }

@@ -32,6 +32,7 @@ namespace Faultify.Tests.UnitTests
         public void RemoveTestAssembly()
         {
             File.Delete("test.dll");
+            File.Delete("test.pdb");
         }
 
         [Test]
@@ -99,23 +100,27 @@ namespace Faultify.Tests.UnitTests
             TypeScope target1 = mutator.Types.First(x =>
                 x.AssemblyQualifiedName == _nameSpaceTestAssemblyTarget1);
             MethodScope method1 = target1.Methods.FirstOrDefault(x => x.Name == "TestMethod1");
-            
-            // Workaround to private member
-            var list = (IEnumerable<IMutationGroup<OpCodeMutation>>) method1
-                    .GetType()
-                    .GetMethod("OpCodeMutations")
-                    .Invoke(method1, new object[] { MutationLevel.Detailed });
-            
-            List<IMutationGroup<OpCodeMutation>> mutations = list.Select(x => x).ToList();
 
-            IMutationGroup<OpCodeMutation> arithmeticMutations =
+            var list = method1.AllMutations(MutationLevel.Detailed, new HashSet<string>(), new HashSet<string>());
+
+            List<IMutationGroup<IMutation>> mutations = list.Where(x => x.Mutations is IEnumerable<OpCodeMutation>).ToList();
+
+            // The Mutator should detect Arithmetic and Comparison mutations, but no bitwise mutations.
+
+            IMutationGroup<IMutation> arithmeticMutations =
                 mutations.FirstOrDefault(x => x.Name == new ArithmeticAnalyzer().Name);
-            IMutationGroup<OpCodeMutation> comparisonMutations =
+            IMutationGroup<IMutation> comparisonMutations =
                 mutations.FirstOrDefault(x => x.Name == new ComparisonAnalyzer().Name);
+            IMutationGroup<IMutation> bitWiseMutations =
+                mutations.FirstOrDefault(x => x.Name == new BitwiseAnalyzer().Name);
 
-            Assert.AreEqual(mutations.Count, 2);
+            Assert.AreEqual(mutations.Count, 3);
             Assert.IsNotNull(arithmeticMutations, null);
             Assert.IsNotNull(comparisonMutations, null);
+
+            Assert.IsNotEmpty(arithmeticMutations);
+            Assert.IsNotEmpty(comparisonMutations);
+            Assert.IsEmpty(bitWiseMutations);
         }
 
         [Test]
@@ -126,13 +131,10 @@ namespace Faultify.Tests.UnitTests
                 x.AssemblyQualifiedName == _nameSpaceTestAssemblyTarget1);
             FieldScope field = target1.Fields.FirstOrDefault(x => x.Name == "Constant");
 
-            // Workaround to private member
-            var mutations = (IEnumerable<IMutationGroup<ConstantMutation>>) field
-                .GetType()
-                .GetMethod("ConstantFieldMutations")
-                .Invoke(field, new object[] { MutationLevel.Detailed });
 
-            IMutationGroup<ConstantMutation> arithmeticMutations =
+            var mutations = field.AllMutations(MutationLevel.Detailed, new HashSet<string>(), new HashSet<string>());
+
+            IMutationGroup<IMutation> arithmeticMutations =
                 mutations.FirstOrDefault(x => x.Name == new ConstantAnalyzer().Name);
 
             Assert.AreEqual(mutations.Count(), 1);
