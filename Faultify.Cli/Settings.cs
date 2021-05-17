@@ -16,85 +16,125 @@ namespace Faultify.Cli
     
     internal class Settings
     {
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+        /// <summary>
+        /// The path pointing to the test project project file.
+        /// </summary>
         [Option('i', "inputProject", Required = true,
             HelpText = "The path pointing to the test project project file.")]
         public string TestProjectPath { get; set; }
 
-        [Option('r', "reportPath", Required = false, HelpText = "The path were the report will be saved.")]
+        /// <summary>
+        /// The root directory were the reports will be saved.
+        /// </summary>
+        [Option('r', "reportPath", Required = false,
+            HelpText = "The path were the report will be saved.")]
         public string ReportPath { get; set; } = Path.Combine(Directory.GetCurrentDirectory(), "FaultifyOutput");
 
+        /// <summary>
+        /// Type of report to be generated, options: 'pdf', 'html', 'json'
+        /// </summary>
         [Option('f', "reportFormat", Required = false, Default = "json",
             HelpText = "Type of report to be generated, options: 'pdf', 'html', 'json'")]
         public string ReportType { get; set; }
 
+        /// <summary>
+        /// Defines how many test sessions are ran at the same time.
+        /// </summary>
         [Option('p', "parallel", Required = false, Default = 1,
             HelpText = "Defines how many test sessions are ran at the same time.")]
         public int Parallel { get; set; }
 
+        /// <summary>
+        /// The mutation level indicating the test depth.
+        /// </summary>
         [Option('l', "mutationLevel", Required = false, Default = MutationLevel.Detailed,
-            HelpText = "The mutation level indicating the test depth. ")]
+            HelpText = "The mutation level indicating the test depth.")]
         public MutationLevel MutationLevel { get; set; }
 
+        /// <summary>
+        /// The name of the test host framework. options:  "NUnit", "XUnit", "MsTest", "DotnetTest".
+        /// </summary>
         [Option('t', "testHost", Required = false, Default = nameof(TestHost.DotnetTest),
             HelpText = "The name of the test host framework.")]
-        public string TestHostName { get; set; }
+        public string _testHostName { get; set; }
 
-        [Option('d', "timeOut", Required = false, Default = 0, HelpText = "Time out in seconds for the mutations")]
-        public double Seconds { get; set; }
+        /// <summary>
+        /// Time out in seconds for each mutation.
+        /// </summary>
+        [Option('d', "timeOut", Required = false, Default = 0,
+            HelpText = "Time out in seconds for the mutations")]
+        public double _seconds { get; set; }
 
-        [Option('g', "excludeMutationGroups", Required = false, Default = null, HelpText = "Exclude mutations based on groupings")]
+        /// <summary>
+        /// Mutation groups to be excluded
+        /// </summary>
+        [Option('g', "excludeMutationGroups", Required = false, Default = null,
+            HelpText = "Mutation groups to be excluded")]
         public IEnumerable<string> ExcludeMutationGroups { get; set;}
 
-        [Option('s', "excludeMutationSingles", Required = false, Default = null, HelpText = "Exclude mutations based on their individual id")]
-        public IEnumerable<string> ExcludeMutationSingles { get; set; }
+        /// <summary>
+        /// Individual mutation ids to be excluded
+        /// </summary>
+        [Option('s', "excludeMutationSingles", Required = false, Default = null,
+            HelpText = "Individual mutation ids to be excluded")]
+        public IEnumerable<string> _excludeMutationSingles { get; set; }
 
-        [Option('e', "excludeMutationSinglesFile", Required = false, Default = "NoFile", HelpText = "Exclude mutations based on individual id in a JSON file")]
-        public string ExcludeMutationSinglesFile { get; set; }
+        /// <summary>
+        /// Path to a json file detailing individual mutations to be excluded
+        /// </summary>
+        [Option('e', "excludeMutationSinglesFile", Required = false, Default = "NoFile",
+            HelpText = "Path to a json file detailing individual mutations to be excluded")]
+        public string _excludeMutationSinglesFile { get; set; }
 
+        /// <summary>
+        /// Set of individual mutations that should be excluded
+        /// </summary>
         public HashSet<string> ExcludeSingleMutations 
         { 
             get
             {
-                if (ExcludeMutationSinglesFile.Equals("NoFile"))
+                if (_excludeMutationSinglesFile.Equals("NoFile"))
                 {
-                    return ExcludeMutationSingles.ToHashSet<string>();
+                    return _excludeMutationSingles.ToHashSet<string>();
                 }
-                else
+
+                string[]? excludeMutations;
+                try
                 {
-                    string jsonString;
-                    string[]? excludeMutations;
-                    try
-                    {
-                        jsonString = File.ReadAllText(ExcludeMutationSinglesFile);
-                        excludeMutations = JsonSerializer.Deserialize<string[]>(jsonString);
-                    } catch(Exception ex)
-                    {
-                        _logger.Error(ex, "Defaulting to -s exclusions" + ex.Message);
-                        excludeMutations = null;
-                    }
-                    
-                    
-                    if (excludeMutations == null)
-                    {
-                        return ExcludeMutationSingles.ToHashSet<string>();
-                    }
-                    else
-                    {
-                        return new HashSet<string>(excludeMutations);
-                    }
-                    
+                    string jsonString = File.ReadAllText(_excludeMutationSinglesFile);
+                    excludeMutations = JsonSerializer.Deserialize<string[]>(jsonString);
                 }
+                catch(Exception ex)
+                {
+                    Logger.Warn(ex, "Defaulting to -s exclusions" + ex.Message);
+                    excludeMutations = null;
+                }
+                
+                return excludeMutations == null
+                    ? _excludeMutationSingles.ToHashSet()
+                    : new HashSet<string>(excludeMutations);
             }
         }
+        
+        /// <summary>
+        /// Time out in seconds for each mutation.
+        /// </summary>
+        public TimeSpan TimeOut => TimeSpan.FromSeconds(_seconds);
 
-        public TimeSpan TimeOut => TimeSpan.FromSeconds(Seconds);
-
+        /// <summary>
+        /// The name of the test host framework. options:  "NUnit", "MsTest", "DotnetTest".
+        /// </summary>
         public TestHost TestHost
         {
-            get => Enum.Parse<TestHost>(TestHostName, true);
-            set => TestHostName = value.ToString();
+            get => Enum.Parse<TestHost>(_testHostName, true);
+            set => _testHostName = value.ToString();
         }
+        
+        /// <summary>
+        /// The directory where the current report will be saved to
+        /// </summary>
+        public string OutputDirectory => Path.Combine(ReportPath, DateTime.Now.ToString("yy-MM-dd"));
     }
 }
