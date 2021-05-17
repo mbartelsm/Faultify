@@ -24,12 +24,19 @@ using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace Faultify.Cli
 {
+    /// <summary>
+    /// The main instance of Faultify
+    /// </summary>
     internal class Program
     {
         private static string? _outputDirectory;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-
+        /// <summary>
+        /// Program entrypoint
+        /// </summary>
+        /// <param name="args">Commandline arguments</param>
+        /// <exception cref="Exception">Faultify service cannot be accessed</exception>
         private static async Task Main(string[] args)
         {
             Settings settings = ParseCommandlineArguments(args);
@@ -103,6 +110,11 @@ namespace Faultify.Cli
             LogManager.Configuration = config;
         }
 
+        /// <summary>
+        /// Validates and parses commandline arguments into a Settings object
+        /// </summary>
+        /// <param name="args">Command line arguments</param>
+        /// <returns>A Settings object derived from the arguments</returns>
         private static Settings ParseCommandlineArguments(string[] args)
         {
             Settings settings = new Settings();
@@ -114,7 +126,11 @@ namespace Faultify.Cli
 
             return settings;
         }
-
+        
+        /// <summary>
+        /// Prints the program progress to the console
+        /// </summary>
+        /// <param name="progress"></param>
         private void PrintProgress(MutationRunProgress progress)
         {
             if (progress.LogMessageType == LogMessageType.TestRunUpdate
@@ -132,7 +148,11 @@ namespace Faultify.Cli
             }
         }
 
-        private async Task Run(Settings settings)
+        /// <summary>
+        /// Executes the core program flow for faultify
+        /// </summary>
+        /// <param name="settings">A settings object containing the parameters for this program run</param>
+        private async Task Run()
         {
             ConsoleMessage.PrintLogo();
             ConsoleMessage.PrintSettings(settings);
@@ -160,6 +180,12 @@ namespace Faultify.Cli
             await Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Runs coverage, analysis, mutations and tests
+        /// </summary>
+        /// <param name="settings">Program settings</param>
+        /// <param name="progressTracker">Progress tracker</param>
+        /// <returns>A report model with the results of the tests</returns>
         private async Task<TestProjectReportModel> RunMutationTest(
             Settings settings,
             MutationSessionProgressTracker progressTracker
@@ -178,7 +204,11 @@ namespace Faultify.Cli
             return await mutationTestProject.Test(progressTracker, CancellationToken.None);
         }
 
-        private async Task GenerateReport(TestProjectReportModel testResult, Settings settings)
+        /// <summary>
+        /// Builds a report based on the test results and program settings
+        /// </summary>
+        /// <param name="testResult">Report model with the test results</param>
+        private async Task GenerateReport(TestProjectReportModel testResult)
         {
             if (string.IsNullOrEmpty(settings.ReportPath))
             {
@@ -195,7 +225,13 @@ namespace Faultify.Cli
 
             await File.WriteAllBytesAsync(Path.Combine(_outputDirectory ?? string.Empty, reportFileName), reportBytes);
         }
-
+        
+        /// <summary>
+        /// Selects the appropriate Report Builder
+        /// </summary>
+        /// <param name="type">Report type, must be one of "PDF", "HTML", or "JSON"</param>
+        /// <returns>The reporter instance</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Wrong report type</exception>
         private IReporter ReportFactory(string type)
         {
             try
@@ -216,7 +252,11 @@ namespace Faultify.Cli
             }
             
         }
-
+        
+        /// <summary>
+        /// Helper method to generate a ConfigurationRoot
+        /// </summary>
+        /// <returns>The IConfigurationRoot object</returns>
         private static IConfigurationRoot BuildConfigurationRoot()
         {
             ConfigurationBuilder builder = new ConfigurationBuilder();
