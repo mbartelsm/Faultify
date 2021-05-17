@@ -16,7 +16,7 @@ namespace Faultify.Cli
     
     internal class Settings
     {
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// The path pointing to the test project project file.
@@ -28,7 +28,8 @@ namespace Faultify.Cli
         /// <summary>
         /// The root directory were the reports will be saved.
         /// </summary>
-        [Option('r', "reportPath", Required = false, HelpText = "The path were the report will be saved.")]
+        [Option('r', "reportPath", Required = false,
+            HelpText = "The path were the report will be saved.")]
         public string ReportPath { get; set; } = Path.Combine(Directory.GetCurrentDirectory(), "FaultifyOutput");
 
         /// <summary>
@@ -57,30 +58,34 @@ namespace Faultify.Cli
         /// </summary>
         [Option('t', "testHost", Required = false, Default = nameof(TestHost.DotnetTest),
             HelpText = "The name of the test host framework.")]
-        public string TestHostName { get; set; }
+        public string _testHostName { get; set; }
 
         /// <summary>
         /// Time out in seconds for each mutation.
         /// </summary>
-        [Option('d', "timeOut", Required = false, Default = 0, HelpText = "Time out in seconds for the mutations")]
-        public double Seconds { get; set; }
+        [Option('d', "timeOut", Required = false, Default = 0,
+            HelpText = "Time out in seconds for the mutations")]
+        public double _seconds { get; set; }
 
         /// <summary>
         /// Mutation groups to be excluded
         /// </summary>
-        [Option('g', "excludeMutationGroups", Required = false, Default = null, HelpText = "Mutation groups to be excluded")]
+        [Option('g', "excludeMutationGroups", Required = false, Default = null,
+            HelpText = "Mutation groups to be excluded")]
         public IEnumerable<string> ExcludeMutationGroups { get; set;}
 
         /// <summary>
         /// Individual mutation ids to be excluded
         /// </summary>
-        [Option('s', "excludeMutationSingles", Required = false, Default = null, HelpText = "Individual mutation ids to be excluded")]
+        [Option('s', "excludeMutationSingles", Required = false, Default = null,
+            HelpText = "Individual mutation ids to be excluded")]
         public IEnumerable<string> _excludeMutationSingles { get; set; }
 
         /// <summary>
         /// Path to a json file detailing individual mutations to be excluded
         /// </summary>
-        [Option('e', "excludeMutationSinglesFile", Required = false, Default = "NoFile", HelpText = "Path to a json file detailing individual mutations to be excluded")]
+        [Option('e', "excludeMutationSinglesFile", Required = false, Default = "NoFile",
+            HelpText = "Path to a json file detailing individual mutations to be excluded")]
         public string _excludeMutationSinglesFile { get; set; }
 
         /// <summary>
@@ -90,37 +95,29 @@ namespace Faultify.Cli
         { 
             get
             {
-                if (ExcludeMutationSinglesFile.Equals("NoFile"))
+                if (_excludeMutationSinglesFile.Equals("NoFile"))
                 {
-                    return ExcludeMutationSingles.ToHashSet<string>();
+                    return _excludeMutationSingles.ToHashSet<string>();
                 }
-                else
+
+                string[]? excludeMutations;
+                try
                 {
-                    string jsonString;
-                    string[]? excludeMutations;
-                    try
-                    {
-                        jsonString = File.ReadAllText(ExcludeMutationSinglesFile);
-                        excludeMutations = JsonSerializer.Deserialize<string[]>(jsonString);
-                    } catch(Exception ex)
-                    {
-                        _logger.Error(ex, "Defaulting to -s exclusions" + ex.Message);
-                        excludeMutations = null;
-                    }
-                    
-                    
-                    if (excludeMutations == null)
-                    {
-                        return ExcludeMutationSingles.ToHashSet<string>();
-                    }
-                    else
-                    {
-                        return new HashSet<string>(excludeMutations);
-                    }
-                    
+                    string jsonString = File.ReadAllText(_excludeMutationSinglesFile);
+                    excludeMutations = JsonSerializer.Deserialize<string[]>(jsonString);
                 }
+                catch(Exception ex)
+                {
+                    Logger.Warn(ex, "Defaulting to -s exclusions" + ex.Message);
+                    excludeMutations = null;
+                }
+                
+                return excludeMutations == null
+                    ? _excludeMutationSingles.ToHashSet()
+                    : new HashSet<string>(excludeMutations);
             }
         }
+        
         /// <summary>
         /// Time out in seconds for each mutation.
         /// </summary>
@@ -131,8 +128,13 @@ namespace Faultify.Cli
         /// </summary>
         public TestHost TestHost
         {
-            get => Enum.Parse<TestHost>(TestHostName, true);
-            set => TestHostName = value.ToString();
+            get => Enum.Parse<TestHost>(_testHostName, true);
+            set => _testHostName = value.ToString();
         }
+        
+        /// <summary>
+        /// The directory where the current report will be saved to
+        /// </summary>
+        public string OutputDirectory => Path.Combine(ReportPath, DateTime.Now.ToString("yy-MM-dd"));
     }
 }
