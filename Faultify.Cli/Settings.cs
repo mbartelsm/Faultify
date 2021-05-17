@@ -124,7 +124,7 @@ namespace Faultify.Cli
         public TimeSpan TimeOut => TimeSpan.FromSeconds(_seconds);
 
         /// <summary>
-        /// The name of the test host framework. options:  "NUnit", "XUnit", "MsTest", "DotnetTest".
+        /// The name of the test host framework. options:  "NUnit", "MsTest", "DotnetTest".
         /// </summary>
         public TestHost TestHost
         {
