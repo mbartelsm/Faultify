@@ -12,6 +12,12 @@ namespace Faultify.TestRunner.ProjectDuplication
     {
         private readonly string _testDirectory;
 
+        private readonly string _tempPath = Path.GetTempPath();
+
+        private readonly string _testDupPath = "Faultify-test-duplications";
+
+        private DirectoryInfo? _tempDir ;
+
         private DirectoryInfo? _newDirInfo;
 
         private List<string>? _allFiles;
@@ -44,11 +50,24 @@ namespace Faultify.TestRunner.ProjectDuplication
                 if (match.Captures.Count != 0) Directory.Delete(directory.FullName, true);
             }
 
+            dirInfo = new DirectoryInfo(Path.Combine(_tempPath, _testDupPath));
+            if(dirInfo.Exists)
+            {
+                foreach (var dir in dirInfo.GetDirectories())
+                {
+                    dir.Delete(true);
+                }
+                _tempDir = dirInfo;
+            } else
+            {
+                _tempDir = Directory.CreateDirectory(Path.Combine(_tempPath, _testDupPath));
+            }
+
             List<TestProjectDuplication>? testProjectDuplications = new List<TestProjectDuplication>();
 
             // Start the initial copy
             _allFiles = Directory.GetFiles(_testDirectory, "*.*", SearchOption.AllDirectories).ToList();
-            _newDirInfo = Directory.CreateDirectory(Path.Combine(_testDirectory, "test-duplication-0"));
+            _newDirInfo = Directory.CreateDirectory(Path.Combine(_tempDir.FullName, "test-duplication-0"));
 
 
             foreach (var file in _allFiles)
@@ -57,7 +76,7 @@ namespace Faultify.TestRunner.ProjectDuplication
                 {
                     FileInfo? mFile = new FileInfo(file);
 
-                    if (mFile.Directory.FullName == _newDirInfo.Parent.FullName)
+                    if (mFile.Directory.FullName == _testDirectory)
                     {
                         string? newPath = Path.Combine(_newDirInfo.FullName, mFile.Name);
                         mFile.MoveTo(newPath);
@@ -105,13 +124,13 @@ namespace Faultify.TestRunner.ProjectDuplication
         /// <returns> The newly created duplication </returns>
         public TestProjectDuplication MakeCopy(int i)
         {
-            if (_newDirInfo == null || _projectInfo == null)
+            if (_newDirInfo == null || _projectInfo == null || _tempDir == null)
             {
-                _logger.Fatal("null reference for new directory or project info");
+                _logger.Fatal("null reference for new directory or project info or temp directory");
                 Environment.Exit(15);
             }
             
-            string duplicatedDirectoryPath = Path.Combine(_testDirectory, $"test-duplication-{i + 1}");
+            string duplicatedDirectoryPath = Path.Combine(_tempDir.FullName, $"test-duplication-{i + 1}");
             
             CopyFilesRecursively(_newDirInfo, Directory.CreateDirectory(duplicatedDirectoryPath));
             
