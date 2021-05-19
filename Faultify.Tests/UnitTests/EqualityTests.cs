@@ -8,6 +8,9 @@ using NUnit.Framework;
 
 namespace Faultify.Tests.UnitTests
 {
+    /// <summary>
+    /// Test (in)equality and comparison operators.
+    /// </summary>
     internal class EqualityTests
     {
         private readonly string _folder = Path.Combine("UnitTests", "TestSource", "EqualityTarget.cs");

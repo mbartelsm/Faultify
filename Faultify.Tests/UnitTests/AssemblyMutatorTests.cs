@@ -11,6 +11,9 @@ using NUnit.Framework;
 
 namespace Faultify.Tests.UnitTests
 {
+    /// <summary>
+    /// Test the assembly mutator on a dummy assembly.
+    /// </summary>
     public class AssemblyMutatorTests
     {
         private readonly string _folder = Path.Combine("UnitTests", "TestSource", "TestAssemblyTarget.cs");

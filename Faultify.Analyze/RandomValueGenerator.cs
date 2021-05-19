@@ -127,11 +127,6 @@ namespace Faultify.Analyze
         /// <returns>The random numeric object</returns>
         private static object ChangeNumber(Type type, object original)
         {
-            if (!TypeChecker.IsNumericType(type)) //Is this really necessary? Since this method is only called when it is a numeric type
-            {
-                throw new ArgumentException("The given type is not numeric", nameof(type)); 
-            }
-            
             while (true)
             {
                 // Get a random value of a specified type, within the specified type's size range.
@@ -144,8 +139,9 @@ namespace Faultify.Analyze
                 } 
                 else
                 {
-                    //TODO: this can theoretically generate an extremely small negative value out of range
-                    //Also, this is a really hacky fix
+                    // This is a really hacky solution.
+                    // Get the maximum possible value of a type from a list
+                    // If it's too big, settle for int32 maximum value.
                     var maxSize = sizes.GetValueOrDefault(type) / 2;
                     var bound = maxSize >= int.MaxValue ? int.MaxValue : maxSize; 
                     generated = Convert.ToInt32(Rand.Next((int) bound));

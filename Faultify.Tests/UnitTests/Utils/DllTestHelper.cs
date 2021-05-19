@@ -53,7 +53,7 @@ namespace Faultify.Tests.UnitTests.Utils
         /// <summary>
         ///     Compiles CS code to binary code and creates a PDB file for debug symbols.
         /// </summary>
-        ///     See https://stackoverflow.com/questions/50649795/how-to-debug-dll-generated-from-roslyn-compilation
+        /// See https://stackoverflow.com/questions/50649795/how-to-debug-dll-generated-from-roslyn-compilation
         /// <param name="path"></param>
         /// <returns></returns>
         public static byte[] CompileTestBinary(string path)
@@ -97,7 +97,7 @@ namespace Faultify.Tests.UnitTests.Utils
                 Assert.Fail("Could not compile Test Target");
             }
 
-            // TODO: Maybe not the best idea to write this file every single time this runs.
+            // Write debug symbols to file.
             File.WriteAllBytes("test.pdb", symbolStream.ToArray());
 
             return memoryStream.ToArray();
