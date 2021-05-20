@@ -35,7 +35,7 @@ namespace Faultify.Core.ProjectAnalyzing
                         Restore = true,
                     });
 
-                    if (!analyzerResults.Any(x => x.Succeeded))
+                    if (!analyzerResults.OverallSuccess)
                     {
                         throw new ProjectNotBuiltException();
                     }
@@ -46,15 +46,11 @@ namespace Faultify.Core.ProjectAnalyzing
                 {
                     Logger.Fatal(e, "Faultify was unable to build any targets for the provided project. Terminating program");
                     Environment.Exit(-1);
-
-                    return null;
                 }
                 catch (InvalidOperationException e)
                 {
                     Logger.Fatal(e, "Could not find any target frameworks to build the project for. Terminating program");
                     Environment.Exit(-1);
-
-                    return null;
                 }
 
                 return result;
