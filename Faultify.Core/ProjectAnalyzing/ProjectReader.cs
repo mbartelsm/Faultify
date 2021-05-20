@@ -4,11 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Buildalyzer;
 using Buildalyzer.Environment;
+using Faultify.Core.Exceptions;
+using NLog;
 
 namespace Faultify.Core.ProjectAnalyzing
 {
     public class ProjectReader : IProjectReader
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         public Task<IProjectInfo> ReadProjectAsync(string path, IProgress<string> progress)
         {
             return Task.Run<IProjectInfo>(() =>
@@ -21,14 +24,40 @@ namespace Faultify.Core.ProjectAnalyzing
 
                 IProjectAnalyzer projectAnalyzer = analyzerManager.GetProject(path);
                 progress.Report($"Building {Path.GetFileName(path)}");
-                IAnalyzerResult analyzerResult = projectAnalyzer.Build(new EnvironmentOptions
+
+                ProjectInfo result = null;
+                
+                try
+                {
+                    IAnalyzerResults analyzerResults = projectAnalyzer.Build(new EnvironmentOptions
                     {
                         DesignTime = false,
                         Restore = true,
-                    })
-                    .First();
+                    });
 
-                return new ProjectInfo(analyzerResult);
+                    if (!analyzerResults.OverallSuccess)
+                    {
+                        throw new ProjectNotBuiltException();
+                    }
+
+                    result = new ProjectInfo(analyzerResults.First(r => r.Succeeded));
+                }
+                catch (ProjectNotBuiltException e)
+                {
+                    Logger.Fatal(e, "Faultify was unable to build any targets for the provided project. Terminating program");
+                    Environment.Exit(-1);
+
+                    return null;
+                }
+                catch (InvalidOperationException e)
+                {
+                    Logger.Fatal(e, "Could not find any target frameworks to build the project for. Terminating program");
+                    Environment.Exit(-1);
+
+                    return null;
+                }
+
+                return result;
             });
         }
     }
