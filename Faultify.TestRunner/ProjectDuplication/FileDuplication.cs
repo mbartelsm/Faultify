@@ -37,9 +37,21 @@ namespace Faultify.TestRunner.ProjectDuplication
         ///     Retrieves the full file path.
         /// </summary>
         /// <returns></returns>
-        public string FullFilePath()
+        public string? FullFilePath()
         {
-            return Path.Combine(Directory, Name);
+            string path = Path.Combine(Directory, Name);
+            
+            if (File.Exists(Path.ChangeExtension(path, ".dll")))
+            {
+                return Path.ChangeExtension(path, ".dll");
+            }
+            
+            if (File.Exists(Path.ChangeExtension(path, ".exe")))
+            {
+                return Path.ChangeExtension(path, ".exe");
+            }
+            
+            return path;
         }
 
         /// <summary>
