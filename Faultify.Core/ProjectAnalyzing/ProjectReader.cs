@@ -35,7 +35,7 @@ namespace Faultify.Core.ProjectAnalyzing
                         Restore = true,
                     });
 
-                    if (!analyzerResults.OverallSuccess)
+                    if (!analyzerResults.Any(x => x.Succeeded))
                     {
                         throw new ProjectNotBuiltException();
                     }

@@ -5,7 +5,6 @@ using System.Linq;
 using Faultify.Analyze.Analyzers;
 using Faultify.Analyze.Mutation;
 using Mono.Cecil;
-using Mono.Cecil.Cil;
 
 namespace Faultify.Analyze.AssemblyMutator
 {
