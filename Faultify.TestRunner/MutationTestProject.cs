@@ -154,11 +154,18 @@ namespace Faultify.TestRunner
             // Foreach project reference load it in memory as an 'assembly mutator'.
             foreach (FileDuplication projectReferencePath in duplication.TestProjectReferences)
             {
-                AssemblyMutator loadProjectReferenceModel = new AssemblyMutator(projectReferencePath.FullFilePath());
-
-                if (loadProjectReferenceModel.Types.Count > 0)
+                try
                 {
-                    projectInfo.DependencyAssemblies.Add(loadProjectReferenceModel);
+                    AssemblyMutator loadProjectReferenceModel = new AssemblyMutator(projectReferencePath.FullFilePath());
+
+                    if (loadProjectReferenceModel.Types.Count > 0)
+                    {
+                        projectInfo.DependencyAssemblies.Add(loadProjectReferenceModel);
+                    }
+                }
+                catch (FileNotFoundException e)
+                {
+                    Logger.Error(e, $"Faultify was unable to read the file {projectReferencePath.FullFilePath()}.");
                 }
             }
 
