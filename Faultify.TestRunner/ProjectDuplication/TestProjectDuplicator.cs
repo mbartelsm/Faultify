@@ -80,7 +80,7 @@ namespace Faultify.TestRunner.ProjectDuplication
             }
 
             IEnumerable<FileDuplication>? initialCopies = testProject.ProjectReferences
-                .Select(x => new FileDuplication(_newDirInfo.FullName, Path.GetFileName(x)));
+                .Select(x => new FileDuplication(_newDirInfo.FullName, Path.GetFileNameWithoutExtension(x) + ".dll"));
             TestProjectDuplication? testProjectDuplication = new TestProjectDuplication(
                 new FileDuplication(_newDirInfo.FullName, Path.GetFileName(testProject.AssemblyPath)),
                 initialCopies,
@@ -118,7 +118,7 @@ namespace Faultify.TestRunner.ProjectDuplication
             IEnumerable<FileDuplication> duplicatedAssemblies = _projectInfo
                 .ProjectReferences
                 .Select(x =>
-                    new FileDuplication(duplicatedDirectoryPath, Path.GetFileName(x)));
+                    new FileDuplication(duplicatedDirectoryPath, Path.GetFileNameWithoutExtension(x) + ".dll"));
 
             return
                 new TestProjectDuplication(
