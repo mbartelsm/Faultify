@@ -7,6 +7,9 @@ using NUnit.Framework;
 
 namespace Faultify.Tests.UnitTests
 {
+    /// <summary>
+    /// Test mutations of branching.
+    /// </summary>
     internal class BooleanBranchMutatorTests
     {
         private readonly string _folder = Path.Combine("UnitTests", "TestSource", "BooleanTarget.cs");

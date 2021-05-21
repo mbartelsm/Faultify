@@ -7,6 +7,9 @@ using NUnit.Framework;
 
 namespace Faultify.Tests.UnitTests
 {
+    /// <summary>
+    /// Test mutations of arithmetic operations.
+    /// </summary>
     internal class ArithmeticTests
     {
         private readonly string _folder = Path.Combine("UnitTests", "TestSource", "ArithmeticTarget.cs");

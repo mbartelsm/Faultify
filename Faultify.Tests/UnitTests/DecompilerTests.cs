@@ -9,6 +9,9 @@ using ModuleDefinition = MC::Mono.Cecil.ModuleDefinition;
 
 namespace Faultify.Tests.UnitTests
 {
+    /// <summary>
+    /// Test the decompiler.
+    /// </summary>
     internal class DecompilerTests
     {
         private const string TypeName = "DecompilerTestTarget";

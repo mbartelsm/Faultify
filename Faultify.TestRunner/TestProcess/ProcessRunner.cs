@@ -32,8 +32,8 @@ namespace Faultify.TestRunner.TestProcess
 
             process.StartInfo = _processStartInfo;
 
-            process.OutputDataReceived += (sender, e) => { Logger.Debug(e.Data); };
-            process.ErrorDataReceived += (sender, e) => { Logger.Error(e.Data); };
+            process.OutputDataReceived += (sender, e) => { if (e.Data != null) Logger.Debug(e.Data); };
+            process.ErrorDataReceived += (sender, e) => { if (e.Data != null) Logger.Error(e.Data); };
 
             process.Start();
 

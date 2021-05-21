@@ -5,6 +5,9 @@ using NUnit.Framework;
 
 namespace Faultify.Tests.UnitTests
 {
+    /// <summary>
+    /// Test mutations of constants.
+    /// </summary>
     internal class ConstantTests
     {
         private const string ConstantBoolTrueName = "CONSTANT_BOOL_TRUE";

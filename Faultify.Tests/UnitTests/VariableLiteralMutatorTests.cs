@@ -5,6 +5,9 @@ using NUnit.Framework;
 
 namespace Faultify.Tests.UnitTests
 {
+    /// <summary>
+    /// Test flipping booleans.
+    /// </summary>
     internal class VariableLiteralMutatorTests
     {
         private readonly string _folder = Path.Combine("UnitTests", "TestSource", "BooleanLiteralTarget.cs");

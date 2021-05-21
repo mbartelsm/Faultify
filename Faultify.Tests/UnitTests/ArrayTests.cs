@@ -5,6 +5,9 @@ using NUnit.Framework;
 
 namespace Faultify.Tests.UnitTests
 {
+    /// <summary>
+    /// Test mutations of arrays
+    /// </summary>
     internal class ArrayTests
     {
         private readonly string _folder = Path.Combine("UnitTests", "TestSource", "ArrayTarget.cs");
