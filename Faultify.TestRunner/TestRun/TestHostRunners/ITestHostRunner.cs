@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Faultify.TestRunner.Shared;
 
-namespace Faultify.TestRunner
+namespace Faultify.TestRunner.TestRun.TestHostRunners
 {
     /// <summary>
     ///     Interface for running tests and code coverage on some test host.

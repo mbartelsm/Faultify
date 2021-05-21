@@ -6,6 +6,7 @@ using Faultify.Analyze;
 using Faultify.TestRunner.Logging;
 using Faultify.TestRunner.ProjectDuplication;
 using Faultify.TestRunner.Shared;
+using Faultify.TestRunner.TestRun.TestHostRunners;
 
 namespace Faultify.TestRunner.TestRun
 {

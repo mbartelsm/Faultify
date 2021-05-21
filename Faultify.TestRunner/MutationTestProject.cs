@@ -18,6 +18,7 @@ using Faultify.TestRunner.Logging;
 using Faultify.TestRunner.ProjectDuplication;
 using Faultify.TestRunner.Shared;
 using Faultify.TestRunner.TestRun;
+using Faultify.TestRunner.TestRun.TestHostRunners;
 using MC::Mono.Cecil;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
