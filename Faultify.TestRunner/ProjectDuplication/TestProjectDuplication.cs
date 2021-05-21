@@ -101,10 +101,10 @@ namespace Faultify.TestRunner.ProjectDuplication
                 using BinaryReader binReader = new BinaryReader(stream);
                 byte[] data = binReader.ReadBytes((int) stream.Length);
 
-                CodeDecompiler? decompiler = new CodeDecompiler(reference.FullFilePath(), new MemoryStream(data));
+                CodeDecompiler? decompiler = new CodeDecompiler(reference.FullFilePath, new MemoryStream(data));
 
                 // Create assembly mutator and look up the mutations according to the passed identifiers.
-                AssemblyMutator assembly = new AssemblyMutator(reference.FullFilePath());
+                AssemblyMutator assembly = new AssemblyMutator(reference.FullFilePath);
                 HashSet<string> toMutateMethods = new HashSet<string>(
                     mutationIdentifiers?.Select(x => x.MemberName) ?? Enumerable.Empty<string>()
                 );
@@ -171,7 +171,7 @@ namespace Faultify.TestRunner.ProjectDuplication
                     writeStream.Write(stream.ToArray());
 
                     stream.Position = 0;
-                    CodeDecompiler? decompiler = new CodeDecompiler(fileDuplication.FullFilePath(), stream);
+                    CodeDecompiler? decompiler = new CodeDecompiler(fileDuplication.FullFilePath, stream);
 
                     foreach (var mutationVariant in mutationVariants)
                     {

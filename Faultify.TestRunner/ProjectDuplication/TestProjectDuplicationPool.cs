@@ -26,7 +26,7 @@ namespace Faultify.TestRunner.ProjectDuplication
         ///     Takes and removes a test project from the pool
         /// </summary>
         /// <returns></returns>
-        public TestProjectDuplication? TakeTestProject()
+        public TestProjectDuplication? PopTestProject()
         {
             TestProjectDuplication? first = _testProjectDuplications.FirstOrDefault();
             if (first != null)
@@ -41,25 +41,20 @@ namespace Faultify.TestRunner.ProjectDuplication
         ///     This will hang until test projects are freed.
         /// </summary>
         /// <returns></returns>
-        public TestProjectDuplication AcquireTestProject()
+        public TestProjectDuplication GetTestProject()
         {
             // Make sure only one thread can attempt to access a free project at a time.
             lock (Lock)
             {
                 TestProjectDuplication? freeProject = GetFreeProject();
 
-                if (freeProject != null) return freeProject;
-
-                _signalEvent.WaitOne();
-
-                freeProject = GetFreeProject();
-
-                if (freeProject != null)
+                while (freeProject == null)
                 {
-                    return freeProject;
+                    _signalEvent.WaitOne();
+                    freeProject = GetFreeProject();
                 }
 
-                return AcquireTestProject();
+                return freeProject;
             }
         }
 

@@ -37,7 +37,7 @@ namespace Faultify.TestRunner.TestRun
                 ?? Enumerable.Empty<string>();
 
             ITestHostRunner testRunner = TestHostRunnerFactory.CreateTestRunner(
-                testAssemblyPath: testProject.TestProjectFile.FullFilePath(),
+                testAssemblyPath: testProject.TestProjectFile.FullFilePath,
                 timeOut: TimeSpan.FromSeconds(12),
                 testHost: testHost);
 

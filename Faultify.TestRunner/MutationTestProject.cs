@@ -114,7 +114,7 @@ namespace Faultify.TestRunner
             Stopwatch? coverageTimer = new Stopwatch();
             coverageTimer.Start();
             MutationCoverage? coverage =
-                await RunCoverage(coverageProject.TestProjectFile.FullFilePath(), cancellationToken);
+                await RunCoverage(coverageProject.TestProjectFile.FullFilePath, cancellationToken);
             coverageTimer.Stop();
             if (coverage == null)
             {
@@ -148,13 +148,13 @@ namespace Faultify.TestRunner
             // Read the test project into memory.
             TestProjectInfo? projectInfo = new TestProjectInfo(
                 testFramework,
-                ModuleDefinition.ReadModule(duplication.TestProjectFile.FullFilePath())
+                ModuleDefinition.ReadModule(duplication.TestProjectFile.FullFilePath)
             );
 
             // Foreach project reference load it in memory as an 'assembly mutator'.
             foreach (FileDuplication projectReferencePath in duplication.TestProjectReferences)
             {
-                AssemblyMutator loadProjectReferenceModel = new AssemblyMutator(projectReferencePath.FullFilePath());
+                AssemblyMutator loadProjectReferenceModel = new AssemblyMutator(projectReferencePath.FullFilePath);
 
                 if (loadProjectReferenceModel.Types.Count > 0)
                 {

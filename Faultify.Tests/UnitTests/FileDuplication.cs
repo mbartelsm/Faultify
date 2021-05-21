@@ -12,19 +12,19 @@ namespace Faultify.Tests.UnitTests
     internal class FileDuplicationTests
     {
         [Test]
-        public void TestPoolTake()
+        public void TestPoolPop()
         {
             TestProjectDuplicationPool pool = new TestProjectDuplicationPool(new List<TestProjectDuplication>
             {
                 new TestProjectDuplication(null, null, 0),
             });
 
-            Assert.AreEqual(pool.TakeTestProject().DuplicationNumber, 0);
-            Assert.AreEqual(pool.TakeTestProject(), null);
+            Assert.AreEqual(pool.PopTestProject().DuplicationNumber, 0);
+            Assert.AreEqual(pool.PopTestProject(), null);
         }
 
         [Test]
-        public void AqcureTestProject()
+        public void GetTestProject()
         {
             TestProjectDuplicationPool pool = new TestProjectDuplicationPool(new List<TestProjectDuplication>
             {
@@ -32,8 +32,8 @@ namespace Faultify.Tests.UnitTests
                 new TestProjectDuplication(null, null, 1),
             });
 
-            TestProjectDuplication project1 = pool.AcquireTestProject();
-            TestProjectDuplication project2 = pool.AcquireTestProject();
+            TestProjectDuplication project1 = pool.GetTestProject();
+            TestProjectDuplication project2 = pool.GetTestProject();
 
             Assert.AreEqual(project1.DuplicationNumber, 0);
             Assert.AreEqual(project2.DuplicationNumber, 1);
@@ -54,7 +54,7 @@ namespace Faultify.Tests.UnitTests
 
             Parallel.ForEach(Enumerable.Range(0, 6), i =>
             {
-                TestProjectDuplication project1 = pool.AcquireTestProject();
+                TestProjectDuplication project1 = pool.GetTestProject();
                 Assert.NotNull(project1, null);
             });
 
@@ -76,7 +76,7 @@ namespace Faultify.Tests.UnitTests
 
             Parallel.ForEach(Enumerable.Range(0, 6), i =>
             {
-                TestProjectDuplication project1 = pool.AcquireTestProject();
+                TestProjectDuplication project1 = pool.GetTestProject();
                 Assert.NotNull(project1);
                 project1.MarkAsFree();
             });

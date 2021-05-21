@@ -36,29 +36,17 @@ namespace Faultify.TestRunner.ProjectDuplication
         /// <summary>
         ///     Retrieves the full file path.
         /// </summary>
-        /// <returns></returns>
-        public string FullFilePath()
-        {
-            return Path.Combine(Directory, Name);
-        }
+        public string FullFilePath => Path.Combine(Directory, Name);
 
         /// <summary>
         ///     Returns whether write mode for the file stream is enabled.
         /// </summary>
-        /// <returns></returns>
-        public bool IsWriteModeEnabled()
-        {
-            return _fileStream?.CanWrite ?? false;
-        }
+        private bool IsWriteModeEnabled => _fileStream?.CanWrite ?? false;
 
         /// <summary>
         ///     Returns whether read mode for the file stream is enabled.
         /// </summary>
-        /// <returns></returns>
-        public bool IsReadModeEnabled()
-        {
-            return _fileStream?.CanRead ?? false;
-        }
+        private bool IsReadModeEnabled => _fileStream?.CanRead ?? false;
 
         /// <summary>
         ///     Opens up a write access to the file and returns the stream.
@@ -66,7 +54,7 @@ namespace Faultify.TestRunner.ProjectDuplication
         /// <returns></returns>
         public Stream OpenReadWriteStream()
         {
-            if (_fileStream == null || IsReadModeEnabled()) EnableReadWriteOnly();
+            if (_fileStream == null || IsReadModeEnabled) EnableReadWriteOnly();
             return _fileStream!;
         }
 
@@ -77,19 +65,19 @@ namespace Faultify.TestRunner.ProjectDuplication
         /// <returns></returns>
         public Stream OpenReadStream()
         {
-            if (_fileStream == null || IsWriteModeEnabled()) EnableReadOnly();
+            if (_fileStream == null || IsWriteModeEnabled) EnableReadOnly();
             return _fileStream!;
         }
 
         /// <summary>
         ///     Enables write modes and closes any earlier initialized streams.
         /// </summary>
-        public void EnableReadWriteOnly()
+        private void EnableReadWriteOnly()
         {
             Dispose();
 
             _fileStream = new FileStream(
-                path: FullFilePath(),
+                path: FullFilePath,
                 mode: FileMode.Open,
                 access: FileAccess.ReadWrite,
                 share: FileShare.ReadWrite);
@@ -98,12 +86,12 @@ namespace Faultify.TestRunner.ProjectDuplication
         /// <summary>
         ///     Enables read modes and closes any earlier initialized streams.
         /// </summary>
-        public void EnableReadOnly()
+        private void EnableReadOnly()
         {
             Dispose();
 
             _fileStream = new FileStream(
-                path: FullFilePath(),
+                path: FullFilePath,
                 mode: FileMode.Open,
                 access: FileAccess.Read,
                 share: FileShare.ReadWrite);
