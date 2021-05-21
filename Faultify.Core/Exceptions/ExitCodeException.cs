@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Faultify.TestRunner.TestProcess
+namespace Faultify.Core.Exceptions
 {
     public class ExitCodeException : Exception
     {

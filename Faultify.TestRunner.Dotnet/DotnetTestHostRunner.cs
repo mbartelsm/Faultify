@@ -6,8 +6,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Faultify.Core.Exceptions;
 using Faultify.TestRunner.Shared;
-using Faultify.TestRunner.TestProcess;
 using NLog;
 
 namespace Faultify.TestRunner.Dotnet
