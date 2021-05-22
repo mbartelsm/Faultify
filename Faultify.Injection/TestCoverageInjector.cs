@@ -170,6 +170,8 @@ namespace Faultify.Injection
         /// </summary>
         public void InjectTestCoverage(ModuleDefinition module)
         {
+            ResolveReferences(module);
+            
             module.AssemblyReferences.Add(_registerTestCoverage.Module.Assembly.Name);
             module.AssemblyReferences.Add(
                 _registerTargetCoverage.Module.AssemblyReferences.First(x => x.Name == "Faultify.TestRunner.Shared"));
@@ -199,6 +201,31 @@ namespace Faultify.Injection
 
                 method.Body.Instructions.Insert(0, callInstruction);
                 method.Body.Instructions.Insert(0, entityHandle);
+            }
+        }
+
+        /// <summary>
+        /// Looks for missing references in the given module and tries to copy those from Faultify's
+        /// assemblies if possible
+        /// </summary>
+        /// <param name="module">The module that needs references</param>
+        private void ResolveReferences(ModuleDefinition module)
+        {
+            foreach (var reference in module.AssemblyReferences)
+            {
+                string assemblyName = reference.Name + ".dll";
+                string sourceFolder = Path.GetDirectoryName(_currentAssemblyPath);
+                string destFolder = Path.GetDirectoryName(module.FileName);
+
+                if (!Directory.GetFiles(destFolder, assemblyName).Any())
+                {
+                    string[] sourceMatches = Directory.GetFiles(sourceFolder, assemblyName);
+
+                    if (sourceMatches.Any())
+                    {
+                        File.Copy(sourceMatches.First(), destFolder + assemblyName);
+                    }
+                }
             }
         }
     }
