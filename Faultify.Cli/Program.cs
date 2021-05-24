@@ -52,6 +52,25 @@ namespace Faultify.Cli
         /// <exception cref="Exception">Faultify service cannot be accessed</exception>
         private static async Task Main(string[] args)
         {
+            Program? program = CreateProgram(args);
+
+            if (program == null)
+            {
+                Logger.Fatal("Couldn't get the Faultify service from the system");
+                Environment.Exit(-1);
+            }
+
+            Directory.CreateDirectory(program.ProgramSettings.OutputDirectory);
+            await program.Run();
+        }
+
+        /// <summary>
+        ///     Perform the setup to create the faultify program
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        private static Program? CreateProgram(string[] args)
+        {
             Settings settings = ParseCommandlineArguments(args);
 
 
@@ -59,7 +78,7 @@ namespace Faultify.Cli
 
             ServiceCollection services = new ServiceCollection();
             services.Configure<Settings>(options => configurationRoot.GetSection("settings").Bind(options));
-            
+
             LogManager.Configuration = new XmlLoggingConfiguration("NLog.config");
             services.AddLogging(builder => builder.AddNLog());
             services.AddSingleton(_ => new Program(settings));
@@ -67,15 +86,7 @@ namespace Faultify.Cli
             Program? program = services
                 .BuildServiceProvider()
                 .GetService<Program>();
-
-            if (program == null)
-            {
-                Logger.Fatal("Couldn't get the Faultify service from the system");
-                Environment.Exit(-1);
-            }
-            
-            Directory.CreateDirectory(program.ProgramSettings.OutputDirectory);
-            await program.Run();
+            return program;
         }
 
         /// <summary>

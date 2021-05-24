@@ -13,6 +13,11 @@ namespace Faultify.Report.Reporters
         private static readonly BasicConverter Converter = new BasicConverter(new PdfTools());
         public string FileExtension => ".pdf";
 
+        /// <summary>
+        ///     Create the report pdf, by converting an html report to pdf 
+        /// </summary>
+        /// <param name="mutationRun"></param>
+        /// <returns></returns>
         public async Task<byte[]> CreateReportAsync(MutationProjectReportModel mutationRun)
         {
             HtmlToPdfDocument doc = new HtmlToPdfDocument
@@ -39,14 +44,14 @@ namespace Faultify.Report.Reporters
             return Converter.Convert(doc);
         }
 
+        /// <summary>
+        ///     Populate the template using the data from the mutation project report model
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         private async Task<string> PopulateTemplate(MutationProjectReportModel model)
         {
-            Assembly currentAssembly = Assembly.GetExecutingAssembly();
-            string resourceName = currentAssembly
-                .GetManifestResourceNames()
-                .Single(str => str.EndsWith("Pdf.cshtml"));
-
-            using StreamReader streamReader = new StreamReader(currentAssembly.GetManifestResourceStream(resourceName));
+            StreamReader streamReader = HtmlReporter.GetStreamReader("Pdf.cshtml"); 
             string template = await streamReader.ReadToEndAsync();
 
             RazorLightEngine engine = new RazorLightEngineBuilder()

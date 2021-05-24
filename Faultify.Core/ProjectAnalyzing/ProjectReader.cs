@@ -11,25 +11,36 @@ namespace Faultify.Core.ProjectAnalyzing
     {
         public Task<IProjectInfo> ReadProjectAsync(string path, IProgress<string> progress)
         {
-            return Task.Run<IProjectInfo>(() =>
+            return Task.Run(() =>
             {
-                AnalyzerManager analyzerManager = new AnalyzerManager();
-
-                // TODO: This should add debug symbols to the build, which we can then access
-                // via Cecil according to https://github.com/jbevain/cecil/wiki/Debug-symbols
-                analyzerManager.SetGlobalProperty("Configuration", "Debug");
-
-                IProjectAnalyzer projectAnalyzer = analyzerManager.GetProject(path);
-                progress.Report($"Building {Path.GetFileName(path)}");
-                IAnalyzerResult analyzerResult = projectAnalyzer.Build(new EnvironmentOptions
-                    {
-                        DesignTime = false,
-                        Restore = true,
-                    })
-                    .First();
-
-                return new ProjectInfo(analyzerResult);
+                return AnalyzeProject(path, progress);
             });
+        }
+
+        /// <summary>
+        ///     Analye the project and return the results
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="progress"></param>
+        /// <returns></returns>
+        private static IProjectInfo AnalyzeProject(string path, IProgress<string> progress)
+        {
+            AnalyzerManager analyzerManager = new AnalyzerManager();
+
+            // TODO: This should add debug symbols to the build, which we can then access
+            // via Cecil according to https://github.com/jbevain/cecil/wiki/Debug-symbols
+            analyzerManager.SetGlobalProperty("Configuration", "Debug");
+
+            IProjectAnalyzer projectAnalyzer = analyzerManager.GetProject(path);
+            progress.Report($"Building {Path.GetFileName(path)}");
+            IAnalyzerResult analyzerResult = projectAnalyzer.Build(new EnvironmentOptions
+            {
+                DesignTime = false,
+                Restore = true,
+            })
+                .First();
+
+            return new ProjectInfo(analyzerResult);
         }
     }
 }
