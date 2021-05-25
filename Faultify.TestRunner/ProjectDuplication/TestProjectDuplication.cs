@@ -101,7 +101,16 @@ namespace Faultify.TestRunner.ProjectDuplication
                 using BinaryReader binReader = new BinaryReader(stream);
                 byte[] data = binReader.ReadBytes((int) stream.Length);
 
-                CodeDecompiler? decompiler = new CodeDecompiler(reference.FullFilePath(), new MemoryStream(data));
+                ICodeDecompiler decompiler;
+                try
+                {
+                    decompiler = new CodeDecompiler(reference.FullFilePath(), new MemoryStream(data));
+                }
+                catch (Exception e)
+                {
+                    Logger.Warn("Could not decompile project. Source code will not be displayed in the report.");
+                    decompiler = new NullDecompiler();
+                }
 
                 // Create assembly mutator and look up the mutations according to the passed identifiers.
                 AssemblyMutator assembly = new AssemblyMutator(reference.FullFilePath());
