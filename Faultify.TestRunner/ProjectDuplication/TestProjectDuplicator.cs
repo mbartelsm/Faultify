@@ -111,7 +111,7 @@ namespace Faultify.TestRunner.ProjectDuplication
                 Environment.Exit(15);
             }
             
-            string duplicatedDirectoryPath = Path.Combine(_testDirectory, $"test-duplication-{i + 1}");
+            string duplicatedDirectoryPath = Path.Combine(_testDirectory, $"test-duplication-{i}");
             
             CopyFilesRecursively(_newDirInfo, Directory.CreateDirectory(duplicatedDirectoryPath));
             
