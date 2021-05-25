@@ -41,48 +41,34 @@ namespace Faultify.Analyze
 
             try
             {
-                newRef = NewRefForType(type, reference, newRef);
+                if (type == typeof(bool))
+                {
+                    newRef = ChangeBoolean(reference);
+                    Logger.Trace($"Changing boolean value from {reference} to {newRef}");
+                }
+                else if (type == typeof(string))
+                {
+                    newRef = ChangeString();
+                    Logger.Trace($"Changing string value from {reference} to {newRef}");
+                }
+                else if (type == typeof(char))
+                {
+                    newRef = ChangeChar(reference);
+                    Logger.Trace($"Changing char value from {reference} to {newRef}");
+                }
+                else if (type.IsNumericType())
+                {
+                    newRef = ChangeNumber(type, reference);
+                    Logger.Trace($"Changing numeric value from {reference} to {newRef}");
+                }
+                else
+                {
+                    Logger.Warn($"Type {type} is not supported");
+                }
             }
             catch (Exception e)
             {
                 Logger.Warn(e, "There was probably an error casting a value, defaulting to null");
-            }
-
-            return newRef;
-        }
-
-        /// <summary>
-        ///     Making a new reference for the given type
-        /// </summary>
-        /// <param name="type"></param>
-        /// <param name="reference"></param>
-        /// <param name="newRef"></param>
-        /// <returns></returns>
-        private static object NewRefForType(Type type, object reference, object newRef)
-        {
-            if (type == typeof(bool))
-            {
-                newRef = ChangeBoolean(reference);
-                Logger.Trace($"Changing boolean value from {reference} to {newRef}");
-            }
-            else if (type == typeof(string))
-            {
-                newRef = ChangeString();
-                Logger.Trace($"Changing string value from {reference} to {newRef}");
-            }
-            else if (type == typeof(char))
-            {
-                newRef = ChangeChar(reference);
-                Logger.Trace($"Changing char value from {reference} to {newRef}");
-            }
-            else if (type.IsNumericType())
-            {
-                newRef = ChangeNumber(type, reference);
-                Logger.Trace($"Changing numeric value from {reference} to {newRef}");
-            }
-            else
-            {
-                Logger.Warn($"Type {type} is not supported");
             }
 
             return newRef;

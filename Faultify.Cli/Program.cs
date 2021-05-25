@@ -65,7 +65,7 @@ namespace Faultify.Cli
         }
 
         /// <summary>
-        ///     Perform the setup to create the faultify program
+        ///     Perform the setup to create the Faultify program
         /// </summary>
         /// <param name="args"></param>
         /// <returns></returns>
@@ -128,7 +128,7 @@ namespace Faultify.Cli
         }
 
         /// <summary>
-        /// Executes the core program flow for faultify
+        /// Executes the core program flow for Faultify
         /// </summary>
         private async Task Run()
         {

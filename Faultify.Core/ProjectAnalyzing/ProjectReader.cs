@@ -18,7 +18,7 @@ namespace Faultify.Core.ProjectAnalyzing
         }
 
         /// <summary>
-        ///     Analye the project and return the results
+        ///     Analyze the project and return the results
         /// </summary>
         /// <param name="path"></param>
         /// <param name="progress"></param>
