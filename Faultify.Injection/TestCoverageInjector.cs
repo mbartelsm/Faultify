@@ -175,18 +175,18 @@ namespace Faultify.Injection
                     MethodReference registerMethodReference = method.Module.ImportReference(_registerTargetCoverage);
                     if (method.Body != null)
                     {
-                        this.InsertInstructions(method, registerMethodReference);
+                        InsertInstructionsWithName(method, registerMethodReference);
                     }
                 }
             }
         }
 
         /// <summary>
-        ///     Get the opcode instructions, and insert them
+        ///     Get the opcode instructions, and insert them. Including the assmebly name
         /// </summary>
         /// <param name="method"></param>
         /// <param name="registerMethodReference"></param>
-        private void InsertInstructions(MethodDefinition method, MethodReference registerMethodReference)
+        private void InsertInstructionsWithName(MethodDefinition method, MethodReference registerMethodReference)
         {
             ILProcessor processor = method.Body.GetILProcessor();
 
@@ -217,16 +217,19 @@ namespace Faultify.Injection
                             || x.AttributeType.Name == "FactAttribute")))
                 {
                     MethodReference registerMethodReference = method.Module.ImportReference(_registerTestCoverage);
-
-                    if (method.Body == null)
+                    if (method.Body != null)
                     {
-                        continue;
+                        InsertInstructions(method, registerMethodReference);
                     }
-                    TestCoverageInjector.InsertInstructions(method, registerMethodReference);
                 }
         }
 
-        private static void InsertInstructions(MethodDefinition method, MethodReference registerMethodReference)
+        /// <summary>
+        ///     Get the opcode instructions, and insert them. Including the assmebly name
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="registerMethodReference"></param>
+        private void InsertInstructions(MethodDefinition method, MethodReference registerMethodReference)
         {
             ILProcessor processor = method.Body.GetILProcessor();
             // Insert instruction that loads the meta data token as parameter for the register method.

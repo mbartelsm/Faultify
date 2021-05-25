@@ -145,13 +145,22 @@ namespace Faultify.TestRunner
         {
             TestFramework testFramework = GetTestFramework(testProjectInfo);
 
-            // Read the test project into memory.
             TestProjectInfo? projectInfo = new TestProjectInfo(
                 testFramework,
                 ModuleDefinition.ReadModule(duplication.TestProjectFile.FullFilePath())
             );
+            LoadInMemory(duplication, projectInfo);
 
-            // Foreach project reference load it in memory as an 'assembly mutator'.
+            return projectInfo;
+        }
+
+        /// <summary>
+        ///     Foreach project reference load it in memory as an 'assembly mutator'.
+        /// </summary>
+        /// <param name="duplication"></param>
+        /// <param name="projectInfo"></param>
+        private static void LoadInMemory(TestProjectDuplication duplication, TestProjectInfo projectInfo)
+        {
             foreach (FileDuplication projectReferencePath in duplication.TestProjectReferences)
             {
                 AssemblyMutator loadProjectReferenceModel = new AssemblyMutator(projectReferencePath.FullFilePath());
@@ -161,8 +170,6 @@ namespace Faultify.TestRunner
                     projectInfo.DependencyAssemblies.Add(loadProjectReferenceModel);
                 }
             }
-
-            return projectInfo;
         }
 
         private TestFramework GetTestFramework(IProjectInfo projectInfo)
