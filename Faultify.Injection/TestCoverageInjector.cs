@@ -23,6 +23,9 @@ namespace Faultify.Injection
         private readonly MethodDefinition _registerTestCoverage;
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
+        /// <summary>
+        ///     Initialise the test coverage injector
+        /// </summary>
         private TestCoverageInjector()
         {
             // Retrieve the method definition for the register functions. 
@@ -31,24 +34,26 @@ namespace Faultify.Injection
             string initializeMethodName = nameof(CoverageRegistry.Initialize);
 
             using ModuleDefinition injectionAssembly = ModuleDefinition.ReadModule(_currentAssemblyPath);
-
-            _registerTargetCoverage = injectionAssembly.Types
-                .SelectMany(x => x.Methods.Where(y => y.Name == registerTargetCoverage))
-                .First();
-
-            _registerTestCoverage = injectionAssembly.Types
-                .SelectMany(x => x.Methods.Where(y => y.Name == registerTestCoverage))
-                .First();
-
-            _initializeMethodDefinition = injectionAssembly.Types
-                .SelectMany(x => x.Methods.Where(y => y.Name == initializeMethodName))
-                .First();
+            _registerTargetCoverage = getType(registerTargetCoverage, injectionAssembly);
+            _registerTestCoverage = getType(registerTestCoverage, injectionAssembly);
+            _initializeMethodDefinition = getType(initializeMethodName, injectionAssembly);
 
             if (_initializeMethodDefinition == null || _registerTargetCoverage == null)
             {
                 _logger.Fatal("Testcoverage Injector could not initialize injection methods");
                 Environment.Exit(13);
             }
+        }
+
+        /// <summary>
+        ///     Getting the method definition of a method with the name that is supplied
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="injectionAssembly"></param>
+        /// <returns></returns>
+        private MethodDefinition getType(string name, ModuleDefinition injectionAssembly)
+        {
+            return injectionAssembly.Types.SelectMany(x => x.Methods.Where(y => y.Name == name)).First();
         }
 
         public static TestCoverageInjector Instance => _instance.Value;
@@ -71,42 +76,70 @@ namespace Faultify.Injection
                 | MethodAttributes.SpecialName
                 | MethodAttributes.RTSpecialName;
 
+            MethodReference method = toInjectModule.ImportReference(_initializeMethodDefinition);
+            MethodDefinition cctor = GetOrMake(moduleInitAttributes, toInjectModule, method.ReturnType);
+
+            if (!IsCallAlreadyDone(method, cctor))
+            {
+                AddMethod(method, cctor);
+            }
+        }
+
+        /// <summary>
+        ///     We get the method definition, if it's empty, we create a new method definition instead
+        /// </summary>
+        /// <param name="moduleInitAttributes"></param>
+        /// <param name="moduleType"></param>
+        /// <param name="method"></param>
+        /// <returns></returns>
+        private MethodDefinition GetOrMake(MethodAttributes moduleInitAttributes, ModuleDefinition toInjectModule, TypeReference returnType)
+        {
             AssemblyDefinition assembly = toInjectModule.Assembly;
             TypeDefinition moduleType = assembly.MainModule.GetType("<Module>");
-            MethodReference method = toInjectModule.ImportReference(_initializeMethodDefinition);
 
-            // Get or create ModuleInit method
             MethodDefinition cctor =
                 moduleType.Methods.FirstOrDefault(moduleTypeMethod => moduleTypeMethod.Name == ".cctor");
             if (cctor == null)
             {
-                cctor = new MethodDefinition(".cctor", moduleInitAttributes, method.ReturnType);
+                cctor = new MethodDefinition(".cctor", moduleInitAttributes, returnType);
                 moduleType.Methods.Add(cctor);
             }
 
-            bool isCallAlreadyDone = cctor.Body.Instructions.Any(instruction =>
+            return cctor;
+        }
+
+        /// <summary>
+        ///     We check if the call is already done
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="cctor"></param>
+        /// <returns></returns>
+        private bool IsCallAlreadyDone(MethodReference method, MethodDefinition cctor)
+        {
+            return cctor.Body.Instructions.Any(instruction =>
                 instruction.OpCode == OpCodes.Call && instruction.Operand == method);
+        }
 
-            // If the method is not called, we can add it
-            if (!isCallAlreadyDone)
+        /// <summary>
+        ///     We add the method, and add any ret instruction if necessary
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="cctor"></param>
+        private void AddMethod(MethodReference method, MethodDefinition cctor)
+        {
+            ILProcessor ilProcessor = cctor.Body.GetILProcessor();
+            Instruction retInstruction =
+                cctor.Body.Instructions.FirstOrDefault(instruction => instruction.OpCode == OpCodes.Ret);
+            Instruction callMethod = ilProcessor.Create(OpCodes.Call, method);
+
+            if (retInstruction == null)
             {
-                ILProcessor ilProcessor = cctor.Body.GetILProcessor();
-                Instruction retInstruction =
-                    cctor.Body.Instructions.FirstOrDefault(instruction => instruction.OpCode == OpCodes.Ret);
-                Instruction callMethod = ilProcessor.Create(OpCodes.Call, method);
-
-                if (retInstruction == null)
-                {
-                    // If a ret instruction is not present, add the method call and ret
-                    // Insert instruction that loads the meta data token as parameter for the register method.
-                    ilProcessor.Append(callMethod);
-                    ilProcessor.Emit(OpCodes.Ret);
-                }
-                else
-                {
-                    // If a ret instruction is already present, just add the method to call before
-                    ilProcessor.InsertBefore(retInstruction, callMethod);
-                }
+                ilProcessor.Append(callMethod);
+                ilProcessor.Emit(OpCodes.Ret);
+            }
+            else
+            {
+                ilProcessor.InsertBefore(retInstruction, callMethod);
             }
         }
 
@@ -137,32 +170,33 @@ namespace Faultify.Injection
         {
             foreach (TypeDefinition typeDefinition in module.Types.Where(x => !x.Name.StartsWith("<")))
             {
-                // Find sum method
                 foreach (MethodDefinition method in typeDefinition.Methods)
                 {
                     MethodReference registerMethodReference = method.Module.ImportReference(_registerTargetCoverage);
-
-                    if (method.Body == null)
+                    if (method.Body != null)
                     {
-                        continue;
+                        this.InsertInstructions(method, registerMethodReference);
                     }
-
-                    ILProcessor processor = method.Body.GetILProcessor();
-
-                    // Insert instruction that loads the meta data token as parameter for the register method.
-                    Instruction assemblyName = processor.Create(OpCodes.Ldstr, method.Module.Assembly.Name.Name);
-
-                    // Insert instruction that loads the meta data token as parameter for the register method.
-                    Instruction entityHandle = processor.Create(OpCodes.Ldc_I4, method.MetadataToken.ToInt32());
-
-                    // Insert instruction that calls the register function.
-                    Instruction callInstruction = processor.Create(OpCodes.Call, registerMethodReference);
-
-                    method.Body.Instructions.Insert(0, callInstruction);
-                    method.Body.Instructions.Insert(0, entityHandle);
-                    method.Body.Instructions.Insert(0, assemblyName);
                 }
             }
+        }
+
+        /// <summary>
+        ///     Get the opcode instructions, and insert them
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="registerMethodReference"></param>
+        private void InsertInstructions(MethodDefinition method, MethodReference registerMethodReference)
+        {
+            ILProcessor processor = method.Body.GetILProcessor();
+
+            Instruction callInstruction = processor.Create(OpCodes.Call, registerMethodReference);
+            Instruction entityHandle = processor.Create(OpCodes.Ldc_I4, method.MetadataToken.ToInt32());
+            Instruction assemblyName = processor.Create(OpCodes.Ldstr, method.Module.Assembly.Name.Name);
+
+            method.Body.Instructions.Insert(0, callInstruction);
+            method.Body.Instructions.Insert(0, entityHandle);
+            method.Body.Instructions.Insert(0, assemblyName);
         }
 
         /// <summary>
@@ -181,25 +215,29 @@ namespace Faultify.Injection
                         .Any(x => x.AttributeType.Name == "TestAttribute"
                             || x.AttributeType.Name == "TestMethodAttribute"
                             || x.AttributeType.Name == "FactAttribute")))
-            {
-                MethodReference registerMethodReference = method.Module.ImportReference(_registerTestCoverage);
-
-                if (method.Body == null)
                 {
-                    continue;
+                    MethodReference registerMethodReference = method.Module.ImportReference(_registerTestCoverage);
+
+                    if (method.Body == null)
+                    {
+                        continue;
+                    }
+                    TestCoverageInjector.InsertInstructions(method, registerMethodReference);
                 }
+        }
 
-                ILProcessor processor = method.Body.GetILProcessor();
-                // Insert instruction that loads the meta data token as parameter for the register method.
-                Instruction entityHandle =
-                    processor.Create(OpCodes.Ldstr, method.DeclaringType.FullName + "." + method.Name);
+        private static void InsertInstructions(MethodDefinition method, MethodReference registerMethodReference)
+        {
+            ILProcessor processor = method.Body.GetILProcessor();
+            // Insert instruction that loads the meta data token as parameter for the register method.
+            Instruction entityHandle =
+                processor.Create(OpCodes.Ldstr, method.DeclaringType.FullName + "." + method.Name);
 
-                // Insert instruction that calls the register function.
-                Instruction callInstruction = processor.Create(OpCodes.Call, registerMethodReference);
+            // Insert instruction that calls the register function.
+            Instruction callInstruction = processor.Create(OpCodes.Call, registerMethodReference);
 
-                method.Body.Instructions.Insert(0, callInstruction);
-                method.Body.Instructions.Insert(0, entityHandle);
-            }
+            method.Body.Instructions.Insert(0, callInstruction);
+            method.Body.Instructions.Insert(0, entityHandle);
         }
     }
 }
