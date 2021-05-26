@@ -26,13 +26,18 @@ namespace Faultify.Injection
             _mmf = MemoryMappedFile.OpenExisting("CoverageFile", MemoryMappedFileRights.ReadWrite);
         }
 
+        /// <summary>
+        ///     Try to write to the mutation coverage fail
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private static void OnCurrentDomain_ProcessExit(object sender, EventArgs e)
         {
             try
             {
                 Utils.WriteMutationCoverageFile(MutationCoverage, _mmf);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // This needs to be fully ignored or the test runner will fail
             }

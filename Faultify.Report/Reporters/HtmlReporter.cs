@@ -12,19 +12,24 @@ namespace Faultify.Report.Reporters
     {
         public string FileExtension { get; } = ".html";
 
+        /// <summary>
+        ///     Create the report 
+        /// </summary>
+        /// <param name="mutationRun"></param>
+        /// <returns></returns>
         public async Task<byte[]> CreateReportAsync(MutationProjectReportModel mutationRun)
         {
             return Encoding.UTF8.GetBytes(await PopulateTemplate(mutationRun));
         }
 
+        /// <summary>
+        ///     Populate the template of the report with the information from the mutation report model
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         private async Task<string> PopulateTemplate(MutationProjectReportModel model)
         {
-            Assembly currentAssembly = Assembly.GetExecutingAssembly();
-            string resourceName = currentAssembly
-                .GetManifestResourceNames()
-                .Single(str => str.EndsWith("Html.cshtml"));
-
-            using StreamReader streamReader = new StreamReader(currentAssembly.GetManifestResourceStream(resourceName));
+            StreamReader streamReader = GetStreamReader("Html.cshtml"); 
             string template = await streamReader.ReadToEndAsync();
 
             RazorLightEngine engine = new RazorLightEngineBuilder()
@@ -36,6 +41,20 @@ namespace Faultify.Report.Reporters
 
             string result = await engine.CompileRenderStringAsync("templateKey", template, model);
             return result;
+        }
+
+        /// <summary>
+        ///     Get the streamReader with the information of the currentAssembly
+        /// </summary>
+        /// <returns></returns>
+        public static StreamReader GetStreamReader(string endsWith)
+        {
+            Assembly currentAssembly = Assembly.GetExecutingAssembly();
+            string resourceName = currentAssembly
+                .GetManifestResourceNames()
+                .Single(str => str.EndsWith(endsWith));
+            StreamReader streamReader = new StreamReader(currentAssembly.GetManifestResourceStream(resourceName));
+            return streamReader;
         }
     }
 }

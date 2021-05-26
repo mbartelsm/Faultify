@@ -53,26 +53,36 @@ namespace Faultify.TestRunner.TestRun
 
             foreach (MutationVariantIdentifier mutation in mutations)
             {
-                // Attempt to add the mutation to a bucket
-                var wasInserted = false;
-                foreach (MutationBucket bucket in buckets)
-                {
-                    if (!bucket.IntersectsWith(mutation.TestCoverage))
-                    {
-                        bucket.AddMutation(mutation);
-                        wasInserted = true;
-                        break;
-                    }
-                }
-
-                // If it fails, make a new bucket
-                if (!wasInserted)
-                {
-                    buckets.Add(new MutationBucket(mutation));
-                }
+                InsertOrMakeNew(buckets, mutation);
             }
 
             return buckets.Select(bucket => bucket.Mutations);
+        }
+
+        /// <summary>
+        ///     Adding a mutation to the buckets, if there is no bucket for it yet, make a new bucket
+        /// </summary>
+        /// <param name="buckets"></param>
+        /// <param name="mutation"></param>
+        private static void InsertOrMakeNew(List<MutationBucket> buckets, MutationVariantIdentifier mutation)
+        {
+            // Attempt to add the mutation to a bucket
+            var wasInserted = false;
+            foreach (MutationBucket bucket in buckets)
+            {
+                if (!bucket.IntersectsWith(mutation.TestCoverage))
+                {
+                    bucket.AddMutation(mutation);
+                    wasInserted = true;
+                    break;
+                }
+            }
+
+            // If it fails, make a new bucket
+            if (!wasInserted)
+            {
+                buckets.Add(new MutationBucket(mutation));
+            }
         }
 
 
@@ -96,23 +106,31 @@ namespace Faultify.TestRunner.TestRun
                 HashSet<string>? freeTests = new HashSet<string>(mutationVariants.SelectMany(x => x.TestCoverage));
 
                 List<MutationVariantIdentifier>? mutationsForThisRun = new List<MutationVariantIdentifier>();
-
-                foreach (MutationVariantIdentifier mutation in allMutations.ToArray())
-                {
-                    // If all tests of slot are free
-                    if (freeTests.IsSupersetOf(mutation.TestCoverage))
-                    {
-                        // Remove all free slots
-                        foreach (string test in mutation.TestCoverage) freeTests.Remove(test);
-
-                        mutationsForThisRun.Add(mutation);
-                        allMutations.Remove(mutation);
-                    }
-
-                    if (freeTests.Count == 0) break;
-                }
+                RemoveFreeSlots(allMutations, freeTests, mutationsForThisRun);
 
                 yield return mutationsForThisRun;
+            }
+        }
+
+        /// <summary>
+        ///     Remove all the free test slots
+        /// </summary>
+        /// <param name="allMutations"></param>
+        /// <param name="freeTests"></param>
+        /// <param name="mutationsForThisRun"></param>
+        private static void RemoveFreeSlots(List<MutationVariantIdentifier> allMutations, HashSet<string> freeTests, List<MutationVariantIdentifier> mutationsForThisRun)
+        {
+            foreach (MutationVariantIdentifier mutation in allMutations.ToArray())
+            {
+                if (freeTests.IsSupersetOf(mutation.TestCoverage))
+                {
+                    foreach (string test in mutation.TestCoverage) freeTests.Remove(test);
+
+                    mutationsForThisRun.Add(mutation);
+                    allMutations.Remove(mutation);
+                }
+
+                if (freeTests.Count == 0) break;
             }
         }
 
@@ -151,31 +169,46 @@ namespace Faultify.TestRunner.TestRun
             foreach (var assembly in testProjectInfo.DependencyAssemblies)
             foreach (var type in assembly.Types)
             foreach (var method in type.Methods)
-            {
-                var methodMutationId = 0;
-                KeyValuePair<RegisteredCoverage, HashSet<string>> registeredMutation = coverage.FirstOrDefault(x =>
-                    x.Key.AssemblyName == assembly.Module.Assembly.Name.Name && x.Key.EntityHandle == method.IntHandle);
-                var mutationGroupId = 0;
-
-                if (registeredMutation.Key != null)
-                {
-                    foreach (var group in method.AllMutations(mutationLevel, excludeGroup, excludeSingular))
                     {
-                        foreach (var mutation in group)
-                        {
-                            allMutations.Add(new MutationVariantIdentifier(registeredMutation.Value,
-                                method.AssemblyQualifiedName,
-                                methodMutationId, mutationGroupId));
-
-                            methodMutationId++;
-                        }
-
-                        mutationGroupId += 1;
+                        // TODO I'm not sure if it's worthiwhile to keep this method refactored
+                        GetAllMutations(coverage, excludeGroup, excludeSingular, mutationLevel, allMutations, assembly, method);
                     }
+            return allMutations;
+        }
+
+        /// <summary>
+        ///     Getting all the mutations, group by group
+        /// </summary>
+        /// <param name="coverage"></param>
+        /// <param name="excludeGroup"></param>
+        /// <param name="excludeSingular"></param>
+        /// <param name="mutationLevel"></param>
+        /// <param name="allMutations"></param>
+        /// <param name="assembly"></param>
+        /// <param name="method"></param>
+        private void GetAllMutations(Dictionary<RegisteredCoverage, HashSet<string>> coverage, HashSet<string> excludeGroup, HashSet<string> excludeSingular, MutationLevel mutationLevel, List<MutationVariantIdentifier> allMutations, Analyze.AssemblyMutator.AssemblyMutator assembly, Analyze.AssemblyMutator.MethodScope method)
+        {
+            var methodMutationId = 0;
+            KeyValuePair<RegisteredCoverage, HashSet<string>> registeredMutation = coverage.FirstOrDefault(x =>
+                x.Key.AssemblyName == assembly.Module.Assembly.Name.Name && x.Key.EntityHandle == method.IntHandle);
+            var mutationGroupId = 0;
+
+            if (registeredMutation.Key != null)
+            {
+                foreach (var group in method.AllMutations(mutationLevel, excludeGroup, excludeSingular))
+                {
+                    foreach (var mutation in group)
+                    {
+                        allMutations.Add(new MutationVariantIdentifier(registeredMutation.Value,
+                            method.AssemblyQualifiedName,
+                            methodMutationId, mutationGroupId));
+
+                        methodMutationId++;
+                    }
+
+                    mutationGroupId += 1;
                 }
             }
-
-            return allMutations;
         }
 
         /// <summary>
