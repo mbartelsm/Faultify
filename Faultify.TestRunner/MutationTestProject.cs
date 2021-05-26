@@ -155,7 +155,7 @@ namespace Faultify.TestRunner
         }
 
         /// <summary>
-        ///     Foreach project reference load it in memory as an 'assembly mutator'.
+        ///     Foreach project reference load it in memory as an <see cref="AssemblyMutator"/>.
         /// </summary>
         /// <param name="duplication"></param>
         /// <param name="projectInfo"></param>
