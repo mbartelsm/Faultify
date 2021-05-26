@@ -9,8 +9,8 @@
       "commandLineArgs": "-i  \"D:\\Projects\\rug\\softwareEngineering\\Faultify\\Benchmark\\Faultify.Benchmark.NUnit\\Faultify.Benchmark.NUnit.csproj\" -f html -t nunit"
     },
     "ILSpy test": {
-      "commandName": "Project",
-      "commandLineArgs": "-i  \"D:\\Temporal\\ILSpy\\ICSharpCode.Decompiler.Tests\\ICSharpCode.Decompiler.Tests.csproj\" -f html"
+      "commandLineArgs": "-i  \"C:\\Users\\joran\\Documents\\softEng\\ILSpy\\ICSharpCode.Decompiler.Tests\\ICSharpCode.Decompiler.Tests.csproj\" -f html",
+      "commandName": "Project"
     }
   }
 }
