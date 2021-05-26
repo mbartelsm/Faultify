@@ -27,7 +27,7 @@ namespace Faultify.Injection
         }
 
         /// <summary>
-        ///     Try to write to the mutation coverage fail if the process exits
+        ///     Try to write to the mutation coverage fail
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

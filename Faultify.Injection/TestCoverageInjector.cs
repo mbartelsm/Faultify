@@ -86,7 +86,7 @@ namespace Faultify.Injection
         }
 
         /// <summary>
-        ///     We get the method definition, if it's empty, we create a new method definition instead
+        ///     Get the method definition for the constructor. If it's empty, create a new method definition instead
         /// </summary>
         /// <param name="moduleInitAttributes"></param>
         /// <param name="moduleType"></param>
@@ -109,7 +109,7 @@ namespace Faultify.Injection
         }
 
         /// <summary>
-        ///     We check if the call is already done
+        ///     Check if the call is already done
         /// </summary>
         /// <param name="method"></param>
         /// <param name="cctor"></param>
@@ -121,7 +121,7 @@ namespace Faultify.Injection
         }
 
         /// <summary>
-        ///     We add the method, and add any ret instruction if necessary
+        ///     Add the method, and add any ret instruction if necessary
         /// </summary>
         /// <param name="method"></param>
         /// <param name="cctor"></param>
@@ -182,7 +182,7 @@ namespace Faultify.Injection
         }
 
         /// <summary>
-        ///     Get the opcode instructions, and insert them. Including the assmebly name
+        ///     Get the opcode instructions, and insert them. Including the assembly name
         /// </summary>
         /// <param name="method"></param>
         /// <param name="registerMethodReference"></param>
@@ -225,7 +225,7 @@ namespace Faultify.Injection
         }
 
         /// <summary>
-        ///     Get the opcode instructions, and insert them. Including the assmebly name
+        ///     Insert a callback to the register function
         /// </summary>
         /// <param name="method"></param>
         /// <param name="registerMethodReference"></param>
