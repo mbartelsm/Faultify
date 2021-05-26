@@ -1,8 +1,7 @@
 ﻿using System;
-using Faultify.TestRunner.TestRun.TestHostRunners;
 using NLog;
 
-namespace Faultify.TestRunner.TestRun
+namespace Faultify.TestRunner.TestRun.TestHostRunners
 {
     /// <summary>
     ///     Static factory class for creating testRunners
