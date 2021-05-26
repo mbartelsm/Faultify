@@ -381,8 +381,36 @@ namespace Faultify.TestRunner
             // Timed out mutations will be removed because they can cause serious test delays.
             List<MutationVariantIdentifier>? timedOutMutations = new List<MutationVariantIdentifier>();
 
-            IEnumerable<Task>? tasks = from testRun in mutationTestRuns select RunTestRun(testRun, sessionProgressTracker, testProjectDuplicator, testHost, maxTestDuration, reportBuilder, totalRunsCount, ref completedRuns, ref failedRuns, timedOutMutations);
+            async Task RunTestRun(IMutationTestRun testRun)
+            {
+                TestProjectDuplication? testProject = testProjectDuplicator.MakeCopy(testRun.RunId + 2);
 
+                try
+                {
+                    await RunMutations(testRun, sessionProgressTracker, testHost, maxTestDuration, reportBuilder, timedOutMutations, testProject);
+
+                }
+                catch (Exception e)
+                {
+                    sessionProgressTracker.Log(
+                        $"The test process encountered an unexpected error. Continuing without this test run. Please consider to submit an github issue. {e}",
+                        LogMessageType.Error);
+                    failedRuns += 1;
+                    Logger.Error(e, "The test process encountered an unexpected error.");
+                }
+                finally
+                {
+                    lock (this)
+                    {
+                        completedRuns += 1;
+
+                        sessionProgressTracker.LogTestRunUpdate(completedRuns, totalRunsCount, failedRuns);
+                    }
+
+                    testProject.MarkAsFree(); //TODO: replace with deletion
+                }
+            }
+            IEnumerable<Task>? tasks = from testRun in mutationTestRuns select RunTestRun(testRun);
             Task.WaitAll(tasks.ToArray());
             allRunsStopwatch.Stop();
 
@@ -391,36 +419,6 @@ namespace Faultify.TestRunner
                 report.ScorePercentage);
 
             return report;
-        }
-
-        private async Task RunTestRun(IMutationTestRun testRun, MutationSessionProgressTracker sessionProgressTracker, TestProjectDuplicator testProjectDuplicator, TestHost testHost, TimeSpan maxTestDuration, TestProjectReportModelBuilder reportBuilder, int totalRunsCount, ref int completedRuns, ref int failedRuns, List<MutationVariantIdentifier>? timedOutMutations)
-        {
-            TestProjectDuplication? testProject = testProjectDuplicator.MakeCopy(testRun.RunId + 2);
-
-            try
-            {
-                await RunMutations(testRun, sessionProgressTracker, testHost, maxTestDuration, reportBuilder, timedOutMutations, testProject);
-
-            }
-            catch (Exception e)
-            {
-                sessionProgressTracker.Log(
-                    $"The test process encountered an unexpected error. Continuing without this test run. Please consider to submit an github issue. {e}",
-                    LogMessageType.Error);
-                failedRuns += 1;
-                Logger.Error(e, "The test process encountered an unexpected error.");
-            }
-            finally
-            {
-                lock (this)
-                {
-                    completedRuns += 1;
-
-                    sessionProgressTracker.LogTestRunUpdate(completedRuns, totalRunsCount, failedRuns);
-                }
-
-                testProject.MarkAsFree(); //TODO: replace with deletion
-            }
         }
 
         private async Task RunMutations(IMutationTestRun testRun, MutationSessionProgressTracker sessionProgressTracker, TestHost testHost, TimeSpan maxTestDuration, TestProjectReportModelBuilder reportBuilder, List<MutationVariantIdentifier>? timedOutMutations, TestProjectDuplication testProject)
