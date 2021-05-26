@@ -35,32 +35,28 @@ namespace Faultify.Analyze.Analyzers
         )
         {
             var mutationGroup = new List<IEnumerable<OpCodeMutation>>();
-
-            foreach (Instruction instruction in scope.Body?.Instructions)
+            foreach (Instruction instruction in scope.Body.Instructions)
             {
                 OpCode original = instruction.OpCode;
-                IEnumerable<OpCodeMutation> mutations;
+                IEnumerable<OpCodeMutation> mutations = Enumerable.Empty<OpCodeMutation>();
 
-                try
+                if (_mappedOpCodes.ContainsKey(original))
                 {
                     IEnumerable<(MutationLevel, OpCode, string)> targets = _mappedOpCodes[original];
                     mutations =
-                        from target
-                            in targets
+                        from target in targets
                         where mutationLevel.HasFlag(target.Item1) && !(exclusions.Contains(target.Item3))
                         select new OpCodeMutation(
                             instruction.OpCode,
                             target.Item2,
                             instruction,
                             scope);
+                    
+                    mutationGroup.Add(mutations);
                 }
-                catch (Exception e)
-                {
-                    Logger.Debug(e, $"Could not find key \"{original}\" in Dictionary.");
-                    mutations = Enumerable.Empty<OpCodeMutation>();
-                }
-                mutationGroup.Add(mutations);
+                
             }
+
 
             return new MutationGroup<OpCodeMutation>
             {
