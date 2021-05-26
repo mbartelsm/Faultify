@@ -218,17 +218,42 @@ namespace Faultify.TestRunner
         /// <param name="projectInfo"></param>
         private void PrepareAssembliesForCodeCoverage(TestProjectInfo projectInfo)
         {
-            Logger.Info("Preparing assemblies for code coverage");
-            TestCoverageInjector.Instance.InjectTestCoverage(projectInfo.TestModule);
-            TestCoverageInjector.Instance.InjectModuleInit(projectInfo.TestModule);
-            TestCoverageInjector.Instance.InjectAssemblyReferences(projectInfo.TestModule);
+            PrepareWrite(projectInfo);
+            InjectAssemblies(projectInfo);
 
-            using MemoryStream? ms = new MemoryStream();
-            projectInfo.TestModule.Write(ms);
-            projectInfo.TestModule.Dispose();
+            if (projectInfo.TestFramework == TestFramework.XUnit)
+            {
+                PrepareForXUnit(projectInfo);
+            }
+        }
 
-            File.WriteAllBytes(projectInfo.TestModule.FileName, ms.ToArray());
+        /// <summary>
+        ///     If we have an XUnit testFramework, we prepare it as follows
+        /// </summary>
+        /// <param name="projectInfo"></param>
+        private void PrepareForXUnit(TestProjectInfo projectInfo)
+        {
+            DirectoryInfo testDirectory = new FileInfo(projectInfo.TestModule.FileName).Directory;
+            string xunitConfigFileName = Path.Combine(testDirectory.FullName, "xunit.runner.json");
+            JObject xunitCoverageSettings = JObject.FromObject(new { parallelizeTestCollections = false });
+            if (!File.Exists(xunitConfigFileName))
+            {
+                File.WriteAllText(xunitConfigFileName, xunitCoverageSettings.ToString());
+            }
+            else
+            {
+                JObject? originalJsonConfig = JObject.Parse(File.ReadAllText(xunitConfigFileName));
+                originalJsonConfig.Merge(xunitCoverageSettings);
+                File.WriteAllText(xunitConfigFileName, originalJsonConfig.ToString());
+            }
+        }
 
+        /// <summary>
+        ///     Inject the assembly refere
+        /// </summary>
+        /// <param name="projectInfo"></param>
+        private void InjectAssemblies(TestProjectInfo projectInfo)
+        {
             foreach (var assembly in projectInfo.DependencyAssemblies)
             {
                 Logger.Trace($"Writing assembly {assembly.Module.FileName}");
@@ -237,23 +262,23 @@ namespace Faultify.TestRunner
                 assembly.Flush(); // SHAME ON YOU, SHAME
                 assembly.Dispose();
             }
+        }
 
-            if (projectInfo.TestFramework == TestFramework.XUnit)
-            {
-                DirectoryInfo testDirectory = new FileInfo(projectInfo.TestModule.FileName).Directory;
-                string xunitConfigFileName = Path.Combine(testDirectory.FullName, "xunit.runner.json");
-                JObject xunitCoverageSettings = JObject.FromObject(new { parallelizeTestCollections = false });
-                if (!File.Exists(xunitConfigFileName))
-                {
-                    File.WriteAllText(xunitConfigFileName, xunitCoverageSettings.ToString());
-                }
-                else
-                {
-                    JObject? originalJsonConfig = JObject.Parse(File.ReadAllText(xunitConfigFileName));
-                    originalJsonConfig.Merge(xunitCoverageSettings);
-                    File.WriteAllText(xunitConfigFileName, originalJsonConfig.ToString());
-                }
-            }
+        /// <summary>
+        ///     Preparing the assemblies for writing, and then writing them to a file
+        /// </summary>
+        /// <param name="projectInfo"></param>
+        private  void PrepareWrite(TestProjectInfo projectInfo)
+        {
+            Logger.Info("Preparing assemblies for code coverage");
+            TestCoverageInjector.Instance.InjectTestCoverage(projectInfo.TestModule);
+            TestCoverageInjector.Instance.InjectModuleInit(projectInfo.TestModule);
+            TestCoverageInjector.Instance.InjectAssemblyReferences(projectInfo.TestModule);
+            MemoryStream? ms = new MemoryStream();
+            projectInfo.TestModule.Write(ms);
+            projectInfo.TestModule.Dispose();
+
+            File.WriteAllBytes(projectInfo.TestModule.FileName, ms.ToArray());
         }
 
         /// <summary>
@@ -356,60 +381,7 @@ namespace Faultify.TestRunner
             // Timed out mutations will be removed because they can cause serious test delays.
             List<MutationVariantIdentifier>? timedOutMutations = new List<MutationVariantIdentifier>();
 
-            async Task RunTestRun(IMutationTestRun testRun)
-            {
-                TestProjectDuplication? testProject = testProjectDuplicator.MakeCopy(testRun.RunId + 2);
-
-                try
-                {
-                    testRun.InitializeMutations(testProject, timedOutMutations, _excludeGroup, _excludeSingular);
-
-                    Stopwatch? singRunsStopwatch = new Stopwatch();
-                    singRunsStopwatch.Start();
-                    IEnumerable<TestRunResult> results = await testRun.RunMutationTestAsync(
-                        maxTestDuration,
-                        sessionProgressTracker,
-                        testHost,
-                        testProject);
-                    
-                    foreach (var testResult in results)
-                    {
-                        // Store the timed out mutations such that they can be excluded.
-                        timedOutMutations.AddRange(testResult.GetTimedOutTests());
-
-                        // For each mutation add it to the report builder.
-                        reportBuilder.AddTestResult(
-                            testResult.TestResults,
-                            testResult.Mutations,
-                            singRunsStopwatch.Elapsed);
-                    }
-
-                    singRunsStopwatch.Stop();
-                    singRunsStopwatch.Reset();
-                    
-                }
-                catch (Exception e)
-                {
-                    sessionProgressTracker.Log(
-                        $"The test process encountered an unexpected error. Continuing without this test run. Please consider to submit an github issue. {e}",
-                        LogMessageType.Error);
-                    failedRuns += 1;
-                    Logger.Error(e, "The test process encountered an unexpected error.");
-                }
-                finally
-                {
-                    lock (this)
-                    {
-                        completedRuns += 1;
-
-                        sessionProgressTracker.LogTestRunUpdate(completedRuns, totalRunsCount, failedRuns);
-                    }
-
-                    testProject.MarkAsFree(); //TODO: replace with deletion
-                }
-            }
-
-            IEnumerable<Task>? tasks = from testRun in mutationTestRuns select RunTestRun(testRun);
+            IEnumerable<Task>? tasks = from testRun in mutationTestRuns select RunTestRun(testRun, sessionProgressTracker, testProjectDuplicator, testHost, maxTestDuration, reportBuilder, totalRunsCount, ref completedRuns, ref failedRuns, timedOutMutations);
 
             Task.WaitAll(tasks.ToArray());
             allRunsStopwatch.Stop();
@@ -419,6 +391,64 @@ namespace Faultify.TestRunner
                 report.ScorePercentage);
 
             return report;
+        }
+
+        private async Task RunTestRun(IMutationTestRun testRun, MutationSessionProgressTracker sessionProgressTracker, TestProjectDuplicator testProjectDuplicator, TestHost testHost, TimeSpan maxTestDuration, TestProjectReportModelBuilder reportBuilder, int totalRunsCount, ref int completedRuns, ref int failedRuns, List<MutationVariantIdentifier>? timedOutMutations)
+        {
+            TestProjectDuplication? testProject = testProjectDuplicator.MakeCopy(testRun.RunId + 2);
+
+            try
+            {
+                await RunMutations(testRun, sessionProgressTracker, testHost, maxTestDuration, reportBuilder, timedOutMutations, testProject);
+
+            }
+            catch (Exception e)
+            {
+                sessionProgressTracker.Log(
+                    $"The test process encountered an unexpected error. Continuing without this test run. Please consider to submit an github issue. {e}",
+                    LogMessageType.Error);
+                failedRuns += 1;
+                Logger.Error(e, "The test process encountered an unexpected error.");
+            }
+            finally
+            {
+                lock (this)
+                {
+                    completedRuns += 1;
+
+                    sessionProgressTracker.LogTestRunUpdate(completedRuns, totalRunsCount, failedRuns);
+                }
+
+                testProject.MarkAsFree(); //TODO: replace with deletion
+            }
+        }
+
+        private async Task RunMutations(IMutationTestRun testRun, MutationSessionProgressTracker sessionProgressTracker, TestHost testHost, TimeSpan maxTestDuration, TestProjectReportModelBuilder reportBuilder, List<MutationVariantIdentifier>? timedOutMutations, TestProjectDuplication testProject)
+        {
+            testRun.InitializeMutations(testProject, timedOutMutations, _excludeGroup, _excludeSingular);
+
+            Stopwatch? singRunsStopwatch = new Stopwatch();
+            singRunsStopwatch.Start();
+            IEnumerable<TestRunResult> results = await testRun.RunMutationTestAsync(
+                maxTestDuration,
+                sessionProgressTracker,
+                testHost,
+                testProject);
+
+            foreach (var testResult in results)
+            {
+                // Store the timed out mutations such that they can be excluded.
+                timedOutMutations.AddRange(testResult.GetTimedOutTests());
+
+                // For each mutation add it to the report builder.
+                reportBuilder.AddTestResult(
+                    testResult.TestResults,
+                    testResult.Mutations,
+                    singRunsStopwatch.Elapsed);
+            }
+
+            singRunsStopwatch.Stop();
+            singRunsStopwatch.Reset();
         }
     }
 }

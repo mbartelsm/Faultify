@@ -46,25 +46,30 @@ namespace Faultify.TestRunner
                         continue;
                     }
 
-                    MutationStatus mutationStatus = GetMutationStatus(testResult);
-
-                    if (!_testProjectReportModel.Mutations.Any(x =>
-                        x.MutationId == mutation.MutationIdentifier.MutationId
-                        && mutation.MutationIdentifier.MemberName == x.MemberName))
-                    {
-                        _testProjectReportModel.Mutations.Add(new MutationVariantReportModel(
-                            mutation.Mutation.Report, "",
-                            new MutationAnalyzerReportModel(mutation.MutationAnalyzerInfo.AnalyzerName,
-                                mutation.MutationAnalyzerInfo.AnalyzerDescription),
-                            mutationStatus,
-                            testRunDuration,
-                            mutation.OriginalSource,
-                            mutation.MutatedSource,
-                            mutation.MutationIdentifier.MutationId,
-                            mutation.MutationIdentifier.MemberName
-                        ));
-                    }
+                    AddMutationsToReport(testRunDuration, testResult, mutation);
                 }
+            }
+        }
+
+        private void AddMutationsToReport(TimeSpan testRunDuration, TestResult testResult, MutationVariant mutation)
+        {
+            MutationStatus mutationStatus = GetMutationStatus(testResult);
+
+            if (!_testProjectReportModel.Mutations.Any(x =>
+                x.MutationId == mutation.MutationIdentifier.MutationId
+                && mutation.MutationIdentifier.MemberName == x.MemberName))
+            {
+                _testProjectReportModel.Mutations.Add(new MutationVariantReportModel(
+                    mutation.Mutation.Report, "",
+                    new MutationAnalyzerReportModel(mutation.MutationAnalyzerInfo.AnalyzerName,
+                        mutation.MutationAnalyzerInfo.AnalyzerDescription),
+                    mutationStatus,
+                    testRunDuration,
+                    mutation.OriginalSource,
+                    mutation.MutatedSource,
+                    mutation.MutationIdentifier.MutationId,
+                    mutation.MutationIdentifier.MemberName
+                ));
             }
         }
 
