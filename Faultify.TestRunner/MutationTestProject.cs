@@ -279,7 +279,7 @@ namespace Faultify.TestRunner
             try
             {
                 testRunner = TestHostRunnerFactory
-                    .CreateTestRunner(testAssemblyPath, TimeSpan.FromSeconds(12), _testHost);
+                    .CreateTestRunner(testAssemblyPath, TimeSpan.FromSeconds(300), _testHost);
             }
             catch (Exception e)
             {
