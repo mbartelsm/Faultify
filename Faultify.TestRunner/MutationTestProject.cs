@@ -399,6 +399,7 @@ namespace Faultify.TestRunner
                     }
 
                     testProject.MarkAsFree(); //TODO: replace with deletion
+                    testProject.DeleteTestProject();
                 }
             }
 
@@ -410,6 +411,8 @@ namespace Faultify.TestRunner
             TestProjectReportModel? report = reportBuilder.Build(allRunsStopwatch.Elapsed, totalRunsCount);
             sessionProgressTracker.LogEndTestSession(allRunsStopwatch.Elapsed, completedRuns, mutationCount,
                 report.ScorePercentage);
+
+            testProjectDuplicator.DeleteFolder();
 
             return report;
         }

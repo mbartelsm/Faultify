@@ -147,5 +147,33 @@ namespace Faultify.TestRunner.ProjectDuplication
                     duplicatedAssemblies,
                     i);
         }
+        
+        /// <summary>
+        /// Tries to delete the temperary folder in which Faultify stores project duplications.
+        /// </summary>
+        public void DeleteFolder()
+        {
+            if (_tempDir == null)
+            {
+                _logger.Error("Can't delete a non-existing directory");
+                return;
+            }
+            byte errors =0;
+            foreach(DirectoryInfo dir in _tempDir.GetDirectories())
+            {
+                try
+                {
+                    dir.Delete(true);
+                } catch (Exception e)
+                {
+                    errors = 1;
+                    _logger.Error(e, $"Failed to delete {dir.FullName}");
+                }
+            }
+            if (errors == 0)
+            {
+                _tempDir.Delete(true);
+            }
+        }
     }
 }
