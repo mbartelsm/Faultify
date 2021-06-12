@@ -1,10 +1,6 @@
 <h1 align="center"><img width="500" src="docs/Windesheim_docs/full-logo.png" /></h1>
 
-[![Nuget](https://img.shields.io/nuget/v/faultify.svg?color=blue&label=faultify&style=flat-square)](https://www.nuget.org/packages/faultify/)
-[![Nuget](https://img.shields.io/nuget/dt/faultify.svg?style=flat-square)](https://www.nuget.org/packages/faultify/)
-![Tester](https://github.com/Faultify/Faultify/workflows/Tester/badge.svg?branch=main)
 [![Join us on Discord](https://img.shields.io/discord/801802378721493044.svg?logo=discord)](https://discord.gg/8aKeQFtcnT) 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Z8QK6XU749JB2)
 
 ## Byte Code Dotnet Mutation Utility
 Faultify provides a quick simple way to realize dotnet mutation testing at the byte code level. 
