@@ -53,8 +53,10 @@ namespace Faultify.TestRunner
             _excludeSingular = excludeSingular;
         }
 
-        //Sets the time out for the mutations to be either the specified number of seconds or the time it takes to run the test project.
-        //When timeout is less then 0.51 seconds it will be set to .51 seconds to make sure the MaxTestDuration is at least one second.
+        /// Sets the time out for the mutations to be either the specified number of seconds or the time it takes to run
+        /// the test project.
+        /// When timeout is less then 0.51 seconds it will be set to .51 seconds to make sure the MaxTestDuration is at
+        /// least one second.
         private TimeSpan CreateTimeOut(Stopwatch stopwatch)
         {
             TimeSpan timeOut = _timeOut;
@@ -104,8 +106,6 @@ namespace Faultify.TestRunner
             progressTracker.LogBeginCoverage();
 
             // Rewrites assemblies
-            // FIX: Breaks line numbers
-            // To fix, we need to restore the initial state of the assemblies prior to performing mutation testing.
             PrepareAssembliesForCodeCoverage(coverageProjectInfo);
 
             Stopwatch? coverageTimer = new Stopwatch();

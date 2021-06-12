@@ -39,7 +39,7 @@ namespace Faultify.TestRunner.TestRun
 
             ITestHostRunner testRunner = TestHostRunnerFactory.CreateTestRunner(
                 testAssemblyPath: testProject.TestProjectFile.FullFilePath(),
-                timeOut: TimeSpan.FromSeconds(300),
+                timeOut: timeout,
                 testHost: testHost);
 
             TestResults testResults = await testRunner

@@ -8,6 +8,7 @@ namespace Faultify.TestRunner.ProjectDuplication
     /// <summary>
     ///     A pool that grands access to a test project that can be used for mutation testing.
     /// </summary>
+    [Obsolete("This class is not longer used in production code and should be phased out")]
     public class TestProjectDuplicationPool
     {
         private static readonly object Lock = new object();
