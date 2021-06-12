@@ -1,4 +1,4 @@
-<h1 align="center"><img width="500" src="docs/full-logo.png" /></h1>
+<h1 align="center"><img width="500" src="docs/Windesheim_docs/full-logo.png" /></h1>
 
 [![Nuget](https://img.shields.io/nuget/v/faultify.svg?color=blue&label=faultify&style=flat-square)](https://www.nuget.org/packages/faultify/)
 [![Nuget](https://img.shields.io/nuget/dt/faultify.svg?style=flat-square)](https://www.nuget.org/packages/faultify/)
@@ -43,7 +43,7 @@ path/to/faultify.exe -i path/to/target/project/Tests/Tests.csproj [OPTIONS]
 ```
 
 ## Application Preview
-<img src="https://github.com/Faultify/Faultify/blob/main/docs/application-overview.PNG" alt="drawing" width="600"/>
+<img src="docs/Windesheim_docs/application-overview.PNG" alt="Screenshot of Faultify" width="600"/>
 
 ## Copyright
 
