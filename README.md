@@ -80,3 +80,7 @@ This generates a 'HTML' report for the project 'YourTestProject.csproj' at the d
 | `Faultify.TestRunner` | `Contains the code that runs the mutation test process`|
 | `Faultify.Report` | `Contains the code that generates a report`|
 | `/Bechmarks` | `Contains a benchmark project and tests that can be used for mutation testing with faultify/stryker.`|
+
+## Copyright
+
+This repository is a fork from commit [8ef5d9f](https://github.com/Faultify/Faultify/commit/8ef5d9f8d830d263aecb173732f6df82f0bc11af) of the repository [Faultify/Faultify](https://github.com/Faultify/Faultify/)
