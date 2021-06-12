@@ -15,71 +15,35 @@ A test is assumed to fail after an introduced mutation, the test is likely to be
 
 ### Getting Started
 
-- Read the [Technical Book](https://faultify.github.io/Faultify/index.html)
-- Benchmark [Statistics](https://github.com/Faultify/Faultify/blob/main/Benchmark/README.md)
-
 **Commandline Options**
 
 ```
-  -t, --testProjectName    Required. The path pointing to the test project project file.
-  -r, --reportPath         The path were the report will be saved.
-  -f, --reportFormat       (Default: json) Type of report to be generated, options: 'pdf', 'html', 'json'
-  -p, --parallel           (Default: 1) Defines how many test sessions are ran at the same time.
-  -l, --mutationLevel      (Default: Detailed) The mutation level indicating the test depth.
-  
-  --help                   Display this help screen.
-  --version                Display version information.
+  -i, --inputProject                  Required. The path pointing to the test project project file.
+  -r, --reportPath                    The path were the report will be saved.
+  -f, --reportFormat                  (Default: json) Type of report to be generated, options: 'pdf', 'html', 'json'
+  -p, --parallel                      (Default: 1) Defines how many test sessions are ran at the same time.
+  -l, --mutationLevel                 (Default: Detailed) The mutation level indicating the test depth.
+  -t, --testHost                      (Default: DotnetTest) The name of the test host framework.
+  -d, --timeOut                       (Default: 0) Time out in seconds for the mutations
+  -g, --excludeMutationGroups         Mutation groups to be excluded
+  -s, --excludeMutationSingles        Individual mutation ids to be excluded
+  -e, --excludeMutationSinglesFile    (Default: NoFile) Path to a json file detailing individual mutations to be
+                                      excluded
+
+  --help                              Display this help screen.
+  --version                           Display version information.
 ```
 
 **Install / Run**
 
+To install and run Faultify on your machine download the latest release and run the following command
+
 ```
-dotnet tool install --global faultify --version 0.2.0
-faultify -t YourTestProject.csproj -f html
+path/to/faultify.exe -i path/to/target/project/Tests/Tests.csproj [OPTIONS]
 ```
-
-This generates a 'HTML' report for the project 'YourTestProject.csproj' at the default executable location in the folder '/FaultifyOutput'.
-
-### Features
-
-**Functional Features**
-- [X] Mutate Arithmetic (+, -, /, *, %) Operators.
-- [X] Mutate Assignment Expressions (+=, -=, /=, *=, %=, --, ++).
-- [X] Mutate Equivalence Operators (==, !=).
-- [X] Mutate Logical Operators (&&, ||).
-- [X] Change bitwise operators (^,|, &).
-- [X] Mutate Branching statements (if(condition), if(!condition))
-- [X] Mutate Variable Literals (true, false).
-     - [X] Support for other types.
-- [X] Mutate Constant Fields (string, number, boolean).
-- [X] Mutate Array initializations (Only arrays larger than 2 elements, all C# types)
-- [X] Build mutation report (HTML/PDF).
-- [x] Mutation test algorithm.
-
-**Non-Functional Features**
-- [X] Cross-platform .net core compatibility. 
-- [X] Nunit/Xunit/Msunit support via `dotnet test`.
-- [X] Runnable from console. 
-- [X] All dotnet languages (F#, C#, visualbaisc) support.
-
-**Todo**
-- Implement [member exclusion](https://github.com/Faultify/Faultify/issues/11).
-- Implement line number display
-- Improve reporting functionality
-- Implement assembly testing in memory
 
 ## Application Preview
 <img src="https://github.com/Faultify/Faultify/blob/main/docs/application-overview.PNG" alt="drawing" width="600"/>
-
-### Solution Projects
-
-| Solution Item | Description |
-| :----- | :----- |
-| `Faultify.Cli` | `Contains the faultify executable mutation dotnet utility.`|
-| `Faultify.Analyze` | `Contains the code that analyzes and searches for mutations`|
-| `Faultify.TestRunner` | `Contains the code that runs the mutation test process`|
-| `Faultify.Report` | `Contains the code that generates a report`|
-| `/Bechmarks` | `Contains a benchmark project and tests that can be used for mutation testing with faultify/stryker.`|
 
 ## Copyright
 
