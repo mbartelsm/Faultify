@@ -21,7 +21,6 @@ A test is assumed to fail after an introduced mutation, the test is likely to be
   -i, --inputProject                  Required. The path pointing to the test project project file.
   -r, --reportPath                    The path were the report will be saved.
   -f, --reportFormat                  (Default: json) Type of report to be generated, options: 'pdf', 'html', 'json'
-  -p, --parallel                      (Default: 1) Defines how many test sessions are ran at the same time.
   -l, --mutationLevel                 (Default: Detailed) The mutation level indicating the test depth.
   -t, --testHost                      (Default: DotnetTest) The name of the test host framework.
   -d, --timeOut                       (Default: 0) Time out in seconds for the mutations
