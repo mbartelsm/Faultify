@@ -33,10 +33,6 @@ namespace Faultify.Analyze.Analyzers
         {
             List<VariableMutation> mutations = new List<VariableMutation>();
 
-            // NOTE: Commenting this out, may cause errors
-            // if (method?.Body == null)
-            //     mutations = Enumerable.Empty<VariableMutation>();
-
             foreach (Instruction instruction in method.Body.Instructions)
             {
                 // Booleans (0,1) or number literals are loaded on the evaluation stack with 'ldc_...' and popped of with 'stloc'.

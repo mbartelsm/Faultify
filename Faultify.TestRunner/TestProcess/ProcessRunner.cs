@@ -28,7 +28,7 @@ namespace Faultify.TestRunner.TestProcess
 
             TaskCompletionSource<object> taskCompletionSource = new TaskCompletionSource<object>();
             process.EnableRaisingEvents = true;
-            process.Exited += (o, e) => { taskCompletionSource.TrySetResult(null); }; // TODO: This has to be bad practice
+            process.Exited += (o, e) => { taskCompletionSource.TrySetResult(null); };
 
             process.StartInfo = _processStartInfo;
 
