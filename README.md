@@ -1,7 +1,5 @@
 <h1 align="center"><img width="500" src="docs/Windesheim_docs/full-logo.png" /></h1>
 
-[![Join us on Discord](https://img.shields.io/discord/801802378721493044.svg?logo=discord)](https://discord.gg/8aKeQFtcnT) 
-
 ## Byte Code Dotnet Mutation Utility
 Faultify provides a quick simple way to realize dotnet mutation testing at the byte code level. 
 It imitates the bad programmer by deliberately introducing errors. 
