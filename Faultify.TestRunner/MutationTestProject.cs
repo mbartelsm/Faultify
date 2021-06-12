@@ -30,7 +30,6 @@ namespace Faultify.TestRunner
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly MutationLevel _mutationLevel;
-        private readonly int _parallel;
         private readonly TestHost _testHost;
         private readonly string _testProjectPath;
         private readonly TimeSpan _timeOut;
@@ -40,7 +39,6 @@ namespace Faultify.TestRunner
         public MutationTestProject(
             string testProjectPath,
             MutationLevel mutationLevel,
-            int parallel,
             TestHost testHost,
             TimeSpan timeOut,
             HashSet<string> excludeGroup,
@@ -49,15 +47,16 @@ namespace Faultify.TestRunner
         {
             _testProjectPath = testProjectPath;
             _mutationLevel = mutationLevel;
-            _parallel = parallel;
             _testHost = testHost;
             _timeOut = timeOut;
             _excludeGroup = excludeGroup;
             _excludeSingular = excludeSingular;
         }
 
-        //Sets the time out for the mutations to be either the specified number of seconds or the time it takes to run the test project.
-        //When timeout is less then 0.51 seconds it will be set to .51 seconds to make sure the MaxTestDuration is at least one second.
+        /// Sets the time out for the mutations to be either the specified number of seconds or the time it takes to run
+        /// the test project.
+        /// When timeout is less then 0.51 seconds it will be set to .51 seconds to make sure the MaxTestDuration is at
+        /// least one second.
         private TimeSpan CreateTimeOut(Stopwatch stopwatch)
         {
             TimeSpan timeOut = _timeOut;
@@ -97,8 +96,7 @@ namespace Faultify.TestRunner
 
             // This is for some reason necessary when running tests with Dotnet,
             // otherwise the coverage analysis breaks future clones.
-            // TODO: Should be investigated further.
-            TestProjectDuplication? initialCopy = testProjectCopier.MakeInitialCopy(projectInfo);
+            testProjectCopier.MakeInitialCopy(projectInfo);
 
             // Begin code coverage on first project.
             TestProjectDuplication coverageProject = testProjectCopier.MakeCopy(1);
@@ -108,8 +106,6 @@ namespace Faultify.TestRunner
             progressTracker.LogBeginCoverage();
 
             // Rewrites assemblies
-            // FIX: Breaks line numbers
-            // To fix, we need to restore the initial state of the assemblies prior to performing mutation testing.
             PrepareAssembliesForCodeCoverage(coverageProjectInfo);
 
             Stopwatch? coverageTimer = new Stopwatch();
@@ -242,7 +238,7 @@ namespace Faultify.TestRunner
                 Logger.Trace($"Writing assembly {assembly.Module.FileName}");
                 TestCoverageInjector.Instance.InjectAssemblyReferences(assembly.Module);
                 TestCoverageInjector.Instance.InjectTargetCoverage(assembly.Module);
-                assembly.Flush(); // SHAME ON YOU, SHAME
+                assembly.Flush();
                 assembly.Dispose();
             }
 
@@ -413,7 +409,7 @@ namespace Faultify.TestRunner
                         sessionProgressTracker.LogTestRunUpdate(completedRuns, totalRunsCount, failedRuns);
                     }
 
-                    testProject.MarkAsFree(); //TODO: replace with deletion
+                    testProject.MarkAsFree();
                     testProject.DeleteTestProject();
                 }
             }

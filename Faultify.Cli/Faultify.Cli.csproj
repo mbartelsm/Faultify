@@ -23,7 +23,7 @@
 
 	<PropertyGroup>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>0.2.0</Version>
+		<Version>0.3.0</Version>
 		<PackageIcon>small-logo.png</PackageIcon>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	</PropertyGroup>

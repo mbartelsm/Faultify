@@ -17,12 +17,6 @@ namespace Faultify.Analyze
             typeof(long), typeof(ulong),
         };
 
-        // TODO: Why is this never used?
-        private static readonly ICollection<Type> stringTypes = new HashSet<Type>
-        {
-            typeof(string), typeof(char),
-        };
-
         /// <summary>
         ///     Specifies wether or not the given type is valid for an array target
         /// </summary>
@@ -57,7 +51,6 @@ namespace Faultify.Analyze
         public static bool IsVariableType(Type t)
         {
             ISet<Type> arrayTypes = new HashSet<Type>();
-            // TODO: May cause problems
             arrayTypes.UnionWith(NumericTypes);
             arrayTypes.Add(typeof(bool));
 

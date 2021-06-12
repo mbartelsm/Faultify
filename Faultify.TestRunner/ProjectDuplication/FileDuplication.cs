@@ -5,7 +5,6 @@ namespace Faultify.TestRunner.ProjectDuplication
 {
     /// <summary>
     ///     Wrapper over duplicated testproject files.
-    ///     TODO: Implement memory mapped files.
     /// </summary>
     public class FileDuplication : IDisposable
     {

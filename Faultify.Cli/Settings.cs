@@ -40,13 +40,6 @@ namespace Faultify.Cli
         public string ReportType { get; set; }
 
         /// <summary>
-        /// Defines how many test sessions are ran at the same time.
-        /// </summary>
-        [Option('p', "parallel", Required = false, Default = 1,
-            HelpText = "Defines how many test sessions are ran at the same time.")]
-        public int Parallel { get; set; }
-
-        /// <summary>
         /// The mutation level indicating the test depth.
         /// </summary>
         [Option('l', "mutationLevel", Required = false, Default = MutationLevel.Detailed,

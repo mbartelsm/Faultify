@@ -7,7 +7,6 @@ namespace Faultify.TestRunner.Shared
     /// <summary>
     ///     Test results from a test session.
     /// </summary>
-    // TODO: Uses custom format because Json requires external package.
     // External packages are somehow not working with test data collectors.
     public class TestResults
     {

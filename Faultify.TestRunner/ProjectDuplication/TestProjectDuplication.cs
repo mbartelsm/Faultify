@@ -73,7 +73,6 @@ namespace Faultify.TestRunner.ProjectDuplication
         /// <summary>
         ///     Delete the test project completely
         ///     Currently does not work, given that Nunit restricts access to the files awaits been given
-        ///     TODO: This is not used
         /// </summary>
         public void DeleteTestProject()
         {
