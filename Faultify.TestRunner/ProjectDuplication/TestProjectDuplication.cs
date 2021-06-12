@@ -76,7 +76,14 @@ namespace Faultify.TestRunner.ProjectDuplication
         /// </summary>
         public void DeleteTestProject()
         {
-            Directory.Delete(TestProjectFile.Directory, true);
+            try
+            {
+                Directory.Delete(TestProjectFile.Directory, true);
+            } catch(Exception e)
+            {
+                Logger.Error(e, $"Couldn't delete {TestProjectFile.Directory}." + e.Message);
+            }
+            
         }
 
         /// <summary>
