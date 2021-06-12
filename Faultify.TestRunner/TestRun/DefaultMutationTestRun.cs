@@ -48,9 +48,6 @@ namespace Faultify.TestRunner.TestRun
                     sessionProgressTracker,
                     runningTests);
 
-            // TODO: Why is this commented out? remove or uncomment
-            //ResetMutations(testProject);
-
             return new List<TestRunResult>
             {
                 new TestRunResult
@@ -108,30 +105,6 @@ namespace Faultify.TestRunner.TestRun
 
                 // Execute mutation and flush it to the files.
                 mutationVariant.Mutation?.Mutate();
-            }
-
-            testProject.FlushMutations(_mutationVariants);
-        }
-
-
-        /// <summary>
-        ///     Resets any mutation that was performed.
-        ///     TODO: Might no longer be useful since duplications are no longer recycled
-        /// </summary>
-        /// <param name="testProject"></param>
-        private void ResetMutations(TestProjectDuplication testProject)
-        {
-            if (_mutationVariants == null) return;
-            
-            foreach (var mutationVariant in _mutationVariants)
-            {
-                if (mutationVariant.CausesTimeOut)
-                {
-                    continue;
-                }
-
-                // Reset mutation and flush it to the files.
-                mutationVariant.Mutation?.Reset();
             }
 
             testProject.FlushMutations(_mutationVariants);

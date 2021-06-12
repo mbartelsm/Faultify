@@ -84,7 +84,7 @@ namespace Faultify.Analyze.AssemblyMutator
             IEnumerable<IMutationGroup<IMutation>> arrayMutations = ArrayMutations(mutationLevel, excludeGroup);
 
             return opcodeMutations
-                .Concat(constantMutations) // TODO: Why was this not used in the original?
+                .Concat(constantMutations)
                 .Concat(variableMutations)
                 .Concat(arrayMutations);
         }

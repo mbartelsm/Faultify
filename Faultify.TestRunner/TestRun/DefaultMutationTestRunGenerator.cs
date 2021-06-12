@@ -169,10 +169,9 @@ namespace Faultify.TestRunner.TestRun
             foreach (var assembly in testProjectInfo.DependencyAssemblies)
             foreach (var type in assembly.Types)
             foreach (var method in type.Methods)
-                    {
-                        // TODO I'm not sure if it's worthiwhile to keep this method refactored
-                        GetAllMutations(coverage, excludeGroup, excludeSingular, mutationLevel, allMutations, assembly, method);
-                    }
+            {
+                GetAllMutations(coverage, excludeGroup, excludeSingular, mutationLevel, allMutations, assembly, method);
+            }
             return allMutations;
         }
 

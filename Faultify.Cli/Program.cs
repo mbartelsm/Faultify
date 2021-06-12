@@ -166,7 +166,6 @@ namespace Faultify.Cli
             MutationTestProject mutationTestProject = new MutationTestProject(
                 ProgramSettings.TestProjectPath,
                 ProgramSettings.MutationLevel,
-                ProgramSettings.Parallel,
                 ProgramSettings.TestHost,
                 ProgramSettings.TimeOut,
                 ProgramSettings.ExcludeMutationGroups.ToHashSet(),
