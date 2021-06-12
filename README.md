@@ -42,6 +42,8 @@ To install and run Faultify on your machine download the latest release and run 
 path/to/faultify.exe -i path/to/target/project/Tests/Tests.csproj [OPTIONS]
 ```
 
+Faultify allows the user to set up custom exception rules for mutations. For more information on this, see [Excluding Mutations](excludeMutations.md)
+
 ## Application Preview
 <img src="docs/Windesheim_docs/application-overview.PNG" alt="Screenshot of Faultify" width="600"/>
 
