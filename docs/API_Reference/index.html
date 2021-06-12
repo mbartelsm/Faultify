@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Faultify </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Faultify ">
+    <meta name="generator" content="docfx 2.57.2.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="faultify">Faultify</h1>
+
+<p><a href="https://www.nuget.org/packages/faultify/"><img src="https://img.shields.io/nuget/v/faultify.svg?color=blue&amp;label=faultify&amp;style=flat-square" alt="Nuget"></a>
+<a href="https://www.nuget.org/packages/faultify/"><img src="https://img.shields.io/nuget/dt/faultify.svg?style=flat-square" alt="Nuget"></a>
+<img src="https://github.com/Faultify/Faultify/workflows/Tester/badge.svg?branch=main" alt="Tester">
+<a href="https://discord.gg/8aKeQFtcnT"><img src="https://img.shields.io/discord/801802378721493044.svg?logo=discord" alt="Join us on Discord"></a>
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=Z8QK6XU749JB2"><img src="https://img.shields.io/badge/Donate-PayPal-green.svg" alt="Donate"></a></p>
+<h2 id="byte-code-dotnet-mutation-utility">Byte Code Dotnet Mutation Utility</h2>
+<p>Faultify provides a quick simple way to realize dotnet mutation testing at the byte code level.
+It imitates the bad programmer by deliberately introducing errors.
+A test is assumed to fail after an introduced mutation, the test is likely to be error-prone if it instead succeeds.</p>
+<p><em>disclaimer: faultify is just released and bugs can be expected, please open a issue if you get any.</em></p>
+<h3 id="getting-started">Getting Started</h3>
+<p><strong>Commandline Options</strong></p>
+<pre><code>  -i, --inputProject                  Required. The path pointing to the test project project file.
+  -r, --reportPath                    The path were the report will be saved.
+  -f, --reportFormat                  (Default: json) Type of report to be generated, options: 'pdf', 'html', 'json'
+  -p, --parallel                      (Default: 1) Defines how many test sessions are ran at the same time.
+  -l, --mutationLevel                 (Default: Detailed) The mutation level indicating the test depth.
+  -t, --testHost                      (Default: DotnetTest) The name of the test host framework.
+  -d, --timeOut                       (Default: 0) Time out in seconds for the mutations
+  -g, --excludeMutationGroups         Mutation groups to be excluded
+  -s, --excludeMutationSingles        Individual mutation ids to be excluded
+  -e, --excludeMutationSinglesFile    (Default: NoFile) Path to a json file detailing individual mutations to be
+                                      excluded
+
+  --help                              Display this help screen.
+  --version                           Display version information.
+</code></pre>
+<p><strong>Install / Run</strong></p>
+<p>To install and run Faultify on your machine download the latest release and run the following command</p>
+<pre><code>path/to/faultify.exe -i path/to/target/project/Tests/Tests.csproj [OPTIONS]
+</code></pre>
+<h2 id="api-reference">API Reference</h2>
+<p><a href="/api/index.html">The API reference can be accessed here...</a></p>
+<h2 id="copyright">Copyright</h2>
+<p>This repository is a fork from commit <a href="https://github.com/Faultify/Faultify/commit/8ef5d9f8d830d263aecb173732f6df82f0bc11af">8ef5d9f</a> of the repository <a href="https://github.com/Faultify/Faultify/">Faultify/Faultify</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

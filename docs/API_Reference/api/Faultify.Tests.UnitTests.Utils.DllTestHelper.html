@@ -1,0 +1,925 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class DllTestHelper
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class DllTestHelper
+   ">
+    <meta name="generator" content="docfx 2.57.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper">
+  
+  
+  <h1 id="Faultify_Tests_UnitTests_Utils_DllTestHelper" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper" class="text-break">Class DllTestHelper
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">System.Runtime.Loader.AssemblyLoadContext</span></div>
+    <div class="level2"><span class="xref">DllTestHelper</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection()</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection(System.Reflection.Assembly)</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.GetAssemblyName(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.GetLoadContext(System.Reflection.Assembly)</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyName(System.Reflection.AssemblyName)</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyPath(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.LoadFromNativeImagePath(System.String, System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(System.IO.Stream)</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(System.IO.Stream, System.IO.Stream)</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.LoadUnmanagedDll(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.LoadUnmanagedDllFromPath(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.SetProfileOptimizationRoot(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.StartProfileOptimization(System.String)</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.Unload()</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.All</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.Assemblies</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.Default</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.IsCollectible</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.Name</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.Resolving</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.ResolvingUnmanagedDll</span>
+    </div>
+    <div>
+      <span class="xref">System.Runtime.Loader.AssemblyLoadContext.Unloading</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Faultify.Tests.UnitTests.Utils.html">Faultify.Tests.UnitTests.Utils</a></h6>
+  <h6><strong>Assembly</strong>: Faultify.Tests.dll</h6>
+  <h5 id="Faultify_Tests_UnitTests_Utils_DllTestHelper_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DllTestHelper : AssemblyLoadContext, IDisposable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Tests_UnitTests_Utils_DllTestHelper__ctor.md&amp;value=---%0Auid%3A%20Faultify.Tests.UnitTests.Utils.DllTestHelper.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Tests/UnitTests/Utils/DllTestHelper.cs/#L40">View Source</a>
+  </span>
+  <a id="Faultify_Tests_UnitTests_Utils_DllTestHelper__ctor_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.#ctor*"></a>
+  <h4 id="Faultify_Tests_UnitTests_Utils_DllTestHelper__ctor" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.#ctor">DllTestHelper()</h4>
+  <div class="markdown level1 summary"><p>Creates an assembly context to trow away code after it has been used</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DllTestHelper()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Tests_UnitTests_Utils_DllTestHelper__ctor_System_Byte___.md&amp;value=---%0Auid%3A%20Faultify.Tests.UnitTests.Utils.DllTestHelper.%23ctor(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Tests/UnitTests/Utils/DllTestHelper.cs/#L30">View Source</a>
+  </span>
+  <a id="Faultify_Tests_UnitTests_Utils_DllTestHelper__ctor_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.#ctor*"></a>
+  <h4 id="Faultify_Tests_UnitTests_Utils_DllTestHelper__ctor_System_Byte___" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.#ctor(System.Byte[])">DllTestHelper(Byte[])</h4>
+  <div class="markdown level1 summary"><p>Code is converted to a Binary stream so it can be read</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DllTestHelper(byte[] binary)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">binary</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Tests_UnitTests_Utils_DllTestHelper_CompileTestBinary_System_String_.md&amp;value=---%0Auid%3A%20Faultify.Tests.UnitTests.Utils.DllTestHelper.CompileTestBinary(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Tests/UnitTests/Utils/DllTestHelper.cs/#L55">View Source</a>
+  </span>
+  <a id="Faultify_Tests_UnitTests_Utils_DllTestHelper_CompileTestBinary_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.CompileTestBinary*"></a>
+  <h4 id="Faultify_Tests_UnitTests_Utils_DllTestHelper_CompileTestBinary_System_String_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.CompileTestBinary(System.String)">CompileTestBinary(String)</h4>
+  <div class="markdown level1 summary"><p>Compiles CS code to binary code (how Dll's supposed to look)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] CompileTestBinary(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Tests_UnitTests_Utils_DllTestHelper_CreateInstance_System_String_.md&amp;value=---%0Auid%3A%20Faultify.Tests.UnitTests.Utils.DllTestHelper.CreateInstance(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Tests/UnitTests/Utils/DllTestHelper.cs/#L238">View Source</a>
+  </span>
+  <a id="Faultify_Tests_UnitTests_Utils_DllTestHelper_CreateInstance_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.CreateInstance*"></a>
+  <h4 id="Faultify_Tests_UnitTests_Utils_DllTestHelper_CreateInstance_System_String_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.CreateInstance(System.String)">CreateInstance(String)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public dynamic CreateInstance(string assemblyQualifiedName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">assemblyQualifiedName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Tests_UnitTests_Utils_DllTestHelper_Dispose.md&amp;value=---%0Auid%3A%20Faultify.Tests.UnitTests.Utils.DllTestHelper.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Tests/UnitTests/Utils/DllTestHelper.cs/#L45">View Source</a>
+  </span>
+  <a id="Faultify_Tests_UnitTests_Utils_DllTestHelper_Dispose_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.Dispose*"></a>
+  <h4 id="Faultify_Tests_UnitTests_Utils_DllTestHelper_Dispose" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Disposes the assembly context</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Tests_UnitTests_Utils_DllTestHelper_DynamicMethodCall_System_String_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Faultify.Tests.UnitTests.Utils.DllTestHelper.DynamicMethodCall(System.String%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Tests/UnitTests/Utils/DllTestHelper.cs/#L228">View Source</a>
+  </span>
+  <a id="Faultify_Tests_UnitTests_Utils_DllTestHelper_DynamicMethodCall_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.DynamicMethodCall*"></a>
+  <h4 id="Faultify_Tests_UnitTests_Utils_DllTestHelper_DynamicMethodCall_System_String_System_String_System_Object___" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.DynamicMethodCall(System.String,System.String,System.Object[])">DynamicMethodCall(String, String, Object[])</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object DynamicMethodCall(string name, string methodName, object[] parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">methodName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span>[]</td>
+        <td><span class="parametername">parameters</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Tests_UnitTests_Utils_DllTestHelper_GetField_System_String_System_String_.md&amp;value=---%0Auid%3A%20Faultify.Tests.UnitTests.Utils.DllTestHelper.GetField(System.String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Tests/UnitTests/Utils/DllTestHelper.cs/#L247">View Source</a>
+  </span>
+  <a id="Faultify_Tests_UnitTests_Utils_DllTestHelper_GetField_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.GetField*"></a>
+  <h4 id="Faultify_Tests_UnitTests_Utils_DllTestHelper_GetField_System_String_System_String_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.GetField(System.String,System.String)">GetField(String, String)</h4>
+  <div class="markdown level1 summary"><p>Creates and returns a type</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object GetField(string assemblyQualifiedName, string field)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">assemblyQualifiedName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">field</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Tests_UnitTests_Utils_DllTestHelper_Load_System_Reflection_AssemblyName_.md&amp;value=---%0Auid%3A%20Faultify.Tests.UnitTests.Utils.DllTestHelper.Load(System.Reflection.AssemblyName)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Tests/UnitTests/Utils/DllTestHelper.cs/#L258">View Source</a>
+  </span>
+  <a id="Faultify_Tests_UnitTests_Utils_DllTestHelper_Load_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.Load*"></a>
+  <h4 id="Faultify_Tests_UnitTests_Utils_DllTestHelper_Load_System_Reflection_AssemblyName_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.Load(System.Reflection.AssemblyName)">Load(AssemblyName)</h4>
+  <div class="markdown level1 summary"><p>Loads an assembly</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Assembly Load(AssemblyName assemblyName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.AssemblyName</span></td>
+        <td><span class="parametername">assemblyName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.Assembly</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Tests_UnitTests_Utils_DllTestHelper_MutateArray__1_System_Byte___System_String_.md&amp;value=---%0Auid%3A%20Faultify.Tests.UnitTests.Utils.DllTestHelper.MutateArray%60%601(System.Byte%5B%5D%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Tests/UnitTests/Utils/DllTestHelper.cs/#L209">View Source</a>
+  </span>
+  <a id="Faultify_Tests_UnitTests_Utils_DllTestHelper_MutateArray_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.MutateArray*"></a>
+  <h4 id="Faultify_Tests_UnitTests_Utils_DllTestHelper_MutateArray__1_System_Byte___System_String_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.MutateArray``1(System.Byte[],System.String)">MutateArray&lt;TMutator&gt;(Byte[], String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] MutateArray&lt;TMutator&gt;(byte[] binary, string methodName)
+
+    where TMutator : IAnalyzer&lt;ArrayMutation, MethodDefinition&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">binary</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">methodName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TMutator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Tests_UnitTests_Utils_DllTestHelper_MutateConstant__1_System_Byte___System_String_.md&amp;value=---%0Auid%3A%20Faultify.Tests.UnitTests.Utils.DllTestHelper.MutateConstant%60%601(System.Byte%5B%5D%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Tests/UnitTests/Utils/DllTestHelper.cs/#L192">View Source</a>
+  </span>
+  <a id="Faultify_Tests_UnitTests_Utils_DllTestHelper_MutateConstant_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.MutateConstant*"></a>
+  <h4 id="Faultify_Tests_UnitTests_Utils_DllTestHelper_MutateConstant__1_System_Byte___System_String_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.MutateConstant``1(System.Byte[],System.String)">MutateConstant&lt;TMutator&gt;(Byte[], String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] MutateConstant&lt;TMutator&gt;(byte[] binary, string fieldName)
+
+    where TMutator : IAnalyzer&lt;ConstantMutation, FieldDefinition&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">binary</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">fieldName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TMutator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Tests_UnitTests_Utils_DllTestHelper_MutateField__1_System_Byte___System_String_System_Object_.md&amp;value=---%0Auid%3A%20Faultify.Tests.UnitTests.Utils.DllTestHelper.MutateField%60%601(System.Byte%5B%5D%2CSystem.String%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Tests/UnitTests/Utils/DllTestHelper.cs/#L162">View Source</a>
+  </span>
+  <a id="Faultify_Tests_UnitTests_Utils_DllTestHelper_MutateField_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.MutateField*"></a>
+  <h4 id="Faultify_Tests_UnitTests_Utils_DllTestHelper_MutateField__1_System_Byte___System_String_System_Object_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.MutateField``1(System.Byte[],System.String,System.Object)">MutateField&lt;TMutator&gt;(Byte[], String, Object)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] MutateField&lt;TMutator&gt;(byte[] binary, string fieldName, object expected)
+
+    where TMutator : IAnalyzer&lt;ConstantMutation, FieldDefinition&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">binary</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">fieldName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">expected</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TMutator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Tests_UnitTests_Utils_DllTestHelper_MutateMethod__1_System_Byte___System_String_Mono_Cecil_Cil_OpCode_System_Boolean_.md&amp;value=---%0Auid%3A%20Faultify.Tests.UnitTests.Utils.DllTestHelper.MutateMethod%60%601(System.Byte%5B%5D%2CSystem.String%2CMono.Cecil.Cil.OpCode%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Tests/UnitTests/Utils/DllTestHelper.cs/#L84">View Source</a>
+  </span>
+  <a id="Faultify_Tests_UnitTests_Utils_DllTestHelper_MutateMethod_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.MutateMethod*"></a>
+  <h4 id="Faultify_Tests_UnitTests_Utils_DllTestHelper_MutateMethod__1_System_Byte___System_String_Mono_Cecil_Cil_OpCode_System_Boolean_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.MutateMethod``1(System.Byte[],System.String,Mono.Cecil.Cil.OpCode,System.Boolean)">MutateMethod&lt;TMutator&gt;(Byte[], String, OpCode, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Execute a mutation and return the mutated binary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] MutateMethod&lt;TMutator&gt;(byte[] binary, string method, OpCode expected, bool simplefy = false)
+
+    where TMutator : IAnalyzer&lt;OpCodeMutation, Instruction&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">binary</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">method</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Mono.Cecil.Cil.OpCode</span></td>
+        <td><span class="parametername">expected</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">simplefy</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TMutator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Tests_UnitTests_Utils_DllTestHelper_MutateMethodVariables__1_System_Byte___System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20Faultify.Tests.UnitTests.Utils.DllTestHelper.MutateMethodVariables%60%601(System.Byte%5B%5D%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Tests/UnitTests/Utils/DllTestHelper.cs/#L132">View Source</a>
+  </span>
+  <a id="Faultify_Tests_UnitTests_Utils_DllTestHelper_MutateMethodVariables_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.MutateMethodVariables*"></a>
+  <h4 id="Faultify_Tests_UnitTests_Utils_DllTestHelper_MutateMethodVariables__1_System_Byte___System_String_System_Boolean_" data-uid="Faultify.Tests.UnitTests.Utils.DllTestHelper.MutateMethodVariables``1(System.Byte[],System.String,System.Boolean)">MutateMethodVariables&lt;TMutator&gt;(Byte[], String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Execute a mutation and return the mutated binary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] MutateMethodVariables&lt;TMutator&gt;(byte[] binary, string method, bool simplify = false)
+
+    where TMutator : IAnalyzer&lt;VariableMutation, MethodDefinition&gt;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td><span class="parametername">binary</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">method</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">simplify</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Byte</span>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TMutator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Tests_UnitTests_Utils_DllTestHelper.md&amp;value=---%0Auid%3A%20Faultify.Tests.UnitTests.Utils.DllTestHelper%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Tests/UnitTests/Utils/DllTestHelper.cs/#L21" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

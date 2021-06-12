@@ -1,0 +1,1806 @@
+{
+  "homepages": [],
+  "source_base_path": "D:/Projects/rug/softwareEngineering/Documentation",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Analyzers.ArithmeticAnalyzer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Analyzers.ArithmeticAnalyzer.html",
+          "hash": "O0GlvtsY3abMov1j5J74IX4qzVOD3krxQyhbJ2rU4ZE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Analyzers.ArrayAnalyzer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Analyzers.ArrayAnalyzer.html",
+          "hash": "MrXCfEFwwq2ll9j2NMI8dBSLkcEuTvHQKn/PmIUcJyc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Analyzers.BitwiseAnalyzer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Analyzers.BitwiseAnalyzer.html",
+          "hash": "MGd6SoeqJNyqaLUdWLN4qOqnFFPg6iqZW+YBFNw5UfI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Analyzers.BranchingAnalyzer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Analyzers.BranchingAnalyzer.html",
+          "hash": "1Wn4i0qCVgw/MGFSJjTTiYcvPDEpT2iP68QvpmutH7U="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Analyzers.ComparisonAnalyzer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Analyzers.ComparisonAnalyzer.html",
+          "hash": "lYiaqlTL45FaBNIJUfOTOPHZw1bwkC93o7zw3b/+uXY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Analyzers.ConstantAnalyzer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Analyzers.ConstantAnalyzer.html",
+          "hash": "G5oVQyWIC1gWnlfSEMQ49cV3bUOn650E9snarCA52KU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Analyzers.LogicalAnalyzer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Analyzers.LogicalAnalyzer.html",
+          "hash": "u1/22+KKwyyxdeWo1m6nXZWLv1wHyNSYZ9LVHyI02cE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Analyzers.OpCodeAnalyzer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Analyzers.OpCodeAnalyzer.html",
+          "hash": "xle04dOvYi4QzgtlgxKUtIjFp2F+GWAHzVpMBSXrXNg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Analyzers.VariableAnalyzer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Analyzers.VariableAnalyzer.html",
+          "hash": "qjpilvdKLnhedlBcGLwFdBTW8zqwpQRmubY9r43P82A="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Analyzers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Analyzers.html",
+          "hash": "Xvbe3P+qtU0DP/y6yFqCJYDjHp64sX2BqJQk1uwJRl8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.ArrayMutationStrategy.ArrayBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.ArrayMutationStrategy.ArrayBuilder.html",
+          "hash": "1xdfsBEP1Hi/MdVkBPhCuur+gLRepT1wJErXFo60mfg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.ArrayMutationStrategy.ArrayMutationStrategy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.ArrayMutationStrategy.ArrayMutationStrategy.html",
+          "hash": "cEoTjfGqfC+KXzaz8VmuZFXu24RSU2v82RNuGEVp3ZM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.ArrayMutationStrategy.DynamicArrayRandomizerStrategy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.ArrayMutationStrategy.DynamicArrayRandomizerStrategy.html",
+          "hash": "eu2QkdTD5FcHjMpWzeBO5hmlU25bvIG0ttD4uRq1y34="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.ArrayMutationStrategy.IArrayMutationStrategy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.ArrayMutationStrategy.IArrayMutationStrategy.html",
+          "hash": "71FQCiufCoMpmdGmm+yZhvu6+uMBgp5waaL80OW2MQ4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.ArrayMutationStrategy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.ArrayMutationStrategy.html",
+          "hash": "YCnk9Xiw04Mk5wCy3VBUvu+fOH7WMx+ICx3E9q95pDg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.AssemblyMutator.AssemblyMutator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.AssemblyMutator.AssemblyMutator.html",
+          "hash": "70x+NEPK2MeXzntBRWvyzMohE45PEPubGhWSN++dp2I="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.AssemblyMutator.FieldScope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.AssemblyMutator.FieldScope.html",
+          "hash": "H1c18fDmGerZlKzdahTMHtTTRm3vgCzwavfN00LnieM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.AssemblyMutator.IMemberScope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.AssemblyMutator.IMemberScope.html",
+          "hash": "/DzUl/f7SfmoOTbYyr4uZ7tj3izx7F76Yw7JWRVl8y4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.AssemblyMutator.MethodScope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.AssemblyMutator.MethodScope.html",
+          "hash": "UYuxmr6FF4STGm3+vvdwPMLH8abgBT13SeZibjpWRG4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.AssemblyMutator.TypeScope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.AssemblyMutator.TypeScope.html",
+          "hash": "pasMorQoyWc5+XWEwvSzQgLDs33fZcVrewOytTKPE00="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.AssemblyMutator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.AssemblyMutator.html",
+          "hash": "oK2acq5t30fYtgmrmmt5jnD/9IoNyGsOPl6i2VsCcM4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.IAnalyzer-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.IAnalyzer-2.html",
+          "hash": "SjxtbQMKK4Wm+6j5ABVCqxkSOzYmmI2d1LN/iC1eX8I="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.IReportable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.IReportable.html",
+          "hash": "2yu96yGiuzPvdPuuc2JRZfk81bfsnqg4xEl75uv+qq8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Mutation.ArrayMutation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Mutation.ArrayMutation.html",
+          "hash": "lJF8pnKKPPgAmF3xguMYqdZjMnQeTJnPkTZNJJ3xp4k="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Mutation.ConstantMutation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Mutation.ConstantMutation.html",
+          "hash": "ziglhUJYXLoXT8HZ+hywIvyAxRFiUBjFNw4J+FWhCuQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Mutation.IMutation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Mutation.IMutation.html",
+          "hash": "bFqZPWJP6DMkIx9LfDthFMTUx89ZiHBoIna8zPhbSo4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Mutation.OpCodeMutation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Mutation.OpCodeMutation.html",
+          "hash": "flzjhdZY1da4puFB8gQEvKYsXPvM0OANnIKMumVdT64="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Mutation.VariableMutation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Mutation.VariableMutation.html",
+          "hash": "lte0fT6RYV37Zw2Hqzehiuk0LUcL+/zmYPGi/TRT3R0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.Mutation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.Mutation.html",
+          "hash": "rTkv8rYx6PIazxQvKcWS5kT1FGIjqlcudOuWXtyx5aU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.MutationGroups.IMutationGroup-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.MutationGroups.IMutationGroup-1.html",
+          "hash": "pkggFTaa6uldyeXJh/yI7dRhun3v3HPKnNqlOB3o9hc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.MutationGroups.MutationGroup-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.MutationGroups.MutationGroup-1.html",
+          "hash": "NNp9kwTtH4mclQt6MD31ZY2UfqhyRuNqbVmQ/c86mq0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.MutationGroups.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.MutationGroups.html",
+          "hash": "K3bUvda3ivUO/OHsb1eKUMbpZpx62shPnNz95/d8xm0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.MutationLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.MutationLevel.html",
+          "hash": "R0CTePoZpcvNLS1DfQYnZIA7CA/7DbsXIot6Xp8MjL0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.RandomValueGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.RandomValueGenerator.html",
+          "hash": "lhogIIv5iiPfCPT0L0WDjRAAcdiw7NCx1RMB9J7i+Uw="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.TypeChecker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.TypeChecker.html",
+          "hash": "dXRYOpnSt7291NFA+iit4py/8srA/PdiiNkVyRWfFJo="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Analyze.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Analyze.html",
+          "hash": "0XI6wp4haQr0epfIhv7BJ2qGajqSdkglXuj/xsVIBcY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.BenchmarkTarget.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.BenchmarkTarget.html",
+          "hash": "4UsAFPyXUSdu+uMosnhZEqOg3ZLXPKiCBLQIoFY9Drg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.BenchmarkTarget1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.BenchmarkTarget1.html",
+          "hash": "v0Bwbwg4dTM1VzGfvCSQyYLgk7AMVxhSjwcgv8Zomlg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.BenchmarkTarget2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.BenchmarkTarget2.html",
+          "hash": "z9/WH6N8Yy4WI+fiHxlNIK/tgqquTJy7pvS5Fg2UOhk="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.BenchmarkTarget3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.BenchmarkTarget3.html",
+          "hash": "NQw82hCGJEOuDzfyxsYiDEU7adosj0EEzg29rZhVVoQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.MSTest.BenchmarkMSTest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.MSTest.BenchmarkMSTest.html",
+          "hash": "GT46IDFpkG6Lkzwn3z7C6bRTmfA3jJt2jkxBpMf7nOw="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.MSTest.BenchmarkMSTest1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.MSTest.BenchmarkMSTest1.html",
+          "hash": "fwz9xk77sWU95onQU/PwoOiyY166oavGZgz32aolSPQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.MSTest.BenchmarkMSTest2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.MSTest.BenchmarkMSTest2.html",
+          "hash": "X/Sq3Gu539PIMZCzHaWz444rN8qdhKJ3vHdOJLy2qGo="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.MSTest.BenchmarkMSTest3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.MSTest.BenchmarkMSTest3.html",
+          "hash": "35bqk430T38I91Xd9OWXLZyWAjAEGtkU6CKOhVbeYRw="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.MSTest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.MSTest.html",
+          "hash": "iLDnq6C//pMOeh2S7PvgvBGBeECxp7PhYtBuCa/u/Jw="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.NUnit.BenchmarkNUnit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.NUnit.BenchmarkNUnit.html",
+          "hash": "yO3dPAwKXfoecOByzsVuVxCA8qM+s9e2xgF2JJlLAbg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.NUnit.BenchmarkNUnit1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.NUnit.BenchmarkNUnit1.html",
+          "hash": "1E0n9bBK4UYZT4fq6NBpScAMxzBedAjXm8/sxmOp1nk="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.NUnit.BenchmarkNUnit2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.NUnit.BenchmarkNUnit2.html",
+          "hash": "zQFO4xJqWqITabhTAPX7eX1BYbjSElLMqtHJ9KKOc+w="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.NUnit.BenchmarkNUnit3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.NUnit.BenchmarkNUnit3.html",
+          "hash": "ZrAhV5+pVCqv3m7d/pc2NI01fsMyq7G8EfWTNMq9r+g="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.NUnit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.NUnit.html",
+          "hash": "wZHdTRVqdhTf07Ta7PRSnq5NNWnfy4ayoEnitPd0iOU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.XUnit.BenchmarkXUnit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.XUnit.BenchmarkXUnit.html",
+          "hash": "vjmhIVR5SAAqM6mIakNXsyx+DsUepTpZ2riCmGp82iY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.XUnit.BenchmarkXUnit1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.XUnit.BenchmarkXUnit1.html",
+          "hash": "O9IUYdp21mifAHPAWgPxwIHYEaFteHX92akIhy15v8w="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.XUnit.BenchmarkXUnit2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.XUnit.BenchmarkXUnit2.html",
+          "hash": "Sb9752uVHHKVdL6epn0iJAlnC1FKxLtqv+eKRek3ZuY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.XUnit.BenchmarkXUnit3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.XUnit.BenchmarkXUnit3.html",
+          "hash": "/VXKfqcflbdhn9M9eDcDWmbDAoII7Uxor16hN9Wt6Xg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.XUnit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.XUnit.html",
+          "hash": "p5M/HbkMqz3BnhobrNkKAg4tHQaKXRLl23+Ql7FsEo4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Benchmark.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Benchmark.html",
+          "hash": "Z5nH8JdtbkK/CqtKAp7xHVBj/6b8Q44zL0gf8ZcL5rc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Cli.LogConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Cli.LogConfiguration.html",
+          "hash": "OZtR5NDNVLC/AI01irPvqlWFLvABC+68RZ/b7C9JcP4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Cli.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Cli.html",
+          "hash": "8cTQ16k1AZp9ZwuCv7AhfKwq/A7tOUbuIJJMju/44RE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Core.Extensions.InstructionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Core.Extensions.InstructionExtensions.html",
+          "hash": "/t6MazTKsKDFb1PwFWVEQeDYAf/pZH6KZVPfjP/diOw="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Core.Extensions.TypeExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Core.Extensions.TypeExtensions.html",
+          "hash": "4M/pFX0AnAjLer+y0EW/7dbSr+A7oiiHVYCg8AzMZtU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Core.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Core.Extensions.html",
+          "hash": "++Ve/eus9Ciwz86RtNfvDLp+PNGHMmu3Cq7zosC3n84="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Core.ProjectAnalyzing.CodeDecompiler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Core.ProjectAnalyzing.CodeDecompiler.html",
+          "hash": "ViWKZ0JjcOLSVwg56j6ufbn0tfu9JAA8gUBjTu2CMwQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Core.ProjectAnalyzing.ICodeDecompiler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Core.ProjectAnalyzing.ICodeDecompiler.html",
+          "hash": "QJQLvaUt2a6Q+jTGfdGdMJUYIzbD8V3urFaY7p/c71k="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Core.ProjectAnalyzing.IProjectInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Core.ProjectAnalyzing.IProjectInfo.html",
+          "hash": "Wj6wNOqzS8muw1meQeHH6x6pohesdckNG97N2IiMM0g="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Core.ProjectAnalyzing.IProjectReader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Core.ProjectAnalyzing.IProjectReader.html",
+          "hash": "ggXTU8c5Vl1XTDV5x6hJxawJAJK8A/DY3YnsJWNYmy8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Core.ProjectAnalyzing.ProjectInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Core.ProjectAnalyzing.ProjectInfo.html",
+          "hash": "1u1yuaP0nfNiGc5fFnWCu9k+qDSVxegxwZoytaiyh6c="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Core.ProjectAnalyzing.ProjectReader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Core.ProjectAnalyzing.ProjectReader.html",
+          "hash": "jjFkpnSgTxVCY6yT2HG5XDMvImHmd2wboVBhMUiFE4g="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Core.ProjectAnalyzing.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Core.ProjectAnalyzing.html",
+          "hash": "j5Jwbn7ejOOciUgNuTRoLHCATYXj05vEz18LMYCr2pI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Injection.CoverageRegistry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Injection.CoverageRegistry.html",
+          "hash": "gL8ov5+e+hkvm/6w9346db3nn3v32EC2NtxNeYt4Lfg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Injection.TestCoverageInjector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Injection.TestCoverageInjector.html",
+          "hash": "WqoWdj0qSfh4tOAHmj4QCsQnNSjJFYEGnOCbtsY6+Hk="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Injection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Injection.html",
+          "hash": "5cArJnfG8AJRwLqdK3USCjNmHSWNdkJJYX+Vf89ZH40="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Report.JsonReporter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Report.JsonReporter.html",
+          "hash": "NDEEzCtomOjZN6QpgIA95kYtKr8dkxiF/ww4Oypzdh0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Report.Models.MutationAnalyzerReportModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Report.Models.MutationAnalyzerReportModel.html",
+          "hash": "pIP/nw1bnLuXr/bPUJ4htTwoFGHeF40/DDS5pIlNKUA="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Report.Models.MutationProjectReportModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Report.Models.MutationProjectReportModel.html",
+          "hash": "/17pNDHZpaQKIJzYeQLvNlVHN1ybIplND/9hH7Ex5Gk="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Report.Models.MutationVariantReportModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Report.Models.MutationVariantReportModel.html",
+          "hash": "t/+EGFSwDCJ4Mc6WH/BO2gefOEuRl5kXeV/iFXzlNt8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Report.Models.TestProjectReportModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Report.Models.TestProjectReportModel.html",
+          "hash": "hlnZf7pPtw1A/aEDoeritwOeMfd97ZhyajEYm4WSCpM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Report.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Report.Models.html",
+          "hash": "794xCgdVI0BrpP6t4GTn7pzPu+a5yQMe3dwSRQnSGKE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Report.MutationStatus.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Report.MutationStatus.html",
+          "hash": "gLX+bCJ/HTMBKN05FhJN8GY3lnerP+fokggbAXySUrc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Report.Reporters.HtmlReporter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Report.Reporters.HtmlReporter.html",
+          "hash": "AM4JS0x+WkjSwbAznISQ3hQVmGT9hIq/2Iv52wSIN3o="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Report.Reporters.IReporter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Report.Reporters.IReporter.html",
+          "hash": "KAtI5t5locKho1AWnpFFsMLS8gO3eSSUwE2en8EZDxA="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Report.Reporters.PdfReporter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Report.Reporters.PdfReporter.html",
+          "hash": "HF9fwKe+WkGem+3MkA+F0j3n+wQO6B2h3MxPye/fPwE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Report.Reporters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Report.Reporters.html",
+          "hash": "0wy82t+imX14JLjpzvgdqy5EU0tVEiIapx5+R94B6hQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Report.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Report.html",
+          "hash": "jTEwrYNftyR9Lj2tWXubPn7FcXQQUJhmc/pcY91bnf0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Collector.CoverageDataCollector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Collector.CoverageDataCollector.html",
+          "hash": "Q5U1t7y9apY1dI+znIhgNA6LCe1LuGZNfWbPfdbM2/I="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Collector.TestDataCollector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Collector.TestDataCollector.html",
+          "hash": "7ab3099xCuGGJm8XgtXMc068CFoYh+6BaEZxieinEZg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Collector.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Collector.html",
+          "hash": "SFS3k2i7xypPosGkaISictW4Fp8z8A/yP9KtZJXuzbA="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Dotnet.DotnetTestHostRunner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Dotnet.DotnetTestHostRunner.html",
+          "hash": "AIeOMyI4/pCQ1sLCJ4iGtbMI2PWMyEP2npjuJuVBUNk="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Dotnet.DotnetTestHostRunnerFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Dotnet.DotnetTestHostRunnerFactory.html",
+          "hash": "hEg90DeSoS2mtKqHRN8ji0sa7iSO/+3FdABOgh9v9B0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Dotnet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Dotnet.html",
+          "hash": "KNtC8M5fhnYelgh/DKeR9kO1bb8ogSnPIAacRej78Pc="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.ITestHostRunFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.ITestHostRunFactory.html",
+          "hash": "g7eifCRWkhm29qzCWa++DnYHMW4T5mx8JPRfEdZzdkk="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.ITestHostRunner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.ITestHostRunner.html",
+          "hash": "koptMFs9J+kmICAOXrEijwNaPgbtfwML1fWI5n3yQjo="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Logging.LogMessageType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Logging.LogMessageType.html",
+          "hash": "JKH+PnrLXZ+mAY11ulstapE+6KhY5Aaqeod/z9LYvwE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Logging.MutationRunProgress.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Logging.MutationRunProgress.html",
+          "hash": "5z9ocoW33oJ8IzVUaRgrALmfnBdiJLY0XijkJKIbaRo="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Logging.MutationSessionProgressTracker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Logging.MutationSessionProgressTracker.html",
+          "hash": "0KRnlItiy8bLuuvHi8j1T5UNw6iu751o3/TLnDEUKgE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Logging.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Logging.html",
+          "hash": "D1C+zmV8pKSajopMDNKao6batR9rtdpJEyALv1gzVTk="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.MutationTestProject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.MutationTestProject.html",
+          "hash": "0Ss2yCT9qUfT0MiZ/OaDeI6He+39kuRvvc8b7xhSBvY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.NUnit.NUnitTestHostRunner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.NUnit.NUnitTestHostRunner.html",
+          "hash": "88i+B64ZOQku51Ht4s4XSFymJr6MxPqOhjUqcI+p9DY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.NUnit.NUnitTestHostRunnerFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.NUnit.NUnitTestHostRunnerFactory.html",
+          "hash": "R1vGUjFnJGuHxP5F8mk3LFkfnzTJQgfOh1IzkSn89dY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.NUnit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.NUnit.html",
+          "hash": "EMGJo78QFbTdE4AMVaAVBnluOcHVpNzsT0sTIdO6mTs="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.ProjectDuplication.FileDuplication.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.ProjectDuplication.FileDuplication.html",
+          "hash": "5x137481exU55jMlOOMY/mtTOJCNfq9Mc15ekse5R2s="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.ProjectDuplication.TestProjectDuplication.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.ProjectDuplication.TestProjectDuplication.html",
+          "hash": "jDoX0Wd2dSoyNTF1j9vKG5+I0iaX9W/yD6qyhw+u+90="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.ProjectDuplication.TestProjectDuplicationPool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.ProjectDuplication.TestProjectDuplicationPool.html",
+          "hash": "21xygy7rCCxc76xT2SPieXiwkhsAU6aeQgRHgXCUccU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.ProjectDuplication.TestProjectDuplicator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.ProjectDuplication.TestProjectDuplicator.html",
+          "hash": "M3Cj3AoICJcCrpdoSxuVBRw+t75fLzlQCwIQFNQKU3s="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.ProjectDuplication.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.ProjectDuplication.html",
+          "hash": "IQuvDOv5R21Q/lll3swrZAKG5HD/S6QwHXcu3hnXG9w="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Shared.MutationCoverage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Shared.MutationCoverage.html",
+          "hash": "WO2ZPApFGQIz7daBzELvMdn9YfO9UnDlQrqbagGiqSU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Shared.RegisteredCoverage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Shared.RegisteredCoverage.html",
+          "hash": "OcvUFs6MgokjVksWnvxhMPpbYJE+4qKGbDk0ZFKA1+M="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Shared.TestResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Shared.TestResult.html",
+          "hash": "mQ6M/iie+jOwNA8UwF9+cbJntUwomOyDp3F+k5tjk8M="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Shared.TestResults.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Shared.TestResults.html",
+          "hash": "vgGyPtNqYY0IesFNRALPlK9WDDBDulxG+OGOCqz/uBA="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Shared.TestRunnerConstants.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Shared.TestRunnerConstants.html",
+          "hash": "THyunJkMYYm14SFi0oAXI5fn3OfxsPPdgY7v2FzIJrY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Shared.Utils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Shared.Utils.html",
+          "hash": "g8jfBZ1zf3W0M89lBi6Vab7P9u8WsXGaiDs5IHm4Mak="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.Shared.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.Shared.html",
+          "hash": "2giqTKCu8+4/tj4xoPuRbZAOMMdIGsAo/CjdnkDL9xg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestFramework.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestFramework.html",
+          "hash": "hocMp/FI9p6XyG/tgJ/8F/HEtXx4NSrHDkT6Tx6z6xg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestHost.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestHost.html",
+          "hash": "2O7ElugiIUeORuUNk/5KWxNRStFN685SV9S7pcleFjw="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestProcess.ExitCodeException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestProcess.ExitCodeException.html",
+          "hash": "Gj0hdSQGFFrL33C1kvYKT4sWiC7bB4IKJBTWZTKYjtQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestProcess.ProcessRunner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestProcess.ProcessRunner.html",
+          "hash": "Mk5Z3+hVcXNkbHK3I3c67KrxbUcokEaHYm0lrsk10EM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestProcess.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestProcess.html",
+          "hash": "d8mLNuzICpIePf1ct7DI+LFge8f9dSyz4TygSXCrjpY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestProjectInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestProjectInfo.html",
+          "hash": "ty4q9mHZXvDjKO9+O5RH5EFzLjuqo1YVmhVsLYu0/P8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestProjectReportModelBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestProjectReportModelBuilder.html",
+          "hash": "5WSeTomHQh0JXjo3V+aXjLk4EQWM8LxfiPptBRAdWxw="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestRun.DefaultMutationTestRunGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestRun.DefaultMutationTestRunGenerator.html",
+          "hash": "NEJ4Mez/Ce2vAqIA6xO6ySqk89ZO3WkEun1zKN7sjqY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestRun.IMutationTestRun.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestRun.IMutationTestRun.html",
+          "hash": "b1VH/9haIq/GWLYAG/emaHdFac8j8GEebT4EVHCbC9k="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestRun.IMutationTestRunGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestRun.IMutationTestRunGenerator.html",
+          "hash": "5g8naDS2QBCdVTlLNy1q0Y88ODdrTBRlmkuqA7wKDr4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestRun.MutationAnalyzerInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestRun.MutationAnalyzerInfo.html",
+          "hash": "/z9hy8funumRekaBSf+bJCVSu8+oD/hHVGIFl+mTrh8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestRun.MutationVariant.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestRun.MutationVariant.html",
+          "hash": "5NkZ+XFsl+DjNm09aUx4ZAemjQK4n1A2TsN+sPhuK4E="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestRun.MutationVariantIdentifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestRun.MutationVariantIdentifier.html",
+          "hash": "92Yv2zx0/wcZIpmX6QMn099pqqIj/jSSFCMEgu1um5Y="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestRun.TestHostRunners.DotnetTestHostRunner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestRun.TestHostRunners.DotnetTestHostRunner.html",
+          "hash": "UvT5CR5rH57dmOKpXZyKKyL7cJOFU+UBlEjghMuDH3Q="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestRun.TestHostRunners.NUnitTestHostRunner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestRun.TestHostRunners.NUnitTestHostRunner.html",
+          "hash": "vw343PNw/2K3yRhZ+QMOruDEqY8HQtoBTB972SJeZ5Q="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestRun.TestHostRunners.XUnitTestHostRunner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestRun.TestHostRunners.XUnitTestHostRunner.html",
+          "hash": "YvtTqPvMVejixmnBg9nSzkDrdOJPXsH3CS9MngGBd4w="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestRun.TestHostRunners.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestRun.TestHostRunners.html",
+          "hash": "v947usNPGBPnOafjNWWkPYrNzcvBny9JxRY9mfpptoM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestRun.TestRunResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestRun.TestRunResult.html",
+          "hash": "mvfXgPr2DplghMeq3lJQAryQRk5jMkJgXUGBJwaXevw="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.TestRun.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.TestRun.html",
+          "hash": "wctsvMiDDJZEVJu454yHrMpIW1wN0yzRO15Zf3hs1K4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.XUnit.XUnitTestHostRunner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.XUnit.XUnitTestHostRunner.html",
+          "hash": "eEszLX9RvI6A+qDVo85SFOF3oqUmhoeLjcvtYP1fJxY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.XUnit.XUnitTestHostRunnerFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.XUnit.XUnitTestHostRunnerFactory.html",
+          "hash": "bUutT6T4n8i9PvOUaypRnQnihv6CPdCz25YV3R8zg4A="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.XUnit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.XUnit.html",
+          "hash": "11iKJE5YCfnvtNVI1NUipwD5+tQzpDbSDPMUqoa3/QE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.TestRunner.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.TestRunner.html",
+          "hash": "iHqvuWWBNdYrjcS2bZdAeLso/vpcAuJvL2wInNzTbJ8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Tests.UnitTests.AssemblyMutatorTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Tests.UnitTests.AssemblyMutatorTests.html",
+          "hash": "XNiTT0svqH6QcrXCNnINzyZ93PkFRzCO5zqzeDAWwGQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Tests.UnitTests.Utils.DllTestHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Tests.UnitTests.Utils.DllTestHelper.html",
+          "hash": "M9ezAzQPEpKrKtBNxCGvKfXhYm2f+8al9fDS8ml4BCw="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Tests.UnitTests.Utils.StringExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Tests.UnitTests.Utils.StringExtensions.html",
+          "hash": "BMmEWf7oeKdHLKJmWbCvqfxoVzPu0AXDv6+ovzU5nl4="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Tests.UnitTests.Utils.Utils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Tests.UnitTests.Utils.Utils.html",
+          "hash": "Ivpv9k4VoZ1tLSvlZekyciBpqQwzEXLV9gieOIdbRNM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Tests.UnitTests.Utils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Tests.UnitTests.Utils.html",
+          "hash": "Auh0KRd2/tzzww2CJHfoBPDSRK2WwSGpp4Vv75iYyOU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Faultify.Tests.UnitTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Faultify.Tests.UnitTests.html",
+          "hash": "UEYJ5Bfh0KGz0ZyHxDX13882iP5BUio46CyOPXlJj3g="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "6dXl5rxcA0B4Zm8oMQGEG+Gdqf7JiXrHqpM5R/BrBTQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "nZMUCwj9vC+AZXQwr1G4qdjakCmLvg93EaURlgDxsjI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "g+ykCCDuLi/sva4p56YnC8R5R8oJo+Z0YCMK5CD/zl8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "BlPxk5mtl2kgfcZUgkEguqiSAR/EUyUTT4EdebwkQvs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "+ztHLYuyHZjvzFnygH2LUax0mo0NT7Sj1L8rm6PJdgE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "rw0UTlg+KAjqjG+QRVB0eC+TYWVXCbGXtpZ0C+JrJqA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 2
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 140,
+          "skipped_file_count": 140
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

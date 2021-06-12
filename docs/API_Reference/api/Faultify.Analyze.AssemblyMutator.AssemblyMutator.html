@@ -1,0 +1,493 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AssemblyMutator
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AssemblyMutator
+   ">
+    <meta name="generator" content="docfx 2.57.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator">
+  
+  
+  <h1 id="Faultify_Analyze_AssemblyMutator_AssemblyMutator" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator" class="text-break">Class AssemblyMutator
+  </h1>
+  <div class="markdown level0 summary"><p>The <code>AssemblyMutator</code> can be used to analyze all kinds of mutations in a target assembly.
+It can be extended with custom analyzers.
+Though an extension must correspond to one of the following collections in <code>AssemblyMutator</code>:
+<br><br></p>
+<ul>
+<li>ArrayMutationAnalyzers(<a class="xref" href="Faultify.Analyze.Analyzers.ArrayAnalyzer.html">ArrayAnalyzer</a>)<br></li>
+<li>ConstantAnalyzers(<a class="xref" href="Faultify.Analyze.Analyzers.VariableAnalyzer.html">VariableAnalyzer</a>)<br></li>
+<li>VariableMutationAnalyzer(<a class="xref" href="Faultify.Analyze.Analyzers.ConstantAnalyzer.html">ConstantAnalyzer</a>)<br></li>
+<li>OpCodeMutationAnalyzer(<a class="xref" href="Faultify.Analyze.Analyzers.OpCodeAnalyzer.html">OpCodeAnalyzer</a>)<br>
+<br><br>
+If you add your analyzer to one of those collections then it will be used in the process of analyzing.
+Unfortunately, if your analyzer does not fit the interfaces, it can not be used with the <code>AssemblyMutator</code>.</li>
+</ul>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">AssemblyMutator</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><span class="xref">System.IDisposable</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Faultify.Analyze.AssemblyMutator.html">Faultify.Analyze.AssemblyMutator</a></h6>
+  <h6><strong>Assembly</strong>: Faultify.Analyze.dll</h6>
+  <h5 id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AssemblyMutator : IDisposable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_AssemblyMutator__ctor_System_String_.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.AssemblyMutator.%23ctor(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/AssemblyMutator.cs/#L79">View Source</a>
+  </span>
+  <a id="Faultify_Analyze_AssemblyMutator_AssemblyMutator__ctor_" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.#ctor*"></a>
+  <h4 id="Faultify_Analyze_AssemblyMutator_AssemblyMutator__ctor_System_String_" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.#ctor(System.String)">AssemblyMutator(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AssemblyMutator(string assemblyPath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">assemblyPath</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_AssemblyMutator_ArrayMutationAnalyzers.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.AssemblyMutator.ArrayMutationAnalyzers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/AssemblyMutator.cs/#L30">View Source</a>
+  </span>
+  <h4 id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_ArrayMutationAnalyzers" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.ArrayMutationAnalyzers">ArrayMutationAnalyzers</h4>
+  <div class="markdown level1 summary"><p>Analyzers that search for possible array mutations inside a method definition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HashSet&lt;IAnalyzer&lt;ArrayMutation, MethodDefinition&gt;&gt; ArrayMutationAnalyzers</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.HashSet</span>&lt;<a class="xref" href="Faultify.Analyze.IAnalyzer-2.html">IAnalyzer</a>&lt;<a class="xref" href="Faultify.Analyze.Mutation.ArrayMutation.html">ArrayMutation</a>, <span class="xref">Mono.Cecil.MethodDefinition</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_AssemblyMutator_FieldAnalyzers.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.AssemblyMutator.FieldAnalyzers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/AssemblyMutator.cs/#L39">View Source</a>
+  </span>
+  <h4 id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_FieldAnalyzers" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.FieldAnalyzers">FieldAnalyzers</h4>
+  <div class="markdown level1 summary"><p>Analyzers that search for possible constant mutations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HashSet&lt;IAnalyzer&lt;ConstantMutation, FieldDefinition&gt;&gt; FieldAnalyzers</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.HashSet</span>&lt;<a class="xref" href="Faultify.Analyze.IAnalyzer-2.html">IAnalyzer</a>&lt;<a class="xref" href="Faultify.Analyze.Mutation.ConstantMutation.html">ConstantMutation</a>, <span class="xref">Mono.Cecil.FieldDefinition</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_AssemblyMutator_OpCodeMethodAnalyzers.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.AssemblyMutator.OpCodeMethodAnalyzers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/AssemblyMutator.cs/#L48">View Source</a>
+  </span>
+  <h4 id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_OpCodeMethodAnalyzers" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.OpCodeMethodAnalyzers">OpCodeMethodAnalyzers</h4>
+  <div class="markdown level1 summary"><p>Analyzers that search for possible opcode mutations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HashSet&lt;IAnalyzer&lt;OpCodeMutation, MethodDefinition&gt;&gt; OpCodeMethodAnalyzers</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.HashSet</span>&lt;<a class="xref" href="Faultify.Analyze.IAnalyzer-2.html">IAnalyzer</a>&lt;<a class="xref" href="Faultify.Analyze.Mutation.OpCodeMutation.html">OpCodeMutation</a>, <span class="xref">Mono.Cecil.MethodDefinition</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_AssemblyMutator_VariableMutationAnalyzers.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.AssemblyMutator.VariableMutationAnalyzers%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/AssemblyMutator.cs/#L59">View Source</a>
+  </span>
+  <h4 id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_VariableMutationAnalyzers" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.VariableMutationAnalyzers">VariableMutationAnalyzers</h4>
+  <div class="markdown level1 summary"><p>Analyzers that search for possible variable mutations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HashSet&lt;IAnalyzer&lt;VariableMutation, MethodDefinition&gt;&gt; VariableMutationAnalyzers</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.HashSet</span>&lt;<a class="xref" href="Faultify.Analyze.IAnalyzer-2.html">IAnalyzer</a>&lt;<a class="xref" href="Faultify.Analyze.Mutation.VariableMutation.html">VariableMutation</a>, <span class="xref">Mono.Cecil.MethodDefinition</span>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_AssemblyMutator_Module.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.AssemblyMutator.Module%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/AssemblyMutator.cs/#L95">View Source</a>
+  </span>
+  <a id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_Module_" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.Module*"></a>
+  <h4 id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_Module" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.Module">Module</h4>
+  <div class="markdown level1 summary"><p>Underlying Mono.Cecil ModuleDefinition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ModuleDefinition Module { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Mono.Cecil.ModuleDefinition</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_AssemblyMutator_Types.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.AssemblyMutator.Types%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/AssemblyMutator.cs/#L100">View Source</a>
+  </span>
+  <a id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_Types_" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.Types*"></a>
+  <h4 id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_Types" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.Types">Types</h4>
+  <div class="markdown level1 summary"><p>The types in the assembly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;TypeScope&gt; Types { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="Faultify.Analyze.AssemblyMutator.TypeScope.html">TypeScope</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_AssemblyMutator_Dispose.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.AssemblyMutator.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/AssemblyMutator.cs/#L102">View Source</a>
+  </span>
+  <a id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_Dispose_" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.Dispose*"></a>
+  <h4 id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_Dispose" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_AssemblyMutator_Flush.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.AssemblyMutator.Flush%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/AssemblyMutator.cs/#L141">View Source</a>
+  </span>
+  <a id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_Flush_" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.Flush*"></a>
+  <h4 id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_Flush" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.Flush">Flush()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Flush()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_AssemblyMutator_Flush_System_IO_Stream_.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.AssemblyMutator.Flush(System.IO.Stream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/AssemblyMutator.cs/#L131">View Source</a>
+  </span>
+  <a id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_Flush_" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.Flush*"></a>
+  <h4 id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_Flush_System_IO_Stream_" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.Flush(System.IO.Stream)">Flush(Stream)</h4>
+  <div class="markdown level1 summary"><p>Flush the assembly changes to the given file.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Flush(Stream stream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IO.Stream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_AssemblyMutator_Flush_System_String_.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.AssemblyMutator.Flush(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/AssemblyMutator.cs/#L136">View Source</a>
+  </span>
+  <a id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_Flush_" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.Flush*"></a>
+  <h4 id="Faultify_Analyze_AssemblyMutator_AssemblyMutator_Flush_System_String_" data-uid="Faultify.Analyze.AssemblyMutator.AssemblyMutator.Flush(System.String)">Flush(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Flush(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_AssemblyMutator.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.AssemblyMutator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/AssemblyMutator.cs/#L25" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

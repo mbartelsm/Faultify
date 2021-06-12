@@ -1,0 +1,452 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TypeScope
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TypeScope
+   ">
+    <meta name="generator" content="docfx 2.57.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope">
+  
+  
+  <h1 id="Faultify_Analyze_AssemblyMutator_TypeScope" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope" class="text-break">Class TypeScope
+  </h1>
+  <div class="markdown level0 summary"><p>Represents a raw type definition and provides access to its fields and methods..</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">TypeScope</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Faultify.Analyze.AssemblyMutator.IMemberScope.html">IMemberScope</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Faultify.Analyze.AssemblyMutator.html">Faultify.Analyze.AssemblyMutator</a></h6>
+  <h6><strong>Assembly</strong>: Faultify.Analyze.dll</h6>
+  <h5 id="Faultify_Analyze_AssemblyMutator_TypeScope_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TypeScope : IMemberScope, IMutationProvider</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_TypeScope__ctor_Mono_Cecil_TypeDefinition_System_Collections_Generic_HashSet_Faultify_Analyze_IAnalyzer_Faultify_Analyze_Mutation_OpCodeMutation_Mono_Cecil_MethodDefinition___System_Collections_Generic_HashSet_Faultify_Analyze_IAnalyzer_Faultify_Analyze_Mutation_ConstantMutation_Mono_Cecil_FieldDefinition___System_Collections_Generic_HashSet_Faultify_Analyze_IAnalyzer_Faultify_Analyze_Mutation_VariableMutation_Mono_Cecil_MethodDefinition___System_Collections_Generic_HashSet_Faultify_Analyze_IAnalyzer_Faultify_Analyze_Mutation_ArrayMutation_Mono_Cecil_MethodDefinition___.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.TypeScope.%23ctor(Mono.Cecil.TypeDefinition%2CSystem.Collections.Generic.HashSet%7BFaultify.Analyze.IAnalyzer%7BFaultify.Analyze.Mutation.OpCodeMutation%2CMono.Cecil.MethodDefinition%7D%7D%2CSystem.Collections.Generic.HashSet%7BFaultify.Analyze.IAnalyzer%7BFaultify.Analyze.Mutation.ConstantMutation%2CMono.Cecil.FieldDefinition%7D%7D%2CSystem.Collections.Generic.HashSet%7BFaultify.Analyze.IAnalyzer%7BFaultify.Analyze.Mutation.VariableMutation%2CMono.Cecil.MethodDefinition%7D%7D%2CSystem.Collections.Generic.HashSet%7BFaultify.Analyze.IAnalyzer%7BFaultify.Analyze.Mutation.ArrayMutation%2CMono.Cecil.MethodDefinition%7D%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/TypeScope.cs/#L21">View Source</a>
+  </span>
+  <a id="Faultify_Analyze_AssemblyMutator_TypeScope__ctor_" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.#ctor*"></a>
+  <h4 id="Faultify_Analyze_AssemblyMutator_TypeScope__ctor_Mono_Cecil_TypeDefinition_System_Collections_Generic_HashSet_Faultify_Analyze_IAnalyzer_Faultify_Analyze_Mutation_OpCodeMutation_Mono_Cecil_MethodDefinition___System_Collections_Generic_HashSet_Faultify_Analyze_IAnalyzer_Faultify_Analyze_Mutation_ConstantMutation_Mono_Cecil_FieldDefinition___System_Collections_Generic_HashSet_Faultify_Analyze_IAnalyzer_Faultify_Analyze_Mutation_VariableMutation_Mono_Cecil_MethodDefinition___System_Collections_Generic_HashSet_Faultify_Analyze_IAnalyzer_Faultify_Analyze_Mutation_ArrayMutation_Mono_Cecil_MethodDefinition___" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.#ctor(Mono.Cecil.TypeDefinition,System.Collections.Generic.HashSet{Faultify.Analyze.IAnalyzer{Faultify.Analyze.Mutation.OpCodeMutation,Mono.Cecil.MethodDefinition}},System.Collections.Generic.HashSet{Faultify.Analyze.IAnalyzer{Faultify.Analyze.Mutation.ConstantMutation,Mono.Cecil.FieldDefinition}},System.Collections.Generic.HashSet{Faultify.Analyze.IAnalyzer{Faultify.Analyze.Mutation.VariableMutation,Mono.Cecil.MethodDefinition}},System.Collections.Generic.HashSet{Faultify.Analyze.IAnalyzer{Faultify.Analyze.Mutation.ArrayMutation,Mono.Cecil.MethodDefinition}})">TypeScope(TypeDefinition, HashSet&lt;IAnalyzer&lt;OpCodeMutation, MethodDefinition&gt;&gt;, HashSet&lt;IAnalyzer&lt;ConstantMutation, FieldDefinition&gt;&gt;, HashSet&lt;IAnalyzer&lt;VariableMutation, MethodDefinition&gt;&gt;, HashSet&lt;IAnalyzer&lt;ArrayMutation, MethodDefinition&gt;&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TypeScope(TypeDefinition typeDefinition, HashSet&lt;IAnalyzer&lt;OpCodeMutation, MethodDefinition&gt;&gt; opcodeAnalyzers, HashSet&lt;IAnalyzer&lt;ConstantMutation, FieldDefinition&gt;&gt; fieldAnalyzers, HashSet&lt;IAnalyzer&lt;VariableMutation, MethodDefinition&gt;&gt; variableMutationAnalyzers, HashSet&lt;IAnalyzer&lt;ArrayMutation, MethodDefinition&gt;&gt; arrayMutationAnalyzers)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Mono.Cecil.TypeDefinition</span></td>
+        <td><span class="parametername">typeDefinition</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.HashSet</span>&lt;<a class="xref" href="Faultify.Analyze.IAnalyzer-2.html">IAnalyzer</a>&lt;<a class="xref" href="Faultify.Analyze.Mutation.OpCodeMutation.html">OpCodeMutation</a>, <span class="xref">Mono.Cecil.MethodDefinition</span>&gt;&gt;</td>
+        <td><span class="parametername">opcodeAnalyzers</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.HashSet</span>&lt;<a class="xref" href="Faultify.Analyze.IAnalyzer-2.html">IAnalyzer</a>&lt;<a class="xref" href="Faultify.Analyze.Mutation.ConstantMutation.html">ConstantMutation</a>, <span class="xref">Mono.Cecil.FieldDefinition</span>&gt;&gt;</td>
+        <td><span class="parametername">fieldAnalyzers</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.HashSet</span>&lt;<a class="xref" href="Faultify.Analyze.IAnalyzer-2.html">IAnalyzer</a>&lt;<a class="xref" href="Faultify.Analyze.Mutation.VariableMutation.html">VariableMutation</a>, <span class="xref">Mono.Cecil.MethodDefinition</span>&gt;&gt;</td>
+        <td><span class="parametername">variableMutationAnalyzers</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.HashSet</span>&lt;<a class="xref" href="Faultify.Analyze.IAnalyzer-2.html">IAnalyzer</a>&lt;<a class="xref" href="Faultify.Analyze.Mutation.ArrayMutation.html">ArrayMutation</a>, <span class="xref">Mono.Cecil.MethodDefinition</span>&gt;&gt;</td>
+        <td><span class="parametername">arrayMutationAnalyzers</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_TypeScope_AssemblyQualifiedName.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.TypeScope.AssemblyQualifiedName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/TypeScope.cs/#L58">View Source</a>
+  </span>
+  <a id="Faultify_Analyze_AssemblyMutator_TypeScope_AssemblyQualifiedName_" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.AssemblyQualifiedName*"></a>
+  <h4 id="Faultify_Analyze_AssemblyMutator_TypeScope_AssemblyQualifiedName" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.AssemblyQualifiedName">AssemblyQualifiedName</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string AssemblyQualifiedName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_TypeScope_Fields.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.TypeScope.Fields%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/TypeScope.cs/#L48">View Source</a>
+  </span>
+  <a id="Faultify_Analyze_AssemblyMutator_TypeScope_Fields_" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.Fields*"></a>
+  <h4 id="Faultify_Analyze_AssemblyMutator_TypeScope_Fields" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.Fields">Fields</h4>
+  <div class="markdown level1 summary"><p>The fields in this type.
+For example: const, static, non-static fields.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;FieldScope&gt; Fields { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="Faultify.Analyze.AssemblyMutator.FieldScope.html">FieldScope</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_TypeScope_Handle.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.TypeScope.Handle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/TypeScope.cs/#L57">View Source</a>
+  </span>
+  <a id="Faultify_Analyze_AssemblyMutator_TypeScope_Handle_" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.Handle*"></a>
+  <h4 id="Faultify_Analyze_AssemblyMutator_TypeScope_Handle" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.Handle">Handle</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EntityHandle Handle { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Reflection.Metadata.EntityHandle</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_TypeScope_Methods.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.TypeScope.Methods%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/TypeScope.cs/#L53">View Source</a>
+  </span>
+  <a id="Faultify_Analyze_AssemblyMutator_TypeScope_Methods_" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.Methods*"></a>
+  <h4 id="Faultify_Analyze_AssemblyMutator_TypeScope_Methods" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.Methods">Methods</h4>
+  <div class="markdown level1 summary"><p>The methods in this type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;MethodScope&gt; Methods { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.List</span>&lt;<a class="xref" href="Faultify.Analyze.AssemblyMutator.MethodScope.html">MethodScope</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_TypeScope_Name.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.TypeScope.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/TypeScope.cs/#L56">View Source</a>
+  </span>
+  <a id="Faultify_Analyze_AssemblyMutator_TypeScope_Name_" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.Name*"></a>
+  <h4 id="Faultify_Analyze_AssemblyMutator_TypeScope_Name" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.Name">Name</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_TypeScope_TypeDefinition.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.TypeScope.TypeDefinition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/TypeScope.cs/#L55">View Source</a>
+  </span>
+  <a id="Faultify_Analyze_AssemblyMutator_TypeScope_TypeDefinition_" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.TypeDefinition*"></a>
+  <h4 id="Faultify_Analyze_AssemblyMutator_TypeScope_TypeDefinition" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.TypeDefinition">TypeDefinition</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TypeDefinition TypeDefinition { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Mono.Cecil.TypeDefinition</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_TypeScope_AllMutations_Faultify_Analyze_MutationLevel_.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.TypeScope.AllMutations(Faultify.Analyze.MutationLevel)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/TypeScope.cs/#L60">View Source</a>
+  </span>
+  <a id="Faultify_Analyze_AssemblyMutator_TypeScope_AllMutations_" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.AllMutations*"></a>
+  <h4 id="Faultify_Analyze_AssemblyMutator_TypeScope_AllMutations_Faultify_Analyze_MutationLevel_" data-uid="Faultify.Analyze.AssemblyMutator.TypeScope.AllMutations(Faultify.Analyze.MutationLevel)">AllMutations(MutationLevel)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;IMutationGroup&lt;IMutation&gt;&gt; AllMutations(MutationLevel mutationLevel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Faultify.Analyze.MutationLevel.html">MutationLevel</a></td>
+        <td><span class="parametername">mutationLevel</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="Faultify.Analyze.MutationGroups.IMutationGroup-1.html">IMutationGroup</a>&lt;<a class="xref" href="Faultify.Analyze.Mutation.IMutation.html">IMutation</a>&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Faultify.Analyze.AssemblyMutator.IMemberScope.html">IMemberScope</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/mbartelsm/Faultify/new/feat-07-htmlReport/apiSpec/new?filename=Faultify_Analyze_AssemblyMutator_TypeScope.md&amp;value=---%0Auid%3A%20Faultify.Analyze.AssemblyMutator.TypeScope%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/mbartelsm/Faultify/blob/feat-07-htmlReport/Faultify.Analyze/AssemblyMutator/TypeScope.cs/#L17" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
