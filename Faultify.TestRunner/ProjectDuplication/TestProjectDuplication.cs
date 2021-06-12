@@ -6,6 +6,7 @@ using Faultify.Analyze;
 using Faultify.Analyze.AssemblyMutator;
 using Faultify.Core.ProjectAnalyzing;
 using Faultify.TestRunner.TestRun;
+using ICSharpCode.Decompiler.Metadata;
 using NLog;
 
 namespace Faultify.TestRunner.ProjectDuplication
@@ -105,16 +106,18 @@ namespace Faultify.TestRunner.ProjectDuplication
             {
                 // Read the reference and its contents
                 using Stream stream = reference.OpenReadStream();
-                using BinaryReader binReader = new BinaryReader(stream);
-                byte[] data = binReader.ReadBytes((int) stream.Length);
+                MemoryStream decompilerStream = new MemoryStream();
+                stream.CopyTo(decompilerStream);
+                decompilerStream.Position = 0;
 
                 ICodeDecompiler decompiler;
                 try
                 {
-                    decompiler = new CodeDecompiler(reference.FullFilePath(), new MemoryStream(data));
+                    decompiler = new CodeDecompiler(reference.FullFilePath(), decompilerStream);
                 }
                 catch (Exception e)
                 {
+                    Logger.Debug(e.StackTrace);
                     Logger.Warn("Could not decompile project. Source code will not be displayed in the report.");
                     decompiler = new NullDecompiler();
                 }
@@ -173,7 +176,7 @@ namespace Faultify.TestRunner.ProjectDuplication
         /// <param name="mutationVariants"></param>
         public void FlushMutations(IList<MutationVariant> mutationVariants)
         {
-            HashSet<AssemblyMutator>? assemblies =
+            HashSet<AssemblyMutator> assemblies =
                 new HashSet<AssemblyMutator>(mutationVariants.Select(x => x.Assembly));
             foreach (AssemblyMutator assembly in assemblies)
             {
@@ -181,13 +184,23 @@ namespace Faultify.TestRunner.ProjectDuplication
                     assembly.Module.Name == x.Name);
                 try
                 {
-                    using Stream? writeStream = fileDuplication.OpenReadWriteStream();
-                    using MemoryStream? stream = new MemoryStream();
+                    using Stream writeStream = fileDuplication.OpenReadWriteStream();
+                    using MemoryStream stream = new MemoryStream();
                     assembly.Module.Write(stream);
                     writeStream.Write(stream.ToArray());
 
-                    stream.Position = 0;
-                    CodeDecompiler? decompiler = new CodeDecompiler(fileDuplication.FullFilePath(), stream);
+                    ICodeDecompiler decompiler;
+                    try
+                    {
+                        stream.Position = 0;
+                        decompiler = new CodeDecompiler(fileDuplication.FullFilePath(), stream);
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Debug(e.StackTrace);
+                        Logger.Warn("Could not decompile project. Mutated source code will not be displayed in the report.");
+                        decompiler = new NullDecompiler();
+                    }
 
                     foreach (var mutationVariant in mutationVariants)
                     {
