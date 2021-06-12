@@ -1,3 +1,0 @@
-- Get debugging info into Faultify
-	- Reading debug symbols for the code that's mutated
-	- Injecting line info into mutation report
