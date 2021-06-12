@@ -6,6 +6,9 @@ using NUnit.Framework;
 
 namespace Faultify.Tests.UnitTests
 {
+    /// <summary>
+    /// Test the file duplication system and duplication pool.
+    /// </summary>
     internal class FileDuplicationTests
     {
         [Test]

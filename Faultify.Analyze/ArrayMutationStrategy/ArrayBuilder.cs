@@ -23,7 +23,9 @@ namespace Faultify.Analyze.ArrayMutationStrategy
         {
             OpCode opcodeTypeValueAssignment = arrayType.GetLdcOpCodeByTypeReference();
             OpCode stelem = arrayType.GetStelemByTypeReference();
-            if (arrayType.ToSystemType() == typeof(long) || arrayType.ToSystemType() == typeof(ulong))
+            var arraySystemType = arrayType.ToSystemType();
+
+            if (arraySystemType == typeof(long) || arraySystemType == typeof(ulong))
             {
                 opcodeTypeValueAssignment = OpCodes.Ldc_I4;
             }
@@ -35,7 +37,7 @@ namespace Faultify.Analyze.ArrayMutationStrategy
             };
             for (var i = 0; i < length; i++)
             {
-                object random = RandomValueGenerator.GenerateValueForField(arrayType.ToSystemType(), 0);
+                object random = RandomValueGenerator.GenerateValueForField(arraySystemType, 0);
 
                 list.Add(processor.Create(OpCodes.Dup));
 
@@ -48,9 +50,17 @@ namespace Faultify.Analyze.ArrayMutationStrategy
                     list.Add(processor.Create(OpCodes.Ldc_I4, i));
                 }
 
-                list.Add(processor.Create(opcodeTypeValueAssignment, random));
+                if (arraySystemType == typeof(char))
+                {
+                    int charCode = (int) char.GetNumericValue((char) random);
+                    list.Add(processor.Create(opcodeTypeValueAssignment, charCode));
 
-                if (arrayType.ToSystemType() == typeof(long) || arrayType.ToSystemType() == typeof(ulong))
+                } else
+                {
+                    list.Add(processor.Create(opcodeTypeValueAssignment, random));
+                }
+
+                if (arraySystemType == typeof(long) || arraySystemType == typeof(ulong))
                 {
                     list.Add(processor.Create(OpCodes.Conv_I8));
                 }

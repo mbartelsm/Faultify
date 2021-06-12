@@ -18,6 +18,7 @@ using Faultify.TestRunner.Logging;
 using Faultify.TestRunner.ProjectDuplication;
 using Faultify.TestRunner.Shared;
 using Faultify.TestRunner.TestRun;
+using Faultify.TestRunner.TestRun.TestHostRunners;
 using MC::Mono.Cecil;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
@@ -145,24 +146,38 @@ namespace Faultify.TestRunner
         {
             TestFramework testFramework = GetTestFramework(testProjectInfo);
 
-            // Read the test project into memory.
             TestProjectInfo? projectInfo = new TestProjectInfo(
                 testFramework,
                 ModuleDefinition.ReadModule(duplication.TestProjectFile.FullFilePath())
             );
-
-            // Foreach project reference load it in memory as an 'assembly mutator'.
-            foreach (FileDuplication projectReferencePath in duplication.TestProjectReferences)
-            {
-                AssemblyMutator loadProjectReferenceModel = new AssemblyMutator(projectReferencePath.FullFilePath());
-
-                if (loadProjectReferenceModel.Types.Count > 0)
-                {
-                    projectInfo.DependencyAssemblies.Add(loadProjectReferenceModel);
-                }
-            }
+            LoadInMemory(duplication, projectInfo);
 
             return projectInfo;
+        }
+
+        /// <summary>
+        ///     Foreach project reference load it in memory as an <see cref="AssemblyMutator"/>.
+        /// </summary>
+        /// <param name="duplication"></param>
+        /// <param name="projectInfo"></param>
+        private static void LoadInMemory(TestProjectDuplication duplication, TestProjectInfo projectInfo)
+        {
+            foreach (FileDuplication projectReferencePath in duplication.TestProjectReferences)
+            {
+                try
+                {
+                    AssemblyMutator loadProjectReferenceModel = new AssemblyMutator(projectReferencePath.FullFilePath());
+
+                    if (loadProjectReferenceModel.Types.Count > 0)
+                    {
+                        projectInfo.DependencyAssemblies.Add(loadProjectReferenceModel);
+                    }
+                }
+                catch (FileNotFoundException e)
+                {
+                    Logger.Error(e, $"Faultify was unable to read the file {projectReferencePath.FullFilePath()}.");
+                }
+            }
         }
 
         private TestFramework GetTestFramework(IProjectInfo projectInfo)
@@ -264,7 +279,7 @@ namespace Faultify.TestRunner
             try
             {
                 testRunner = TestHostRunnerFactory
-                    .CreateTestRunner(testAssemblyPath, TimeSpan.FromSeconds(12), _testHost);
+                    .CreateTestRunner(testAssemblyPath, TimeSpan.FromSeconds(300), _testHost);
             }
             catch (Exception e)
             {

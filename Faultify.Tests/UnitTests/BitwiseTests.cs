@@ -7,6 +7,9 @@ using NUnit.Framework;
 
 namespace Faultify.Tests.UnitTests
 {
+    /// <summary>
+    /// Test mutations of bitwise/logical operators.
+    /// </summary>
     internal class BitwiseTests
     {
         private readonly string _folder = Path.Combine("UnitTests", "TestSource", "BitwiseTarget.cs");

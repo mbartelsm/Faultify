@@ -7,6 +7,9 @@ using NUnit.Framework;
 
 namespace Faultify.Tests.UnitTests
 {
+    /// <summary>
+    /// Test logical operators.
+    /// </summary>
     internal class LogicalTests
     {
         private readonly string folder = Path.Combine("UnitTests", "TestSource", "LogicalTarget.cs");

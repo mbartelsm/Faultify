@@ -5,7 +5,6 @@ using System.Linq;
 using Faultify.Analyze.Analyzers;
 using Faultify.Analyze.Mutation;
 using Mono.Cecil;
-using Mono.Cecil.Cil;
 
 namespace Faultify.Analyze.AssemblyMutator
 {
@@ -78,12 +77,15 @@ namespace Faultify.Analyze.AssemblyMutator
 
         public AssemblyMutator(string assemblyPath)
         {
+            var assemblyResolver = new DefaultAssemblyResolver();
+            assemblyResolver.AddSearchDirectory(Path.GetDirectoryName(assemblyPath));
             Module = ModuleDefinition.ReadModule(
                 assemblyPath,
                 new ReaderParameters
                 {
                     InMemory = true,
                     ReadSymbols = true,
+                    AssemblyResolver= assemblyResolver,
                 }
             );
             Types = LoadTypes();

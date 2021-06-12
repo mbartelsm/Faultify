@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
+using System.Text;
 using Faultify.Analyze;
 using Faultify.Analyze.Mutation;
 using Faultify.Analyze.MutationGroups;
@@ -15,6 +16,7 @@ using MC::Mono.Cecil.Rocks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
+using Microsoft.CodeAnalysis.Text;
 using NUnit.Framework;
 
 namespace Faultify.Tests.UnitTests.Utils
@@ -49,26 +51,54 @@ namespace Faultify.Tests.UnitTests.Utils
         }
 
         /// <summary>
-        ///     Compiles CS code to binary code (how Dll's supposed to look)
+        ///     Compiles CS code to binary code and creates a PDB file for debug symbols.
         /// </summary>
+        /// See https://stackoverflow.com/questions/50649795/how-to-debug-dll-generated-from-roslyn-compilation
         /// <param name="path"></param>
         /// <returns></returns>
         public static byte[] CompileTestBinary(string path)
         {
             string source = File.ReadAllText(path);
+            string symbolsName = "test.pdb"; // File for storing debug symbols.
+            var encoding = Encoding.UTF8;
+            byte[] buffer = encoding.GetBytes(source);
+            SourceText sourceText = SourceText.From(buffer, buffer.Length, encoding, canBeEmbedded: true);
 
-            CSharpCompilation compilation = CSharpCompilation.Create("test.dll",
+
+            CSharpCompilation compilation = CSharpCompilation.Create(
+                "test.dll",
                 new[] { CSharpSyntaxTree.ParseText(source) },
                 new[] { MetadataReference.CreateFromFile(typeof(object).Assembly.Location) },
-                new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+                new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary)
+                    .WithOptimizationLevel(OptimizationLevel.Debug)
+                    .WithPlatform(Platform.AnyCpu)
+                    );
 
-            MemoryStream memoryStream = new MemoryStream();
-            EmitResult emitResult = compilation.Emit(memoryStream);
+            using var memoryStream = new MemoryStream();
+            using var symbolStream = new MemoryStream();
+
+            var emitOptions = new EmitOptions(
+                debugInformationFormat: DebugInformationFormat.PortablePdb,
+                pdbFilePath: symbolsName);
+
+            var embeddedTexts = new List<EmbeddedText>
+            {
+                EmbeddedText.FromSource(path, sourceText),
+            };
+
+            EmitResult emitResult = compilation.Emit(
+                peStream: memoryStream, 
+                pdbStream: symbolStream, 
+                embeddedTexts: embeddedTexts, 
+                options: emitOptions);
 
             if (!emitResult.Success)
             {
                 Assert.Fail("Could not compile Test Target");
             }
+
+            // Write debug symbols to file.
+            File.WriteAllBytes("test.pdb", symbolStream.ToArray());
 
             return memoryStream.ToArray();
         }
